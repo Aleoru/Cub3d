@@ -24,6 +24,9 @@ typedef struct s_data
 	t_point		ply_pos;
 	float		ply_angle;
 	float		ply_speed;
+	int			x_axis; 	//right - left
+	int			y_axis; 	//down - up
+	int			turn_dir; 	//right - left
 	char		*map_name;
 	char		**map;
 }	t_data;
@@ -31,4 +34,7 @@ typedef struct s_data
 //provisionales
 void	create_test_map(t_data *data, int width, int heigth);
 
+//dibujo
+void    draw_line(mlx_image_t *image, t_point begin, t_point end, int color);
+void    draw_circle(mlx_image_t *image, t_point center, int radius, int color);
 #endif
