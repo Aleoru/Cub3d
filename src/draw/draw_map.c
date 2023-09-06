@@ -2,8 +2,8 @@
 
 void	draw_map(t_data *data, int width, int heigth, int size)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
 	while (y < heigth)

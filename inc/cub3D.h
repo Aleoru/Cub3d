@@ -45,6 +45,7 @@ void    draw_map(t_data *data, int width, int heigth, int size);
 //dibujo
 void    draw_line(mlx_image_t *image, t_point begin, t_point end, int color);
 void    draw_circle(mlx_image_t *image, t_point center, int radius, int color);
+void	draw_poli(mlx_image_t *img, t_point *vertices, int vrt_num, int color);
 void	clear_image(mlx_image_t *image);
 void	draw_player(t_data *data);
 
