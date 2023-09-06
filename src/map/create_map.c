@@ -1,11 +1,11 @@
 #include "../../inc/cub3D.h"
 
-static void reserve_memory_map(t_data *data, int width, int heigth)
+static	void	reserve_memory_map(t_data *data, int width, int heigth)
 {
 	int		i;
 
 	i = 0;
-	data->map = malloc(sizeof(char*) * heigth +1);
+	data->map = malloc(sizeof(char *) * heigth +1);
 	while (i < heigth)
 	{
 		data->map[i] = malloc(sizeof(char) * width +1);
@@ -16,10 +16,10 @@ static void reserve_memory_map(t_data *data, int width, int heigth)
 	data->map[i][0] = '\0';
 }
 
-void create_test_map(t_data *data, int width, int heigth)
+void	create_test_map(t_data *data, int width, int heigth)
 {
-	int x;
-	int y;
+	int		x;
+	int		y;
 
 	reserve_memory_map(data, width, heigth);
 	y = 0;

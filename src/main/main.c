@@ -27,12 +27,12 @@ void	init_data(t_data *data)
 	mlx_image_to_window(data->mlx, data->screen, 0, 0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
+	t_data	data;
+
 	(void)argc;
 	(void)argv;
-	t_data data;
-
 	init_data(&data);
 	mlx_loop_hook(data.mlx, &hook, &data);
 	mlx_loop(data.mlx);
