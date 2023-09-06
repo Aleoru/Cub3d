@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+         #
+#    By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/08 18:12:15 by aoropeza          #+#    #+#              #
-#    Updated: 2023/09/04 00:57:56 by fgalan-r         ###   ########.fr        #
+#    Updated: 2023/09/06 19:16:14 by aoropeza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,7 @@ LIBMLX	= lib/MLX42
 
 HEADER	= -I ./inc -I $(LIBMLX)/include -I $(LIBFT)/inc
 LFLAGS	= -L$(LIBFT) -lft  -L$(LIBMLX) -lmlx42 
-# LIBS	= -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/
-LIBS	= -ldl -lglfw -lm
+LIBS	= -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/ -lm
 # SRC_B	:= $(wildcard $(SRCDIR)/bonus/*.c)
 SRC		:= $(wildcard $(SRCDIR)/*/*.c)
 OBJS	:= $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
@@ -28,6 +27,11 @@ OBJS	:= $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 CC 		= gcc
 CFLAGS	= -Wall -Werror -Wextra
 RM 		= rm -rf
+
+ifeq ($(UNAME), Linux)
+LIBS	= -ldl -lglfw -lm
+$(warning Linux detected! Changing libs flags...)
+endif
 
 BOLD	= \033[1m
 BLACK	= \033[30;1m
