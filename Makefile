@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+         #
+#    By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/08 18:12:15 by aoropeza          #+#    #+#              #
-#    Updated: 2023/09/01 19:33:55 by aoropeza         ###   ########.fr        #
+#    Updated: 2023/09/04 00:57:56 by fgalan-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ LIBMLX	= lib/MLX42
 
 HEADER	= -I ./inc -I $(LIBMLX)/include -I $(LIBFT)/inc
 LFLAGS	= -L$(LIBFT) -lft  -L$(LIBMLX) -lmlx42 
-LIBS	= -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/
+# LIBS	= -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/
+LIBS	= -ldl -lglfw -lm
 # SRC_B	:= $(wildcard $(SRCDIR)/bonus/*.c)
 SRC		:= $(wildcard $(SRCDIR)/*/*.c)
 OBJS	:= $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
