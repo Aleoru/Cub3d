@@ -32,8 +32,8 @@ typedef struct s_level
 	char	*so_path;
 	char	*ea_path;
 	char	*we_path;
-	int		f_color[3];
-	int		c_color[3];
+	int		f_color;
+	int		c_color;
 	char	**map;
 	int		size_x;
 	int		size_y;
