@@ -17,6 +17,16 @@ typedef struct s_point
 	float		y;
 }	t_point;
 
+typedef struct s_inputs
+{
+	int	right;
+	int	left;
+	int up;
+	int down;
+	int	turn_right;
+	int turn_left;
+}	t_inptus;
+
 typedef struct s_data
 {
 	//ventana
@@ -25,6 +35,7 @@ typedef struct s_data
 	//player
 	t_point		ply_pos;
 	t_point		ply_cell;
+	t_inptus	ply_inputs;
 	float		ply_angle;
 	float		ply_speed;
 	int			ply_x_axis; 	//right - left
@@ -51,4 +62,7 @@ void	draw_player(t_data *data);
 
 //hook
 void	hook(void *param);
+
+//move
+void	move_player(t_data *data);
 #endif

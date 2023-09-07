@@ -1,39 +1,35 @@
 #include "../../inc/cub3D.h"
 
+void	reset_inputs(t_data *data)
+{
+	data->ply_inputs.up = 0;
+	data->ply_inputs.down = 0;
+	data->ply_inputs.left = 0;
+	data->ply_inputs.right = 0;
+	data->ply_inputs.turn_left = 0;
+	data->ply_inputs.turn_right = 0;
+}
+
 void	hook(void *param)
 {
 	t_data	*data;
 
 	data = param;
+	reset_inputs(data);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
-	{
-        //printf("key w\n");
-		data->ply_pos.y -= 1;
-	}
+		data->ply_inputs.up = 1;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
-	{
-        //printf("key s\n");
-		data->ply_pos.y += 1;
-	}
+		data->ply_inputs.down = 1;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
-	{
-        //printf("key a\n");
-		data->ply_pos.x -= 1;
-	}
+		data->ply_inputs.left = 1;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
-	{
-        //printf("key d\n");
-		data->ply_pos.x += 1;
-	}
+		data->ply_inputs.right = 1;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-	{
-        printf("key left\n");
-	}
+		data->ply_inputs.turn_left = 1;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
-	{
-        printf("key right\n");
-	}
+		data->ply_inputs.turn_right = 1;
+	move_player(data);
 	draw_player(data);
 }

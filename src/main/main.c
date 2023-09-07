@@ -14,7 +14,7 @@ void	init_data(t_data *data)
 	data->ply_pos.x = 100;
 	data->ply_pos.y = 100;
 	data->ply_angle = 45;
-	data->ply_speed = 3;
+	data->ply_speed = 1;
 	//open window
 	data->mlx = mlx_init(width, height, "cub3D", true);
 	//creating images
