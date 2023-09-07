@@ -11,11 +11,33 @@
 # include <limits.h>
 # include <math.h>
 
+# define NO "NO"
+# define SO "SO"
+# define EA "EA"
+# define WE "WE"
+# define F "F"
+# define C "C"
+# define ELEM 6
+
 typedef struct s_point
 {
 	float		x;
 	float		y;
 }	t_point;
+
+typedef struct s_level
+{
+	char	*path;
+	char	*no_path;
+	char	*so_path;
+	char	*ea_path;
+	char	*we_path;
+	int		f_color[3];
+	int		c_color[3];
+	char	**map;
+	int		size_x;
+	int		size_y;
+}	t_level;
 
 typedef struct s_data
 {
@@ -31,6 +53,7 @@ typedef struct s_data
 	int			ply_y_axis; 	//down - up
 	int			ply_turn_dir; 	//right - left
 	//mapa
+	t_level		level;
 	mlx_image_t	*map_image;
 	char		*map_name;
 	char		**map;
@@ -38,17 +61,33 @@ typedef struct s_data
 	mlx_image_t	*wall;
 }	t_data;
 
-//provisionales
+/****************/
+/*	PROVISIONAL	*/
+/****************/
 void	create_test_map(t_data *data, int width, int heigth);
-void    draw_map(t_data *data, int width, int heigth, int size);
+void	draw_map(t_data *data, int width, int heigth, int size);
 
-//dibujo
-void    draw_line(mlx_image_t *image, t_point begin, t_point end, int color);
-void    draw_circle(mlx_image_t *image, t_point center, int radius, int color);
+/********************/
+/*		DRAW		*/
+/********************/
+void	draw_line(mlx_image_t *image, t_point begin, t_point end, int color);
+void	draw_circle(mlx_image_t *image, t_point center, int radius, int color);
 void	draw_poli(mlx_image_t *img, t_point *vertices, int vrt_num, int color);
 void	clear_image(mlx_image_t *image);
 void	draw_player(t_data *data);
 
-//hook
+/****************/
+/*		MAP		*/
+/****************/
+void	init_map(t_data *data, t_level *level, char *str);
+
+/********************/
+/*		UTILS		*/
+/********************/
+void	free_split(char **split);
+
+/********************/
+/*		HOOK		*/
+/********************/
 void	hook(void *param);
 #endif

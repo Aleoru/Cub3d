@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	(void)argc;
-	(void)argv;
+	init_map(&data, &data.level, argv[1]);
 	init_data(&data);
 	mlx_loop_hook(data.mlx, &hook, &data);
 	mlx_loop(data.mlx);
