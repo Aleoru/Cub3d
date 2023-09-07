@@ -2,7 +2,7 @@
 
 void	clear_image(mlx_image_t *image)
 {
-	image->pixels = ft_calloc(image->width * image->height, sizeof(int));
+	ft_memset(image->pixels, 0, image->width * image->height * sizeof(int));
 }
 
 void	draw_player(t_data *data)
@@ -23,5 +23,8 @@ void	draw_player(t_data *data)
 	draw_poli(data->screen, ver, 4, 0xFF66FF);
 	mlx_put_pixel(data->screen, data->ply_pos.x,
 		data->ply_pos.y, 0xFF66FF);
+	mlx_put_pixel(data->screen, data->ply_pos.x + 1,
+		data->ply_pos.y + 1, 0xFF66FF);
+
 
 }

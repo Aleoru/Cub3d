@@ -50,6 +50,7 @@ void	draw_poli(mlx_image_t *img, t_point *vertices, int vrt_num, int color)
 	int		i;
 
 	i = 0;
+
 	while (i < vrt_num - 1)
 	{
 		draw_line(img, vertices[i], vertices[i + 1], color);

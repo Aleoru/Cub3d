@@ -7,9 +7,27 @@ static void process_inputs(t_data *data)
 	data->ply_turn_dir = data->ply_inputs.turn_right - data->ply_inputs.turn_left;
 }
 
+static void convert_radians(t_data *data)
+{
+	data->ply_angle += data->ply_turn_dir;
+	if (data->ply_angle > 359)
+		data->ply_angle = 0;
+	else if (data->ply_angle < 0)
+		data->ply_angle = 359;
+	data->ply_radians = data->ply_angle * data->radian_conversion;
+	printf("angle:%1f\n", data->ply_angle); 
+}
+
 void	move_player(t_data *data)
 {
+	t_point		new;
+
 	process_inputs(data);
-	data->ply_pos.x += data->ply_speed * data->ply_x_axis;
-	data->ply_pos.y += data->ply_speed * data->ply_y_axis;
+	convert_radians(data);
+	new.x = cos(data->ply_radians) * data->ply_speed * data->ply_y_axis;
+	new.y = sin(data->ply_radians) * data->ply_speed * data->ply_y_axis;
+	//collision
+	data->ply_pos.x += new.x;
+	data->ply_pos.y += new.y;
+
 }

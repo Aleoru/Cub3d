@@ -37,6 +37,7 @@ typedef struct s_data
 	t_point		ply_cell;
 	t_inptus	ply_inputs;
 	float		ply_angle;
+	float		ply_radians;
 	float		ply_speed;
 	int			ply_x_axis; 	//right - left
 	int			ply_y_axis; 	//down - up
@@ -47,6 +48,8 @@ typedef struct s_data
 	char		**map;
 	//png
 	mlx_image_t	*wall;
+	//trigonometria
+	float		radian_conversion;
 }	t_data;
 
 //provisionales

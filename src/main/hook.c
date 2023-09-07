@@ -1,6 +1,6 @@
 #include "../../inc/cub3D.h"
 
-void	reset_inputs(t_data *data)
+static void	reset_inputs(t_data *data)
 {
 	data->ply_inputs.up = 0;
 	data->ply_inputs.down = 0;

@@ -8,6 +8,7 @@ void	init_data(t_data *data)
 
 	width = 640;
 	height = 640;
+	data->radian_conversion = 3.1415926536 / 180;
 	//create map
 	create_test_map(data, 10, 10);
 	//player data
