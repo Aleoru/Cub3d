@@ -21,10 +21,10 @@ typedef struct s_inputs
 {
 	int	right;
 	int	left;
-	int up;
-	int down;
+	int	up;
+	int	down;
 	int	turn_right;
-	int turn_left;
+	int	turn_left;
 }	t_inptus;
 
 typedef struct s_data
@@ -37,6 +37,7 @@ typedef struct s_data
 	t_point		ply_cell;
 	t_inptus	ply_inputs;
 	float		ply_angle;
+	float		ply_angle_mv;
 	float		ply_radians;
 	float		ply_speed;
 	int			ply_x_axis; 	//right - left
@@ -54,11 +55,11 @@ typedef struct s_data
 
 //provisionales
 void	create_test_map(t_data *data, int width, int heigth);
-void    draw_map(t_data *data, int width, int heigth, int size);
+void	draw_map(t_data *data, int width, int heigth, int size);
 
 //dibujo
-void    draw_line(mlx_image_t *image, t_point begin, t_point end, int color);
-void    draw_circle(mlx_image_t *image, t_point center, int radius, int color);
+void	draw_line(mlx_image_t *image, t_point begin, t_point end, int color);
+void	draw_circle(mlx_image_t *image, t_point center, int radius, int color);
 void	draw_poli(mlx_image_t *img, t_point *vertices, int vrt_num, int color);
 void	clear_image(mlx_image_t *image);
 void	draw_player(t_data *data);
@@ -68,4 +69,5 @@ void	hook(void *param);
 
 //move
 void	move_player(t_data *data);
+int		collision_player(t_data *data);
 #endif
