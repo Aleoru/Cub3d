@@ -6,7 +6,7 @@
 #    By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/08 18:12:15 by aoropeza          #+#    #+#              #
-#    Updated: 2023/09/06 19:16:14 by aoropeza         ###   ########.fr        #
+#    Updated: 2023/09/07 18:33:35 by aoropeza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ OBJS	:= $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 CC 		= gcc
 CFLAGS	= -Wall -Werror -Wextra
 RM 		= rm -rf
+
+UNAME	= $(shell uname -s)
 
 ifeq ($(UNAME), Linux)
 LIBS	= -ldl -lglfw -lm
