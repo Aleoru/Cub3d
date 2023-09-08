@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_player.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/08 11:42:08 by fgalan-r          #+#    #+#             */
+/*   Updated: 2023/09/08 11:42:09 by fgalan-r         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3D.h"
 
 void	clear_image(mlx_image_t *image)
@@ -7,20 +19,16 @@ void	clear_image(mlx_image_t *image)
 
 void	draw_player(t_data *data)
 {
-	t_point	ver[4];
+	int		c;
 	int		dis;
+	t_point	dir;
 
-	dis = 10;
-	ver[0].x = data->ply_pos.x - dis;
-	ver[0].y = data->ply_pos.y - dis;
-	ver[2].x = data->ply_pos.x + dis;
-	ver[2].y = data->ply_pos.y + dis;
-	ver[1].x = data->ply_pos.x + dis;
-	ver[1].y = data->ply_pos.y - dis;
-	ver[3].x = data->ply_pos.x - dis;
-	ver[3].y = data->ply_pos.y + dis;
+	c = 0x66FFFFFF;
+	dis = 15;
 	clear_image(data->screen);
-	draw_poli(data->screen, ver, 4, 0xdc6400ff);
-	mlx_put_pixel(data->screen, data->ply_pos.x,
-		data->ply_pos.y, 0xFF66FF);
+	draw_circle(data->screen, data->ply_pos, dis, c);
+	mlx_put_pixel(data->screen, data->ply_pos.x, data->ply_pos.y, c);
+	dir.x = data->ply_pos.x + cos(data->ply_angle * data->radian_conversion) * dis;
+	dir.y = data->ply_pos.y - sin(data->ply_angle * data->radian_conversion) * dis;
+	draw_line(data->screen, data->ply_pos, dir, c);
 }

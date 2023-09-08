@@ -10,12 +10,14 @@ void	init_data(t_data *data)
 	height = 640;
 	data->radian_conversion = 3.1415926536 / 180;
 	//create map
-	create_test_map(data, 10, 10);
+	data->map_cell_size = 64;
+ 	create_test_map(data, 10, 10);
 	//player data
 	data->ply_pos.x = 100;
 	data->ply_pos.y = 100;
 	data->ply_angle = 45;
 	data->ply_speed = 1;
+	data->ply_turn_speed = 1;
 	//open window
 	data->mlx = mlx_init(width, height, "cub3D", true);
 	//creating images

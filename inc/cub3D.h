@@ -40,6 +40,7 @@ typedef struct s_data
 	float		ply_angle_mv;
 	float		ply_radians;
 	float		ply_speed;
+	float		ply_turn_speed;
 	int			ply_x_axis; 	//right - left
 	int			ply_y_axis; 	//down - up
 	int			ply_turn_dir; 	//right - left
@@ -47,6 +48,7 @@ typedef struct s_data
 	mlx_image_t	*map_image;
 	char		*map_name;
 	char		**map;
+	int			map_cell_size;
 	//png
 	mlx_image_t	*wall;
 	//trigonometria
@@ -69,5 +71,5 @@ void	hook(void *param);
 
 //move
 void	move_player(t_data *data);
-int		collision_player(t_data *data);
+int		collision_player(t_data *data, float x, float y);
 #endif
