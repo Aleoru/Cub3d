@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 19:38:38 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/07 19:39:43 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/08 18:12:36 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,12 @@ void	free_split(char **split)
 		i--;
 	}
 	free(split);
+}
+
+void	free_level(t_level *level)
+{
+	free(level->no_path);
+	free(level->so_path);
+	free(level->ea_path);
+	free(level->we_path);
 }

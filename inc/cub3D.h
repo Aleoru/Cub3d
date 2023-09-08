@@ -28,6 +28,7 @@ typedef struct s_point
 typedef struct s_level
 {
 	char	*path;
+	int		fd;
 	char	*no_path;
 	char	*so_path;
 	char	*ea_path;
@@ -85,6 +86,7 @@ void	init_map(t_data *data, t_level *level, char *str);
 /*		UTILS		*/
 /********************/
 void	free_split(char **split);
+void	free_level(t_level *level);
 
 /********************/
 /*		HOOK		*/
