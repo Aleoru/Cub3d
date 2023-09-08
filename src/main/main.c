@@ -2,13 +2,11 @@
 
 void	init_data(t_data *data)
 {
-	int				width;
-	int				height;
 	mlx_texture_t	*texture;
 
-	width = 640;
-	height = 640;
-	data->radian_conversion = 3.1415926536 / 180;
+	data->width = 640;
+	data->height = 640;
+	data->radian_conver = 3.1415926536 / 180;
 	//create map
 	data->map_cell_size = 64;
  	create_test_map(data, 10, 10);
@@ -19,14 +17,17 @@ void	init_data(t_data *data)
 	data->ply_speed = 1;
 	data->ply_turn_speed = 1;
 	//open window
-	data->mlx = mlx_init(width, height, "cub3D", true);
+	data->mlx = mlx_init(data->width, data->height, "cub3D", true);
 	//creating images
 	texture = mlx_load_png("./png/wall.png");
 	data->wall = mlx_texture_to_image(data->mlx, texture);
 	//draw map 2d
 	draw_map(data, 10, 10, 64);
+	//create rays
+	data->angle_vision = 60;
+	create_rays(data);
 	//create player screen
-	data->screen = mlx_new_image(data->mlx, width, height);
+	data->screen = mlx_new_image(data->mlx, data->width, data->height);
 	mlx_image_to_window(data->mlx, data->screen, 0, 0);
 }
 

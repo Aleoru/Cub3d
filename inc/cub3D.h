@@ -19,19 +19,29 @@ typedef struct s_point
 
 typedef struct s_inputs
 {
-	int	right;
-	int	left;
-	int	up;
-	int	down;
-	int	turn_right;
-	int	turn_left;
+	int			right;
+	int			left;
+	int			up;
+	int			down;
+	int			turn_right;
+	int			turn_left;
 }	t_inptus;
+
+typedef struct s_ray
+{
+	float		v_collision;
+	float		h_collision;
+	float		distance;
+	float		angle;
+}	t_ray;
 
 typedef struct s_data
 {
 	//ventana
 	mlx_t		*mlx;
 	mlx_image_t	*screen;
+	int			width;
+	int			height;
 	//player
 	t_point		ply_pos;
 	t_point		ply_cell;
@@ -41,9 +51,9 @@ typedef struct s_data
 	float		ply_radians;
 	float		ply_speed;
 	float		ply_turn_speed;
-	int			ply_x_axis; 	//right - left
-	int			ply_y_axis; 	//down - up
-	int			ply_turn_dir; 	//right - left
+	int			ply_x_axis;
+	int			ply_y_axis;
+	int			ply_turn_dir;
 	//mapa
 	mlx_image_t	*map_image;
 	char		*map_name;
@@ -52,7 +62,11 @@ typedef struct s_data
 	//png
 	mlx_image_t	*wall;
 	//trigonometria
-	float		radian_conversion;
+	float		radian_conver;
+	//ray casting
+	t_ray		*rays;
+	int			num_rays;
+	int			angle_vision;
 }	t_data;
 
 //provisionales
@@ -72,4 +86,8 @@ void	hook(void *param);
 //move
 void	move_player(t_data *data);
 int		collision_player(t_data *data, float x, float y);
+
+//ray casting
+void	create_rays(t_data *data);
+
 #endif
