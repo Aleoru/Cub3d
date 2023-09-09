@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/09 16:38:31 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/09 21:03:21 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,41 @@ static void	validate_map(t_data *data, char *path)
 		printf("ERROR\nNo tiene extension\n");
 }
 
+static void	validate_color(char	*c)
+{
+	size_t	i;
+
+	i = 0;
+	while (c[i])
+	{
+		if (!ft_isdigit(c[i]))
+			break ;
+		i++;
+	}
+	printf("%zu de %zu\n", i, ft_strlen(c));
+	if (i != ft_strlen(c))
+	{
+		printf("Color no válido\n");
+		exit (1);
+	}
+	else
+		printf("Color válido\n");
+}
+
 static int	get_rgb(t_level *level, char *str)
 {
 	int		r;
 	int		g;
 	int		b;
+	int		i;
 	char	**rgb;
 
 	(void)level;
+	i = 0;
 	rgb = ft_split(str, ',');
+	rgb[2][ft_strlen(rgb[2]) - 1] = '\0';
+	while (rgb[i] && i < 3)
+		validate_color(rgb[i++]);
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
