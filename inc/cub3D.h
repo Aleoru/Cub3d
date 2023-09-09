@@ -38,6 +38,7 @@ typedef struct s_level
 	char	**map;
 	int		size_x;
 	int		size_y;
+	int		f_size;
 }	t_level;
 
 typedef struct s_data

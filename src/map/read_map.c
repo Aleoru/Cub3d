@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/08 20:56:36 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/09 16:38:31 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static void	read_map_elements(t_data *data, t_level *level)
 		while (n < ELEM)
 		{
 			line = get_next_line(level->fd);
+			level->f_size++;
 			split = ft_split(line, ' ');
 			if (!ft_strchr(split[0], '\n'))
 			{
@@ -94,31 +95,57 @@ static void	read_map_elements(t_data *data, t_level *level)
 	}
 }
 
-static void	read_map(t_data *data, t_level *level)
+static void	get_map_size(t_data *data, t_level *level)
 {
 	char	*line;
 
 	(void)data;
 	line = get_next_line(level->fd);
-	printf("%s", line);
 	while (!ft_strchr(line, '1'))
 	{
 		free(line);
 		line = get_next_line(level->fd);
-		printf("%s", line);
+		level->f_size++;
 	}
 	while (line != NULL && ft_strchr(line, '1'))
 	{
 		free(line);
 		line = get_next_line(level->fd);
-		//printf("%s", line);
-		write(1, line, ft_strlen(line));
+		level->f_size++;
+		if (line == NULL)
+			break ;
 		if (ft_strlen(line) > (size_t)level->size_x)
 			level->size_x = ft_strlen(line);
 		level->size_y++;
 	}
 	free(line);
-	printf("\nX: %d, Y: %d\n", level->size_x, level->size_y);
+	printf("\nX: %d, Y: %d\nFILE SIZE: %d\n", level->size_x, level->size_y, level->f_size);
+	close(level->fd);
+}
+
+static void	read_map(t_data *data, t_level *level)
+{
+	int		y;
+	int		n;
+
+	(void)data;
+	y = 0;
+	(void)y;
+	n = level->f_size - level->size_y;
+	level->map = ft_calloc(level->size_y, level->size_x);
+	level->fd = open(level->path, O_RDONLY);
+	while (n-- > 1)
+	{
+		level->map[y] = get_next_line(level->fd);
+		free(level->map[y]);
+	}
+	level->map[y] = get_next_line(level->fd);
+	while (level->map[y] != NULL)
+	{
+		y++;
+		level->map[y] = get_next_line(level->fd);
+	}
+	close(level->fd);
 }
 
 void	init_map(t_data *data, t_level *level, char *str)
@@ -126,9 +153,11 @@ void	init_map(t_data *data, t_level *level, char *str)
 	(void)data;
 	level->size_x = 0;
 	level->size_y = 0;
+	level->f_size = 0;
 	level->path = ft_strjoin("assets/maps/", str);
 	validate_map(data, level->path);
 	read_map_elements(data, level);
+	get_map_size(data, level);
 	read_map(data, level);
 	free(level->path);
 	free_level(level);
