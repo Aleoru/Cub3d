@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:31:38 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/08 19:45:54 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/09/10 14:12:18 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	convert_radians(t_data *data)
 		data->ply_angle += 360;
 	angle_move(data);
 	data->ply_radians = data->ply_angle_mv * data->radian_conver;
+	angle_rays(data);
 }
 
 void	move_player(t_data *data)

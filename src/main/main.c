@@ -41,5 +41,7 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data.mlx, &hook, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
+	//free(data.rays);
+	
 	return (0);
 }

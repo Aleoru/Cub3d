@@ -25,7 +25,7 @@ typedef struct s_inputs
 	int			down;
 	int			turn_right;
 	int			turn_left;
-}	t_inptus;
+}	t_inputs;
 
 typedef struct s_ray
 {
@@ -45,7 +45,7 @@ typedef struct s_data
 	//player
 	t_point		ply_pos;
 	t_point		ply_cell;
-	t_inptus	ply_inputs;
+	t_inputs	ply_inputs;
 	float		ply_angle;
 	float		ply_angle_mv;
 	float		ply_radians;
@@ -61,9 +61,9 @@ typedef struct s_data
 	int			map_cell_size;
 	//png
 	mlx_image_t	*wall;
-	//trigonometria
-	float		radian_conver;
 	//ray casting
+	float		radian_conver;
+	float		increment;
 	t_ray		*rays;
 	int			num_rays;
 	int			angle_vision;
@@ -89,5 +89,6 @@ int		collision_player(t_data *data, float x, float y);
 
 //ray casting
 void	create_rays(t_data *data);
+void	angle_rays(t_data *data);
 
 #endif
