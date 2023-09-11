@@ -6,13 +6,13 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/09 21:03:21 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/11 20:00:49 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
-static void	validate_map(t_data *data, char *path)
+static void	validate_map_path(t_data *data, char *path)
 {
 	char	*ext;
 
@@ -181,10 +181,11 @@ void	init_map(t_data *data, t_level *level, char *str)
 	level->size_y = 0;
 	level->f_size = 0;
 	level->path = ft_strjoin("assets/maps/", str);
-	validate_map(data, level->path);
+	validate_map_path(data, level->path);
 	read_map_elements(data, level);
 	get_map_size(data, level);
 	read_map(data, level);
+	validate_map(data, level, level->map);
 	free(level->path);
 	free_level(level);
 	exit (0);
