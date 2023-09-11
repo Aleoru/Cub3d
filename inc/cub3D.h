@@ -33,6 +33,8 @@ typedef struct s_ray
 	float		h_collision;
 	float		distance;
 	float		angle;
+	int			x_dir;
+	int			y_dir;
 }	t_ray;
 
 typedef struct s_data
@@ -88,6 +90,7 @@ void	move_player(t_data *data);
 int		collision_player(t_data *data, float x, float y);
 
 //ray casting
+float	normalized_radians(float radians);
 void	create_rays(t_data *data);
 void	angle_rays(t_data *data);
 
