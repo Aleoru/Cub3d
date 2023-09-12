@@ -12,14 +12,14 @@
 
 #include "../../inc/cub3D.h"
 
-static void	printf_map(char	**map)
+static void	print_map(char	**map)
 {
 	int	y;
 
 	y = 0;
 	while (map[y])
 	{
-		printf("%s", map[y]);
+		printf("%s\n", map[y]);
 		y++;
 	}
 	printf("\n-----------------------\n\n");
@@ -40,23 +40,23 @@ static char	**copy_map(t_level *level)
 	return (map);
 }
 
-static void	flood_map(t_level *level, char **map, int x, int y)
+static void	flood_map(t_level *level, int x, int y)
 {
-	printf("Inundando...\n");
-	printf("%c\n", map[y][x]);
-	if (x < 0 || y < 0 || x > level->size_x || y > level->size_y)
+	if (x < 0 || y < 0 || x >= level->size_x - 1 || y >= level->size_y - 1)
 		return ;
-	if (map[y][x] != '1' && map[y][x] != '2')
-		map[y][x] = '2';
-	printf_map(map);
-	flood_map (level, map, x + 1, y);
-	//flood_map (level, map, x + 1, y + 1);
-	flood_map (level, map, x, y + 1);
-	//flood_map (level, map, x - 1, y + 1);
-	flood_map (level, map, x - 1, y);
-	//flood_map (level, map, x - 1, y - 1);
-	flood_map (level, map, x, y - 1);
-	//flood_map (level, map, x + 1, y - 1);
+	if (level->fake_map[y][x] != '1' && level->fake_map[y][x] != '2'
+		&& level->fake_map[y][x] != '\0')
+	{
+		level->fake_map[y][x] = '2';
+		flood_map (level, x + 1, y);
+		flood_map (level, x + 1, y + 1);
+		flood_map (level, x, y + 1);
+		flood_map (level, x - 1, y + 1);
+		flood_map (level, x - 1, y);
+		flood_map (level, x - 1, y - 1);
+		flood_map (level, x, y - 1);
+		flood_map (level, x + 1, y - 1);
+	}
 }
 
 void	validate_map(t_data *data, t_level *level, char **map)
@@ -66,9 +66,33 @@ void	validate_map(t_data *data, t_level *level, char **map)
 
 	(void)data;
 	(void)map;
-	x = level->size_x / 2;
-	y = level->size_y / 2;
-	flood_map(level, copy_map(level), x, y);
-
+	y = 0;
+	while (level->map[y])
+	{
+		x = 0;
+		printf("%d\n", y);
+		while (level->map[y][x])
+		{
+			if (!ft_strchr("0NSEW", level->map[y][x]))
+				x++;
+			else
+			{
+				printf("Me salgo\n");
+				break ;
+			}
+		}
+		if (level->map[y][x] == '0')
+		{
+			printf("Caracter localizado\n");
+			break ;
+		}
+		else
+			y++;
+	}
+	printf("%d, %d = %c\n", x, y, level->map[y][x]);
+	print_map(level->map);
+	level->fake_map = copy_map(level);
+	flood_map(level, x, y);
+	print_map(level->fake_map);
 	printf("Todo correcto\n");
 }

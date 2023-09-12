@@ -36,6 +36,7 @@ typedef struct s_level
 	int		f_color;
 	int		c_color;
 	char	**map;
+	char	**fake_map;
 	int		size_x;
 	int		size_y;
 	int		f_size;
