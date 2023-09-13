@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/13 19:28:55 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/13 20:27:07 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ static void	validate_color(char	*c)
 		printf("Color no válido\n");
 		exit (1);
 	}
-	else
-		printf("Color válido\n");
 }
 
 static int	get_rgb(t_level *level, char *str)
@@ -158,17 +156,18 @@ static void	fill_map(t_level *level)
 	int	x;
 	int	y;
 
-	y = 0;
+/*  	y = 0;
 	while (level->map[y])
 	{
 		printf("%d:	%s", y, level->map[y]);
 		y++;
 	}
-	puts("");
+	puts("\n----------------------------------------"); */
 	y = 0;
 	while (level->map[y])
 	{
 		x = 0;
+		printf("%d:	%s", y, level->map[y]);
 		while (level->map[y][x])
 		{
 			if (level->map[y][x] == '\n')
@@ -178,9 +177,17 @@ static void	fill_map(t_level *level)
 					level->map[y][x] = '\0';
 				else
 				{
-					while (x < level->size_x - 1)
-						level->map[y][x++] = ' ';
-					level->map[y][x] = '\0';
+					while (level->map[y][x])
+					{
+						if (x != level->size_x - 1)
+							level->map[y][x++] = ' ';
+						else
+						{
+							level->map[y][x] = '\0';
+							break ;
+						}
+						x++;
+					}
 				}
 				break ;
 			}
@@ -197,7 +204,6 @@ static void	read_map(t_data *data, t_level *level)
 
 	(void)data;
 	y = 0;
-	(void)y;
 	n = level->f_size - level->size_y;
 	level->map = ft_calloc(level->size_y, level->size_x);
 	level->fd = open(level->path, O_RDONLY);

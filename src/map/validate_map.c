@@ -70,7 +70,6 @@ void	validate_map(t_data *data, t_level *level, char **map)
 	while (level->map[y])
 	{
 		x = 0;
-		printf("%d\n", y);
 		while (level->map[y][x])
 		{
 			if (!ft_strchr("0NSEW", level->map[y][x]))

@@ -31,7 +31,8 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	(void)argc;
+	if (argc == 1)
+		return (0);
 	init_map(&data, &data.level, argv[1]);
 	init_data(&data);
 	mlx_loop_hook(data.mlx, &hook, &data);
