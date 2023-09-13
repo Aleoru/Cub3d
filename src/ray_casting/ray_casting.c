@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 20:22:01 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/11 19:20:16 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/09/13 04:06:56 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,12 @@ void	angle_rays(t_data *data)
 	i = 1;
 	data->rays[0].angle = (data->ply_angle - data->angle_vision / 2)
 		* data->radian_conver;
-	printf("%f\n", data->rays[319].angle);
+	//printf("%f\n", data->rays[319].angle);
 	while (i < data->width)
 	{
 		data->rays[i].angle = normalized_radians(data->rays[i -1].angle
 				+ data->increment);
+		ray_dir(data, i);
 		i++;
 	}
 }

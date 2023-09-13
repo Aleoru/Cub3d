@@ -29,12 +29,12 @@ typedef struct s_inputs
 
 typedef struct s_ray
 {
-	float		v_collision;
-	float		h_collision;
 	float		distance;
 	float		angle;
 	int			x_dir;
 	int			y_dir;
+	int			pixel;
+	int			texture; //1 norte, 2 sur, 3 este, 4 oeste
 }	t_ray;
 
 typedef struct s_data
@@ -93,5 +93,6 @@ int		collision_player(t_data *data, float x, float y);
 float	normalized_radians(float radians);
 void	create_rays(t_data *data);
 void	angle_rays(t_data *data);
+void	ray_collision(t_data *data, int ray);
 
 #endif
