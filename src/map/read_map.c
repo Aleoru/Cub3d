@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/12 20:10:29 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/13 19:28:55 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ static void	get_map_size(t_data *data, t_level *level)
 		level->size_y++;
 	}
 	free(line);
-	printf("\nX: %d, Y: %d\nFILE SIZE: %d\n", level->size_x, level->size_y, level->f_size);
+	printf("\nX: %d, Y: %d\nFILE SIZE: %d\n\n", level->size_x, level->size_y, level->f_size);
 	close(level->fd);
 }
 
@@ -161,13 +161,28 @@ static void	fill_map(t_level *level)
 	y = 0;
 	while (level->map[y])
 	{
+		printf("%d:	%s", y, level->map[y]);
+		y++;
+	}
+	puts("");
+	y = 0;
+	while (level->map[y])
+	{
 		x = 0;
 		while (level->map[y][x])
 		{
 			if (level->map[y][x] == '\n')
 			{
-/* 				if (x == level->size_x - 1) */
-				level->map[y][x] = '\0';
+				//printf("%d, %d\n", y, x);
+				if (x == level->size_x - 1)
+					level->map[y][x] = '\0';
+				else
+				{
+					while (x < level->size_x - 1)
+						level->map[y][x++] = ' ';
+					level->map[y][x] = '\0';
+				}
+				break ;
 			}
 			x++;
 		}

@@ -12,7 +12,7 @@
 
 #include "../../inc/cub3D.h"
 
-static void	print_map(char	**map)
+void	print_map(char	**map)
 {
 	int	y;
 

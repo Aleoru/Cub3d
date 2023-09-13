@@ -85,6 +85,8 @@ void	draw_player(t_data *data);
 void	init_map(t_data *data, t_level *level, char *str);
 void	validate_map(t_data *data, t_level *level, char **map);
 
+void	print_map(char	**map);
+
 /********************/
 /*		UTILS		*/
 /********************/
