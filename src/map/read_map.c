@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/15 18:51:28 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:45:38 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,61 +146,74 @@ static void	get_map_size(t_data *data, t_level *level)
 			level->size_x = ft_strlen(line);
 		level->size_y++;
 	}
+	level->size_y++;
 	free(line);
 	printf("\nX: %d, Y: %d\nFILE SIZE: %d\n\n", level->size_x, level->size_y, level->f_size);
 	close(level->fd);
 }
 
-/* static void	fill_map(t_level *level)
+static void	parsing_map(t_data *data, t_level *level)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	char	*line;
 
+	(void)data;
 	y = 0;
-	while (level->map[y])
+	level->map = ft_calloc((level->size_y + 3) * sizeof(char),
+			(level->size_x + 3) * sizeof(char));
+	line = malloc(sizeof(char) * (level->size_x + 3));
+	while (y < level->size_y + 2)
 	{
 		x = 0;
-		while (level->map[y][x])
-		{
-			if (level->map[y][x] == '\n')
-			{
-				if (x == level->size_x - 1)
-					level->map[y][x] = '\0';
-				else
-				{
-					while (level->map[y][x] && x < level->size_x)
-						level->map[y][x++] = ' ';
-					level->map[y][x] = '\0';
-				}
-				break ;
-			}
-			x++;
-		}
+		while (x < level->size_x + 1)
+			line[x++] = ' ';
+		line[x] = '\0';
+		level->map[y] = ft_strdup(line);
+		printf("%d:	%s\n", y, level->map[y]);
 		y++;
 	}
-} */
+	level->map[y] = NULL;
+	puts("");
+	y = 0;
+	while (level->file_map[y])
+	{
+		x = 0;
+		while (level->file_map[y][x + 1] != '\0')
+		{
+			level->map[y + 1][x + 1] = level->file_map[y][x];
+			x++;
+		}
+		printf("%d:	%s\n", y, level->map[y]);
+		y++;
+	}
+	printf("%d:	%s\n", y, level->map[y]);
+	printf("%d:	%s\n", y + 1, level->map[y + 1]);
+}
 
 static void	read_map(t_data *data, t_level *level)
 {
 	int		y;
 	int		n;
+	char	*line;
 
 	(void)data;
 	y = 0;
 	n = level->f_size - level->size_y;
-	level->map = ft_calloc(level->size_y, level->size_x);
+	level->file_map = malloc(sizeof(char *) * (level->size_y + 1));
 	level->fd = open(level->path, O_RDONLY);
-	while (n-- > 1)
+	while (n-- > 0)
 	{
-		level->map[y] = get_next_line(level->fd);
-		free(level->map[y]);
+		line = get_next_line(level->fd);
+		free(line);
 	}
-	level->map[y] = get_next_line(level->fd);
-	while (level->map[y] != NULL)
+	level->file_map[y] = get_next_line(level->fd);
+	while (level->file_map[y] != NULL)
 	{
 		y++;
-		level->map[y] = get_next_line(level->fd);
+		level->file_map[y] = get_next_line(level->fd);
 	}
+	level->file_map[y] = NULL;
 	close(level->fd);
 }
 
@@ -215,7 +228,7 @@ void	init_map(t_data *data, t_level *level, char *str)
 	read_map_elements(data, level);
 	get_map_size(data, level);
 	read_map(data, level);
-	fill_map(level);
+	parsing_map(data, level);
 	validate_map(data, level, level->map);
 	free(level->path);
 	free_level(level);
