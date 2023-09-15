@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 20:22:01 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/13 04:06:56 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/09/15 04:46:47 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ void	angle_rays(t_data *data)
 		ray_dir(data, i);
 		i++;
 	}
+	ray_collision(data, 319);
 }
 

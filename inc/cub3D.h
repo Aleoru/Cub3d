@@ -35,6 +35,7 @@ typedef struct s_ray
 	int			y_dir;
 	int			pixel;
 	int			texture; //1 norte, 2 sur, 3 este, 4 oeste
+	t_point		dest;
 }	t_ray;
 
 typedef struct s_data
