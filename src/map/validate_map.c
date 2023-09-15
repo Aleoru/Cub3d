@@ -42,7 +42,7 @@ static char	**copy_map(t_level *level)
 
 static void	flood_map(t_level *level, int x, int y)
 {
-	if (x < 0 || y < 0 || x >= level->size_x - 1 || y >= level->size_y - 1)
+	if (x < 0 || y < 0 || x >= level->size_x + 2 || y >= level->size_y + 2)
 		return ;
 	if (level->fake_map[y][x] != '1' && level->fake_map[y][x] != '2'
 		&& level->fake_map[y][x] != '\0')
