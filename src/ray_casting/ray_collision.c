@@ -6,22 +6,36 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 03:49:41 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/15 05:26:37 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:35:38 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
+
+static int	wall_collision(t_data *data, float x, float y)
+{
+	int		x_cell;
+	int		y_cell;
+
+	x_cell = (int)(x / data->map_cell_size);
+	y_cell = (int)(y / data->map_cell_size);
+	if (data->map[y_cell][x_cell] == '1')
+		return (1);
+	return (0);
+}
 
 static float	ray_v_collision(t_data *data, int ray)
 {
 	float	dist;
 	float	h;
 	int		next;
+	int		c;
 
 	dist = 0;
+	c = 0x66FF55FF;
+	next = (data->ply_pos.y / data->map_cell_size);
 	if (data->rays[ray].y_dir == 1)
 	{
-		next = (data->ply_pos.y / data->map_cell_size); //* data->map_cell_size;
 		h = data->ply_pos.y - next * data->map_cell_size;
 		printf("size:%d\n", data->map_cell_size);
 		printf("ply_y:%f, next:%d, h:%f\n", data->ply_pos.y, next, h);
@@ -30,8 +44,25 @@ static float	ray_v_collision(t_data *data, int ray)
 		data->rays[ray].dest.x = data->ply_pos.x + dist;
 		data->rays[ray].dest.y = data->ply_pos.y - h;
 		printf("x:%f, y:%f\n", data->rays[ray].dest.x, data->rays[ray].dest.y);
-		//draw_line(data->screen, data->ply_pos, data->rays[ray].dest, 0x66FF55FF);
+		if (wall_collision(data, data->rays[ray].dest.x,
+				data->rays[ray].dest.y) - 1)
+			printf("collision up\n");
+		else
+			printf("no collision up\n");
 	}
+	else if (data->rays[ray].y_dir == -1)
+	{
+		h = data->ply_pos.y - (next + 1) * data->map_cell_size;
+		dist = h / tan(data->rays[ray].angle);
+		data->rays[ray].dest.x = data->ply_pos.x + dist;
+		data->rays[ray].dest.y = data->ply_pos.y - h;
+		if (wall_collision(data, data->rays[ray].dest.x,
+				data->rays[ray].dest.y))
+			printf("collision down\n");
+		else
+			printf("no collision down\n");
+	}
+
 	return (dist);
 }
 
