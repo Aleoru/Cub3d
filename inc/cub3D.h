@@ -35,6 +35,7 @@ typedef struct s_level
 	char	*we_path;
 	int		f_color;
 	int		c_color;
+	char	**file_map;
 	char	**map;
 	char	**fake_map;
 	int		size_x;

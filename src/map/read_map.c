@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/13 20:27:07 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/15 18:51:28 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,43 +151,26 @@ static void	get_map_size(t_data *data, t_level *level)
 	close(level->fd);
 }
 
-static void	fill_map(t_level *level)
+/* static void	fill_map(t_level *level)
 {
 	int	x;
 	int	y;
 
-/*  	y = 0;
-	while (level->map[y])
-	{
-		printf("%d:	%s", y, level->map[y]);
-		y++;
-	}
-	puts("\n----------------------------------------"); */
 	y = 0;
 	while (level->map[y])
 	{
 		x = 0;
-		printf("%d:	%s", y, level->map[y]);
 		while (level->map[y][x])
 		{
 			if (level->map[y][x] == '\n')
 			{
-				//printf("%d, %d\n", y, x);
 				if (x == level->size_x - 1)
 					level->map[y][x] = '\0';
 				else
 				{
-					while (level->map[y][x])
-					{
-						if (x != level->size_x - 1)
-							level->map[y][x++] = ' ';
-						else
-						{
-							level->map[y][x] = '\0';
-							break ;
-						}
-						x++;
-					}
+					while (level->map[y][x] && x < level->size_x)
+						level->map[y][x++] = ' ';
+					level->map[y][x] = '\0';
 				}
 				break ;
 			}
@@ -195,7 +178,7 @@ static void	fill_map(t_level *level)
 		}
 		y++;
 	}
-}
+} */
 
 static void	read_map(t_data *data, t_level *level)
 {
