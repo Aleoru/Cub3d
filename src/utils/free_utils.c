@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 19:38:38 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/08 18:12:36 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/16 19:46:31 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ void	free_split(char **split)
 
 void	free_level(t_level *level)
 {
+	free_split(level->file_map);
+	free_split(level->map);
+	free_split(level->fake_map);
 	free(level->no_path);
 	free(level->so_path);
 	free(level->ea_path);

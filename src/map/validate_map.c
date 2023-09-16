@@ -19,7 +19,10 @@ void	print_map(char	**map)
 	y = 0;
 	while (map[y])
 	{
-		printf("%s\n", map[y]);
+		if (ft_strchr(map[y], '\n'))
+			printf("%s", map[y]);
+		else
+			printf("%s\n", map[y]);
 		y++;
 	}
 	printf("\n-----------------------\n\n");
@@ -57,41 +60,42 @@ static void	flood_map(t_level *level, int x, int y)
 		flood_map (level, x, y - 1);
 		flood_map (level, x + 1, y - 1);
 	}
+	check_flood(level);
 }
 
-void	validate_map(t_data *data, t_level *level, char **map)
+void	check_flood(t_level *level)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (level->fake_map[y])
+	{
+		x = 0;
+		while (level->fake_map[y][x])
+		{
+			if (!ft_strchr("0NSEW", level->fake_map[y][x]))
+				x++;
+			else
+				break ;
+		}
+		if (level->fake_map[y][x] == '0')
+			flood_map(level, x, y);
+		else
+			y++;
+	}
+}
+
+void	validate_map(t_data *data, t_level *level)
 {
 	int	x;
 	int	y;
 
 	(void)data;
-	(void)map;
 	y = 0;
-	while (level->map[y])
-	{
-		x = 0;
-		while (level->map[y][x])
-		{
-			if (!ft_strchr("0NSEW", level->map[y][x]))
-				x++;
-			else
-			{
-				printf("Me salgo\n");
-				break ;
-			}
-		}
-		if (level->map[y][x] == '0')
-		{
-			printf("Caracter localizado\n");
-			break ;
-		}
-		else
-			y++;
-	}
-	printf("%d, %d = %c\n", x, y, level->map[y][x]);
-	print_map(level->map);
+	(void)x;
 	level->fake_map = copy_map(level);
-	flood_map(level, x, y);
-	print_map(level->fake_map);
-	printf("Todo correcto\n");
+	check_flood(level);
+	if (level->fake_map[0][0] == '2')
+		printf("ERROR\nInvalid map, open walls\n");
 }
