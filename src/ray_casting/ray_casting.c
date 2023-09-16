@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 20:22:01 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/15 04:46:47 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/09/16 04:22:36 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ void	angle_rays(t_data *data)
 		data->rays[i].angle = normalized_radians(data->rays[i -1].angle
 				+ data->increment);
 		ray_dir(data, i);
+		ray_collision(data, i);
 		i++;
 	}
-	ray_collision(data, 319);
+	//ray_collision(data, 319);
 }
 
