@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 03:49:41 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/16 04:30:38 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/09/16 19:20:10 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	wall_collision(t_data *data, float x, float y)
 	int		x_cell;
 	int		y_cell;
 
+	if (x > data->width || x < 0 || y > data->height || y < 0)
+		return (1);
 	x_cell = (int)(x / data->map_cell_size);
 	y_cell = (int)(y / data->map_cell_size);
 	if (data->map[y_cell][x_cell] == '1')
@@ -60,6 +62,7 @@ static float	ray_v_collision(t_data *data, int ray)
 				init.y = data->rays[ray].dest.y;
 			}
 		}
+		return (sqrt(dist * dist + h * h));
 	}
 	else if (data->rays[ray].y_dir == -1)
 	{
@@ -73,9 +76,10 @@ static float	ray_v_collision(t_data *data, int ray)
 			printf("collision down\n");
 		else
 			printf("no collision down\n");
+		return (sqrt(dist * dist + h * h));
 	}
 
-	return (dist);
+	return (-1);
 }
 
 /*
