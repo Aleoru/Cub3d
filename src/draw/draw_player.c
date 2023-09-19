@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:08 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/16 19:18:20 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/09/19 20:27:14 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,12 @@ void	draw_rays(t_data *data)
 void	draw_rays2(t_data *data)
 {
 	int		i;
-	//int		dis;
 	int		c;
-	//t_point	end;
 
 	i = 0;
-	//dis = 50;
 	c = 0x66FF66FF;
 	while (i < data->num_rays)
 	{
-		//end.x = data->ply_pos.x + cos(data->rays[i].angle) * dis;
-		//end.y = data->ply_pos.y - sin(data->rays[i].angle) * dis;
 		draw_line(data->screen, data->ply_pos, data->rays[i].dest, c);
 		i++;
 	}

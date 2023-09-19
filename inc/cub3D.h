@@ -11,6 +11,11 @@
 # include <limits.h>
 # include <math.h>
 
+# define NORTH 1
+# define SOUTH 2
+# define EAST 3
+# define WEST 4
+
 typedef struct s_point
 {
 	float		x;
@@ -36,7 +41,7 @@ typedef struct s_ray
 	int			x_dir;
 	int			y_dir;
 	int			pixel;
-	int			texture; //1 norte, 2 sur, 3 este, 4 oeste
+	int			texture;
 }	t_ray;
 
 typedef struct s_data

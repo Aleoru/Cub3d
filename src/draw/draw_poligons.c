@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:28 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/15 19:11:47 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:53:24 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	draw_poli(mlx_image_t *img, t_point *vertices, int vrt_num, int color)
 	int		i;
 
 	i = 0;
-
 	while (i < vrt_num - 1)
 	{
 		draw_line(img, vertices[i], vertices[i + 1], color);
