@@ -35,6 +35,7 @@ typedef struct s_inputs
 typedef struct s_ray
 {
 	t_point		dest;
+	t_point		aux;
 	t_point		init;
 	float		distance;
 	float		angle;

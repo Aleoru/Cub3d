@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:08 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/19 20:27:14 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/09/20 18:51:23 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ void	draw_rays2(t_data *data)
 	c = 0x66FF66FF;
 	while (i < data->num_rays)
 	{
-		draw_line(data->screen, data->ply_pos, data->rays[i].dest, c);
+		if (data->rays[i].dest.x > 0 && data->rays[i].dest.x < data->width
+			&& data->rays[i].dest.y > 0 && data->rays[i].dest.y < data->height)
+			draw_line(data->screen, data->ply_pos, data->rays[i].dest, c);
 		i++;
 	}
 }

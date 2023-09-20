@@ -13,7 +13,7 @@ void	init_data(t_data *data)
 	//player data
 	data->ply_pos.x = 100;
 	data->ply_pos.y = 100;
-	data->ply_angle = 45;
+	data->ply_angle = 270;
 	data->ply_speed = 1;
 	data->ply_turn_speed = 1;
 	//open window
@@ -42,6 +42,6 @@ int	main(int argc, char **argv)
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	//free(data.rays);
-	
+
 	return (0);
 }
