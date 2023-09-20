@@ -10,6 +10,8 @@
 # include <sys/types.h>
 # include <limits.h>
 # include <math.h>
+# include <string.h>
+# include <errno.h>
 
 # define NO "NO"
 # define SO "SO"
@@ -90,7 +92,6 @@ void	get_map_size(t_data *data, t_level *level);
 void	parsing_map(t_level *level);
 void	check_flood(t_level *level);
 
-
 void	print_map(char	**map);	// DEBUG
 
 /********************/
@@ -98,6 +99,9 @@ void	print_map(char	**map);	// DEBUG
 /********************/
 void	free_split(char **split);
 void	free_level(t_level *level);
+void	exit_error(t_data *data);
+
+
 
 /********************/
 /*		HOOK		*/

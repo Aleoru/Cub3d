@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 19:38:38 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/16 19:46:31 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/20 18:32:49 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,20 @@ void	free_split(char **split)
 
 void	free_level(t_level *level)
 {
-	free_split(level->file_map);
-	free_split(level->map);
-	free_split(level->fake_map);
-	free(level->no_path);
-	free(level->so_path);
-	free(level->ea_path);
-	free(level->we_path);
+	if (level->file_map)
+		free_split(level->file_map);
+	if (level->map)
+		free_split(level->map);
+	if (level->fake_map)
+		free_split(level->fake_map);
+	if (level->path)
+		free(level->path);
+	if (level->no_path)
+		free(level->no_path);
+	if (level->so_path)
+		free(level->so_path);
+	if (level->ea_path)
+		free(level->ea_path);
+	if (level->we_path)
+		free(level->we_path);
 }

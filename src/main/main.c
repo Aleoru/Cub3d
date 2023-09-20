@@ -1,5 +1,10 @@
 #include "../../inc/cub3D.h"
 
+void	ft_leaks(void)
+{
+	system("leaks -q 'cub3D'");
+}
+
 void	init_data(t_data *data)
 {
 	int				width;
@@ -29,10 +34,12 @@ void	init_data(t_data *data)
 
 int	main(int argc, char **argv)
 {
+	atexit(ft_leaks);
 	t_data	data;
 
 	if (argc == 1)
 		return (0);
+	ft_bzero(&data, sizeof(t_data));
 	init_map(&data, &data.level, argv[1]);
 	init_data(&data);
 	mlx_loop_hook(data.mlx, &hook, &data);

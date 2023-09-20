@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:57:28 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/16 19:22:21 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/20 20:40:46 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,15 @@ static void	validate_map_path(t_data *data, char *path)
 	{
 		ext = ft_strrchr(path, '.');
 		if (ft_strncmp(ext, ".cub", ft_strlen(ext)) || ft_strlen(ext) != 4)
-			printf("ERROR\nWrong extension\n");
+		{
+			ft_putstr_fd("Error\nWrong extension\n", STDERR_FILENO);
+			exit_error(data);
+		}
+		//printf("ERROR\nWrong extension\n");
 	}
 	else
-		printf("ERROR\nWrong extension\n");
+		ft_putstr_fd("Error\nWrong extension\n", STDERR_FILENO);
+		exit_error(data);
 }
 
 static void	extract_elements(t_level *level, char **split)
@@ -106,7 +111,6 @@ static void	read_map(t_data *data, t_level *level)
 
 void	init_map(t_data *data, t_level *level, char *str)
 {
-	(void)data;
 	level->size_x = 0;
 	level->size_y = 0;
 	level->f_size = 0;
@@ -117,7 +121,6 @@ void	init_map(t_data *data, t_level *level, char *str)
 	read_map(data, level);
 	parsing_map(level);
 	validate_map(data, level);
-	free(level->path);
 	free_level(level);
 	exit (0);
 }
