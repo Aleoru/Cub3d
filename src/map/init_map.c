@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:57:28 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/20 20:40:46 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:29:28 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ static void	validate_map_path(t_data *data, char *path)
 		//printf("ERROR\nWrong extension\n");
 	}
 	else
+	{
 		ft_putstr_fd("Error\nWrong extension\n", STDERR_FILENO);
 		exit_error(data);
+	}
 }
 
 static void	extract_elements(t_level *level, char **split)

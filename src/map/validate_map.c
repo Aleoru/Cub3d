@@ -98,4 +98,6 @@ void	validate_map(t_data *data, t_level *level)
 	check_flood(level);
 	if (level->fake_map[0][0] == '2')
 		printf("ERROR\nInvalid map, open walls\n");
+	print_map(level->fake_map);
+	printf("Todo correcto\n");
 }
