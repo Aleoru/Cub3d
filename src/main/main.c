@@ -11,9 +11,9 @@ void	init_data(t_data *data)
 	data->map_cell_size = 64;
  	create_test_map(data, 10, 10);
 	//player data
-	data->ply_pos.x = 100;
-	data->ply_pos.y = 100;
-	data->ply_angle = 270;
+	data->ply_pos.x = 100.5;
+	data->ply_pos.y = 100.5;
+	data->ply_angle = 45;
 	data->ply_speed = 1;
 	data->ply_turn_speed = 1;
 	//open window
@@ -38,6 +38,9 @@ int	main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	init_data(&data);
+	//float debug;
+	//debug = cos(135 * data.radian_conver) * tan(135 * data.radian_conver);
+	//printf("%f\n", debug);
 	mlx_loop_hook(data.mlx, &hook, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
