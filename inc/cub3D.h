@@ -87,10 +87,10 @@ void	draw_player(t_data *data);
 /****************/
 void	init_map(t_data *data, t_level *level, char *str);
 void	validate_map(t_data *data, t_level *level);
-int		get_rgb(t_level *level, char *str);
+int		get_rgb(t_data *data, t_level *level, char *str);
 void	get_map_size(t_data *data, t_level *level);
 void	parsing_map(t_level *level);
-void	check_flood(t_level *level);
+void	check_flood(t_data *data, t_level *level);
 
 void	print_map(char	**map);	// DEBUG
 

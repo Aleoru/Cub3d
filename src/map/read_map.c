@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/16 19:43:43 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/23 12:03:41 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	validate_color(char	*c)
 	}
 }
 
-int	get_rgb(t_level *level, char *str)
+int	get_rgb(t_data *data, t_level *level, char *str)
 {
 	int		r;
 	int		g;
@@ -49,8 +49,8 @@ int	get_rgb(t_level *level, char *str)
 	b = ft_atoi(rgb[2]);
 	if (r > 255 || g > 255 || b > 255)
 	{
-		printf("ERROR\nInvalid Color\n");
-		return (0);
+		ft_putstr_fd("Error\nInvalid color\n", STDERR_FILENO);
+		exit_error(data);
 	}
 	free_split(rgb);
 	return (r << 24 | g << 16 | b << 8 | 255);

@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:57:28 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/21 18:29:28 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/23 12:04:24 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	validate_map_path(t_data *data, char *path)
 			ft_putstr_fd("Error\nWrong extension\n", STDERR_FILENO);
 			exit_error(data);
 		}
-		//printf("ERROR\nWrong extension\n");
 	}
 	else
 	{
@@ -34,7 +33,7 @@ static void	validate_map_path(t_data *data, char *path)
 	}
 }
 
-static void	extract_elements(t_level *level, char **split)
+static void	extract_elements(t_data *data, t_level *level, char **split)
 {
 	if (!ft_strncmp(split[0], NO, ft_strlen(split[0])
 			|| ft_strlen(split[0]) != 2))
@@ -50,10 +49,10 @@ static void	extract_elements(t_level *level, char **split)
 		level->we_path = ft_strdup(split[1]);
 	else if (!ft_strncmp(split[0], F, ft_strlen(split[0])
 			|| ft_strlen(split[0]) != 2))
-		level->f_color = get_rgb(level, split[1]);
+		level->f_color = get_rgb(data, level, split[1]);
 	else if (!ft_strncmp(split[0], C, ft_strlen(split[0])
 			|| ft_strlen(split[0]) != 2))
-		level->c_color = get_rgb(level, split[1]);
+		level->c_color = get_rgb(data, level, split[1]);
 }
 
 static void	read_map_elements(t_data *data, t_level *level)
@@ -66,7 +65,10 @@ static void	read_map_elements(t_data *data, t_level *level)
 	level->fd = open(level->path, O_RDONLY);
 	n = 0;
 	if (level->fd < 0)
-		printf("ERROR\nFile not found\n");
+	{
+		ft_putstr_fd("Error\nFile not found\n", STDERR_FILENO);
+		exit_error(data);
+	}
 	else
 	{
 		while (n < ELEM)
@@ -76,7 +78,7 @@ static void	read_map_elements(t_data *data, t_level *level)
 			split = ft_split(line, ' ');
 			if (!ft_strchr(split[0], '\n'))
 			{
-				extract_elements(level, split);
+				extract_elements(data, level, split);
 				n++;
 			}
 			free(line);
