@@ -101,6 +101,9 @@ int		collision_player(t_data *data, float x, float y);
 float	normalized_radians(float radians);
 void	create_rays(t_data *data);
 void	angle_rays(t_data *data);
+int		w_coll(t_data *data, float x, float y);
 void	ray_collision(t_data *data, int ray);
+float	ray_v_collision(t_data *data, int ray);
+float	ray_h_collision(t_data *data, int ray);
 
 #endif
