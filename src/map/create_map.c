@@ -39,7 +39,7 @@ void	create_test_map(t_data *data, int width, int heigth)
 	data->map[3][3] = '1';
 	data->map[4][3] = '1';
 	data->map[5][3] = '1';
-	data->map[2][1] = '1';
+	data->map[2][2] = '1';
 	data->map[7][6] = '1';
 	data->map[6][6] = '1';
 	data->map[2][5] = '1';
