@@ -1,6 +1,6 @@
 #include "../../inc/cub3D.h"
 
-static	void	reserve_memory_map(t_data *data, int width, int heigth)
+/* static	void	reserve_memory_map(t_data *data, int width, int heigth)
 {
 	int		i;
 
@@ -14,9 +14,9 @@ static	void	reserve_memory_map(t_data *data, int width, int heigth)
 	}
 	data->map[i] = malloc(sizeof(char) * 1);
 	data->map[i][0] = '\0';
-}
+} */
 
-void	create_test_map(t_data *data, int width, int heigth)
+/* void	create_test_map(t_data *data, int width, int heigth)
 {
 	int		x;
 	int		y;
@@ -39,9 +39,9 @@ void	create_test_map(t_data *data, int width, int heigth)
 	data->map[3][3] = '1';
 	data->map[4][3] = '1';
 	data->map[5][3] = '1';
-	data->map[2][1] = '1';
+	data->map[2][2] = '1';
 	data->map[7][6] = '1';
 	data->map[6][6] = '1';
 	data->map[2][5] = '1';
 	data->map[2][6] = '1';
-}
+} */
