@@ -76,11 +76,8 @@ void	check_flood(t_data *data, t_level *level)
 		while (level->fake_map[y][x])
 		{
 			if (level->fake_map[y][x] == '3' && level->fake_map[0][0] == ' ')
-			{
-				ft_putstr_fd("Error\nInvalid map, whitespaces inside map\n",
+				exit_error(data, "Error\nInvalid map, whitespaces inside map\n",
 					STDERR_FILENO);
-				exit_error(data);
-			}
 			if (!ft_strchr("0NSEW", level->fake_map[y][x]))
 				x++;
 			else
@@ -99,8 +96,5 @@ void	validate_map(t_data *data, t_level *level)
 	check_flood(data, level);
 	check_flood(data, level);
 	if (level->fake_map[0][0] == '3')
-	{
-		ft_putstr_fd("Error\nInvalid map, open walls\n", STDERR_FILENO);
-		exit_error(data);
-	}
+		exit_error(data, "Error\nInvalid map, open walls\n", STDERR_FILENO);
 }

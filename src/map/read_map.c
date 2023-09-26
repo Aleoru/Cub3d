@@ -6,13 +6,13 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/25 18:05:15 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/26 19:44:32 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
-static void	validate_color(char	*c)
+static void	validate_color(t_data *data, char	*c)
 {
 	size_t	i;
 
@@ -24,10 +24,7 @@ static void	validate_color(char	*c)
 		i++;
 	}
 	if (i != ft_strlen(c))
-	{
-		printf("ERROR\nInvalid Color\n");
-		exit (1);
-	}
+		exit_error(data, "ERROR\nInvalid Color\n", 2);
 }
 
 int	get_rgb(t_data *data, t_level *level, char *str)
@@ -43,15 +40,12 @@ int	get_rgb(t_data *data, t_level *level, char *str)
 	rgb = ft_split(str, ',');
 	rgb[2][ft_strlen(rgb[2]) - 1] = '\0';
 	while (rgb[i] && i < 3)
-		validate_color(rgb[i++]);
+		validate_color(data, rgb[i++]);
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
 	if (r > 255 || g > 255 || b > 255)
-	{
-		ft_putstr_fd("Error\nInvalid color\n", STDERR_FILENO);
-		exit_error(data);
-	}
+		exit_error(data, "Error\nInvalid color\n", 2);
 	free_split(rgb);
 	return (r << 24 | g << 16 | b << 8 | 255);
 }
@@ -96,10 +90,7 @@ static void	parsing_map2(t_data *data, t_level *level)
 		while (level->file_map[y][x] != '\0')
 		{
 			if (!ft_strchr("10NSEW \n", level->file_map[y][x]))
-			{
-				ft_putstr_fd("Error\nInvalid character on map\n", 2);
-				exit_error(data);
-			}
+				exit_error(data, "Error\nInvalid character on map\n", 2);
 			if (level->file_map[y][x] != '\n')
 				data->map[y + 1][x + 1] = level->file_map[y][x];
 			x++;

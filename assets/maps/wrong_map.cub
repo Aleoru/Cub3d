@@ -7,7 +7,7 @@ WE ./ruta_a_la_textura_oeste
 EA ./ruta_a_la_textura_este
 
 F 255,100,0
-C 225,30,0
+C 225,30,0a
 
         1111111111111111111111111
         1000000000110000000000001

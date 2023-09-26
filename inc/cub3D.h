@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/25 18:10:03 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/26 19:33:04 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_level
 	int		size_x;
 	int		size_y;
 	int		f_size;
+	int		n_player;
 }	t_level;
 
 typedef struct s_inputs
@@ -165,9 +166,7 @@ float	ray_h_collision(t_data *data, int ray);
 /********************/
 void	free_split(char **split);
 void	free_level(t_data *data, t_level *level);
-void	exit_error(t_data *data);
-
-
+void	exit_error(t_data *data, char *str, int fd);
 
 /********************/
 /*		HOOK		*/
