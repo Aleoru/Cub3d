@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 20:22:01 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/24 18:55:20 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/09/30 19:10:17 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	create_rays(t_data *data)
 	data->increment = (float)data->angle_vision / (float)data->width
 		* data->radian_conver;
 	data->rays = malloc(sizeof(t_ray) * data->width);
+	calculate_hipotenuses(data);
 	angle_rays(data);
 }
 
@@ -60,7 +61,6 @@ void	angle_rays(t_data *data)
 		* data->radian_conver;
 	ray_dir(data, 0);
 	ray_collision(data, 0);
-	//printf("%f\n", data->rays[319].angle);
 	while (i < data->width)
 	{
 		data->rays[i].angle = normalized_radians(data->rays[i -1].angle

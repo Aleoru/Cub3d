@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:57:28 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/25 18:08:35 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/30 19:01:31 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,10 @@ static void	validate_map_path(t_data *data, char *path)
 	{
 		ext = ft_strrchr(path, '.');
 		if (ft_strncmp(ext, ".cub", ft_strlen(ext)) || ft_strlen(ext) != 4)
-		{
-			ft_putstr_fd("Error\nWrong extension\n", STDERR_FILENO);
-			exit_error(data);
-		}
+			exit_error(data, "Error\nWrong extension\n", STDERR_FILENO);
 	}
 	else
-	{
-		ft_putstr_fd("Error\nWrong extension\n", STDERR_FILENO);
-		exit_error(data);
-	}
+		exit_error(data, "Error\nWrong extension\n", STDERR_FILENO);
 }
 
 static void	extract_elements(t_data *data, t_level *level, char **split)
@@ -53,33 +47,31 @@ static void	extract_elements(t_data *data, t_level *level, char **split)
 			|| ft_strlen(split[0]) != 2))
 		level->c_color = get_rgb(data, level, split[1]);
 	else
-	{
-		ft_putstr_fd("Error\nMissing elements\n", STDERR_FILENO);
-		exit_error(data);
-	}
+		exit_error(data, "Error\nMissing elements\n", STDERR_FILENO);
 }
 
 static void	read_map_elements(t_data *data, t_level *level)
 {
-	int		n;
 	char	*line;
 	char	**split;
 
 	level->fd = open(level->path, O_RDONLY);
-	n = 0;
 	if (level->fd < 0)
-		return (ft_putstr_fd("Error\nFile not found\n", 2), exit_error(data));
+		return (exit_error(data, "Error\nFile not found\n", 2));
 	else
 	{
-		while (n < ELEM)
+		while (level->n_elems < ELEM)
 		{
 			line = get_next_line(level->fd);
 			level->f_size++;
 			split = ft_split(line, ' ');
+			if (split_size(split) < 2
+				&& ft_strncmp(split[0], "\n", ft_strlen(split[0])))
+				exit_error(data, "Error\nMissing elements\n", STDERR_FILENO);
 			if (!ft_strchr(split[0], '\n'))
 			{
 				extract_elements(data, level, split);
-				n++;
+				level->n_elems++;
 			}
 			free(line);
 			free_split(split);

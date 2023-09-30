@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/25 18:10:03 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/30 19:09:21 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct s_level
 	int		size_x;
 	int		size_y;
 	int		f_size;
+	int		n_player;
+	int		n_elems;
 }	t_level;
 
 typedef struct s_inputs
@@ -73,7 +75,11 @@ typedef struct s_ray
 	t_point		dest;
 	t_point		aux;
 	t_point		init;
-	float		distance;
+	//a/b = c/d; a = c/d *b
+	float		distance;    //  D
+	float		height_wall; //  C
+	float		dis_fov;     //  B
+	int			h_fov;       //  A
 	float		angle;
 	int			x_dir;
 	int			y_dir;
@@ -86,6 +92,7 @@ typedef struct s_data
 	//ventana
 	mlx_t		*mlx;
 	mlx_image_t	*screen;
+	mlx_image_t	*background;
 	int			width;
 	int			height;
 	//player
@@ -111,9 +118,12 @@ typedef struct s_data
 	//ray casting
 	float		radian_conver;
 	float		increment;
+	float		wall_height;
 	t_ray		*rays;
 	int			num_rays;
 	int			angle_vision;
+	int			horizont;
+
 }	t_data;
 
 /****************/
@@ -130,6 +140,7 @@ void	draw_circle(mlx_image_t *image, t_point center, int radius, int color);
 void	draw_poli(mlx_image_t *img, t_point *vertices, int vrt_num, int color);
 void	clear_image(mlx_image_t *image);
 void	draw_player(t_data *data);
+void	draw_background(t_data *data, int width, int heigth);
 
 /****************/
 /*		MAP		*/
@@ -159,13 +170,17 @@ int		w_coll(t_data *data, float x, float y);
 void	ray_collision(t_data *data, int ray);
 float	ray_v_collision(t_data *data, int ray);
 float	ray_h_collision(t_data *data, int ray);
+void	calculate_hipotenuses(t_data *data);
+float	hypotenuse(float a, float b);
+void    height_calculation(t_data *data, int ray);
 
 /********************/
 /*		UTILS		*/
 /********************/
+size_t	split_size(char **split);
 void	free_split(char **split);
 void	free_level(t_data *data, t_level *level);
-void	exit_error(t_data *data);
+void	exit_error(t_data *data, char *str, int fd);
 
 
 

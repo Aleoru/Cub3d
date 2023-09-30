@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:54:21 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/25 19:29:53 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/30 19:08:47 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,14 @@ void	init_data(t_data *data)
 	data->width = data->map_cell_size * (data->level.size_x + 1);
 	data->height = data->map_cell_size * (data->level.size_y + 2);
 	data->radian_conver = 3.1415926536 / 180;
-	//create map
- 	//create_test_map(data, 10, 10);
-	//player data
-/* 	data->ply_pos.x = 100.5;
-	data->ply_pos.y = 100.5; */
 	data->ply_angle = 60;
 	data->ply_speed = 1;
 	data->ply_turn_speed = 1;
+	data->horizont = data->height / 2;
+	data->wall_height = 5;
 	//open window
 	data->mlx = mlx_init(data->width, data->height, "cub3D", true);
+	draw_background(data, data->width, data->height);
 	//creating images
 	texture = mlx_load_png("./assets/png/wall.png");
 	data->wall = mlx_texture_to_image(data->mlx, texture);

@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 18:07:46 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/26 19:28:53 by aoropeza         ###   ########.fr       */
+/*   Created: 2023/09/28 18:30:58 by aoropeza          #+#    #+#             */
+/*   Updated: 2023/09/28 18:32:22 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
-void	exit_error(t_data *data, char *str, int fd)
+size_t	split_size(char **split)
 {
-	ft_putstr_fd(str, fd);
-	free_level(data, &data->level);
-	exit(1);
+	size_t	size;
+
+	size = 0;
+	while (split[size])
+		size++;
+	return (size);
 }

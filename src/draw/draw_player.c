@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:08 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/25 19:25:36 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/30 19:11:38 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	clear_image(mlx_image_t *image)
 	ft_memset(image->pixels, 0, image->width * image->height * sizeof(int));
 }
 
-void	draw_rays(t_data *data)
+/* void	draw_rays(t_data *data)		//Borrar luego
 {
 	int		i;
 	int		dis;
@@ -34,7 +34,7 @@ void	draw_rays(t_data *data)
 		draw_line(data->screen, data->ply_pos, end, c);
 		i++;
 	}
-}
+} */
 
 void	draw_rays2(t_data *data)
 {
@@ -45,9 +45,10 @@ void	draw_rays2(t_data *data)
 	c = 0x66FF66FF;
 	while (i < data->num_rays)
 	{
-		if (data->rays[i].dest.x > 0 && data->rays[i].dest.x < data->width
+/* 		if (data->rays[i].dest.x > 0 && data->rays[i].dest.x < data->width
 			&& data->rays[i].dest.y > 0 && data->rays[i].dest.y < data->height)
-			draw_line(data->screen, data->ply_pos, data->rays[i].dest, c);
+			draw_line(data->screen, data->ply_pos, data->rays[i].dest, c); */
+		height_calculation(data, i);
 		i++;
 	}
 }
