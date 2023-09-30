@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/28 19:05:55 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/30 19:29:02 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,11 @@ static void	parsing_map2(t_data *data, t_level *level)
 			if (!ft_strchr("10NSEW \n", level->file_map[y][x]))
 				exit_error(data, "Error\nInvalid character on map\n", 2);
 			if (ft_strchr("NSEW", level->file_map[y][x]))
+			{
+				data->ply_pos.x = x * data->cell_size + data->cell_size / 2;
+				data->ply_pos.y = y * data->cell_size + data->cell_size / 2;
 				level->n_player++;
+			}
 			if (level->n_player > 1)
 				exit_error(data, "Error\nMore than one player on map\n", 2);
 			if (level->file_map[y][x] != '\n')

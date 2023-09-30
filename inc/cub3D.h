@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/30 19:09:21 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/30 19:30:29 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ typedef struct s_data
 	mlx_image_t	*map_image;
 	char		*map_name;
 	char		**map;
-	int			map_cell_size;
+	int			cell_size;
 	//png
 	mlx_image_t	*wall;
 	//ray casting

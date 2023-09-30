@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:54:21 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/30 19:08:47 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/09/30 19:39:42 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ void	init_data(t_data *data)
 {
 	mlx_texture_t	*texture;
 
-	data->map_cell_size = 64;
-	data->width = data->map_cell_size * (data->level.size_x + 1);
-	data->height = data->map_cell_size * (data->level.size_y + 2);
+	data->width = data->cell_size * (data->level.size_x + 1);
+	data->height = data->cell_size * (data->level.size_y + 2);
 	data->radian_conver = 3.1415926536 / 180;
 	data->ply_angle = 60;
 	data->ply_speed = 1;
@@ -37,7 +36,7 @@ void	init_data(t_data *data)
 	texture = mlx_load_png("./assets/png/wall.png");
 	data->wall = mlx_texture_to_image(data->mlx, texture);
 	//draw map 2d
-	draw_map(data, data->level.size_x, data->level.size_y, data->map_cell_size);
+	//draw_map(data, data->level.size_x, data->level.size_y, data->cell_size);
 	//create rays
 	data->angle_vision = 60;
 	create_rays(data);
@@ -53,6 +52,7 @@ int	main(int argc, char **argv)
 	if (argc == 1)	//Añadir exit_error
 		return (0);
 	ft_bzero(&data, sizeof(t_data));
+	data.cell_size = 64;
 	init_map(&data, &data.level, argv[1]);
 	init_data(&data);
 	mlx_loop_hook(data.mlx, &hook, &data);

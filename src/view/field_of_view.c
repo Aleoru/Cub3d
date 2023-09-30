@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   field_of_view.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 04:22:29 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/30 04:45:39 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/09/30 19:53:59 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h" 
+
+static int	get_texture(t_data *data, int ray)
+{
+	if (data->rays[ray].texture == NORTH)
+		return (0x33F6FFFF);
+	else if (data->rays[ray].texture == SOUTH)
+		return (0x66FF66FF);
+	else if (data->rays[ray].texture == EAST)
+		return (0x9C33FFFF);
+	else if (data->rays[ray].texture == WEST)
+		return (0xDDFF33FF);
+	return (0);
+}
 
 //a/b = c/d; a = c/d *b
 void    height_calculation(t_data *data, int ray)
@@ -19,7 +32,7 @@ void    height_calculation(t_data *data, int ray)
 	t_point	end;
 	int		c;
 
-	c = 0x66FF66FF;
+	c = get_texture(data, ray);
 	init.x = ray;
 	end.x = ray;
 	data->rays[ray].h_fov = (int)((data->wall_height /  //data->rays[ray].height_wall / 
@@ -30,6 +43,10 @@ void    height_calculation(t_data *data, int ray)
 	//printf("heigth_wall: %0.1f\n", init.y);
 	//printf("h_fov: %d\n", data->rays[ray].h_fov);
 	end.y = init.y - data->rays[ray].h_fov;
+	if (init.y > data->height)
+		init.y = data->height;
+	if (end.y < 0)
+		end.y = -1;
 	//printf("ray: %d, init: %0.1f, %0.1f | ", ray, init.x, init.y);
 	//printf(" ray: %d, end: %0.1f, %0.1f\n", ray, end.x, end.y);
 	draw_line(data->screen, init, end, c);

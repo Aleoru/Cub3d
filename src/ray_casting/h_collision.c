@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   h_collision.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 23:31:52 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/25 01:30:34 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/09/30 19:29:35 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static float	h_coll_right(t_data *data, int ray)
 	init.y = data->ply_pos.y;
 	while (w_coll(data, init.x, init.y) == 0)
 	{
-		next = (init.x / data->map_cell_size);
-		w = ((next + 1) * data->map_cell_size) - init.x;
+		next = (init.x / data->cell_size);
+		w = ((next + 1) * data->cell_size) - init.x;
 		h = w * tan(data->rays[ray].angle);
 		data->rays[ray].aux.x = init.x + w;
 		data->rays[ray].aux.y = init.y - h;
@@ -47,10 +47,10 @@ static float	h_coll_left(t_data *data, int ray)
 	init.y = data->ply_pos.y;
 	while (w_coll(data, init.x - 1, init.y) == 0)
 	{
-		next = (init.x / data->map_cell_size);
-		w = (next * data->map_cell_size) - init.x;
+		next = (init.x / data->cell_size);
+		w = (next * data->cell_size) - init.x;
 		if (w == 0)
-			w = data->map_cell_size * -1;
+			w = data->cell_size * -1;
 		h = w * tan(data->rays[ray].angle);
 		data->rays[ray].aux.x = init.x + w;
 		data->rays[ray].aux.y = init.y - h;
@@ -87,8 +87,8 @@ float	ray_h_collision(t_data *data, int ray)
 	{
 		while (no_collision)
 		{
-			next = (init.x / data->map_cell_size);
-			w = ((next + 1) * data->map_cell_size) - init.x;
+			next = (init.x / data->cell_size);
+			w = ((next + 1) * data->cell_size) - init.x;
 			h = w * tan(data->rays[ray].angle);
 			data->rays[ray].aux.x = init.x + w;
 			data->rays[ray].aux.y = init.y - h;
@@ -108,10 +108,10 @@ float	ray_h_collision(t_data *data, int ray)
 	{
 		while (no_collision)
 		{
-			next = (init.x / data->map_cell_size);
-			w = (next * data->map_cell_size) - init.x;
+			next = (init.x / data->cell_size);
+			w = (next * data->cell_size) - init.x;
 			if (w == 0)
-				w = data->map_cell_size * -1;
+				w = data->cell_size * -1;
 			h = w * tan(data->rays[ray].angle);
 			data->rays[ray].aux.x = init.x + w;
 			data->rays[ray].aux.y = init.y - h;
