@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:08 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/30 19:11:38 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/01 02:59:53 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void	clear_image(mlx_image_t *image)
 void	draw_rays2(t_data *data)
 {
 	int		i;
-	int		c;
+	//int		c;
 
 	i = 0;
-	c = 0x66FF66FF;
+	//c = 0x66FF66FF;
 	while (i < data->num_rays)
 	{
 /* 		if (data->rays[i].dest.x > 0 && data->rays[i].dest.x < data->width

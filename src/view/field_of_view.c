@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   field_of_view.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 04:22:29 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/30 19:53:59 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/01 03:55:44 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,23 @@ void    height_calculation(t_data *data, int ray)
 	c = get_texture(data, ray);
 	init.x = ray;
 	end.x = ray;
-	data->rays[ray].h_fov = (int)((data->wall_height /  //data->rays[ray].height_wall / 
+	data->rays[ray].h_fov = (int)((data->wall_height /
 		data->rays[ray].distance) * data->rays[ray].dis_fov);
 	init.y = data->horizont + (data->rays[ray].h_fov / 2);
 	//printf("data horizont: %d\n", data->horizont);
+	//printf("ray distance: %0.1f\n", data->rays[ray].distance);
 	//printf("data horizont + h_fov / 2: %0.1f\n", data->wall_height);
 	//printf("heigth_wall: %0.1f\n", init.y);
 	//printf("h_fov: %d\n", data->rays[ray].h_fov);
 	end.y = init.y - data->rays[ray].h_fov;
-	if (init.y > data->height)
-		init.y = data->height;
+	if (init.y >= data->height)
+		init.y = data->height - 1;
 	if (end.y < 0)
-		end.y = -1;
+		end.y = 0;
 	//printf("ray: %d, init: %0.1f, %0.1f | ", ray, init.x, init.y);
 	//printf(" ray: %d, end: %0.1f, %0.1f\n", ray, end.x, end.y);
-	draw_line(data->screen, init, end, c);
+	if (data->rays[ray].distance != -1)
+		draw_line(data->screen, init, end, c);
 }
 
 float	hypotenuse(float a, float b)
