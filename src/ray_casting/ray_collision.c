@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 03:49:41 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/30 19:57:28 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:28:21 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ void	ray_collision(t_data *data, int ray)
 	if (v_collision > h_collision)
 	{
 		if (data->rays[ray].x_dir == -1)
-			data->rays[ray].texture = NORTH;
+			data->rays[ray].texture = WEST;
 		else
-			data->rays[ray].texture = SOUTH;
+			data->rays[ray].texture = EAST;
 	}
 	else
 	{
 		if (data->rays[ray].y_dir == -1)
-			data->rays[ray].texture = WEST;
+			data->rays[ray].texture = SOUTH;
 		else
-			data->rays[ray].texture = EAST;
+			data->rays[ray].texture = NORTH;
 	}
 	if (v_collision > h_collision && h_collision != -1)
 	{

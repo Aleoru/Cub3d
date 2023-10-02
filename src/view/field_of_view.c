@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   field_of_view.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 04:22:29 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/01 03:55:44 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:25:28 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static int	get_texture(t_data *data, int ray)
 {
 	if (data->rays[ray].texture == NORTH)
-		return (0x33F6FFFF);
+		return (0x33F6FFFF);	// Azul
 	else if (data->rays[ray].texture == SOUTH)
-		return (0x66FF66FF);
+		return (0x66FF66FF);	// verde
 	else if (data->rays[ray].texture == EAST)
-		return (0x9C33FFFF);
+		return (0x9C33FFFF);	// Morado
 	else if (data->rays[ray].texture == WEST)
-		return (0xDDFF33FF);
+		return (0xDDFF33FF);	// Amarillo
 	return (0);
 }
 

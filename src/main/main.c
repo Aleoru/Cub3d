@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:54:21 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/01 04:11:03 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:22:10 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	init_data(t_data *data)
 {
 	mlx_texture_t	*texture;
 
-	data->width = data->cell_size * (data->level.size_x + 1);
-	data->height = data->cell_size * (data->level.size_y + 2);
+	data->width = 1200;		//data->cell_size * (data->level.size_x + 1);
+	data->height = 720;		//data->cell_size * (data->level.size_y + 2);
 	data->radian_conver = 3.1415926536 / 180;
 	data->ply_angle = 270;
 	data->ply_speed = 2;
 	data->ply_turn_speed = 1;
 	data->horizont = data->height / 2;
-	data->wall_height = 15;
+	data->wall_height = 35;
 	//open window
 	data->mlx = mlx_init(data->width, data->height, "cub3D", true);
 	draw_background(data, data->width, data->height);
