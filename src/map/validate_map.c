@@ -12,7 +12,7 @@
 
 #include "../../inc/cub3D.h"
 
-void	print_map(char	**map)
+/* void	print_map(char	**map)
 {
 	int	y;
 
@@ -26,7 +26,7 @@ void	print_map(char	**map)
 		y++;
 	}
 	printf("\n-----------------------\n\n");
-}
+} */
 
 void	check_player_pos(t_data *data, t_level *level, int x, int y)
 {
@@ -38,14 +38,6 @@ void	check_player_pos(t_data *data, t_level *level, int x, int y)
 		|| level->file_map[y][x - 1] == ' '
 		|| level->file_map[y + 1][x - 1] == ' ')
 		exit_error(data, "Error\nPlayer out from the map\n", 2);
-/* 	if (level->file_map[y + 1][x] == ' ')
-	if (level->file_map[y + 1][x + 1] == ' ')
-	if (level->file_map[y][x + 1] == ' ')
-	if (level->file_map[y - 1][x + 1] == ' ')
-	if (level->file_map[y - 1][x] == ' ')
-	if (level->file_map[y - 1][x - 1] == ' ')
-	if (level->file_map[y][x - 1] == ' ')
-	if (level->file_map[y + 1][x - 1] == ' ') */
 }
 
 static void	copy_map(t_data *data, t_level *level)

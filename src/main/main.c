@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:54:21 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/02 18:22:10 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/03 20:22:34 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,31 @@ void	init_data(t_data *data)
 	mlx_image_to_window(data->mlx, data->screen, 0, 0);
 }
 
+void	init_img(t_data *data)
+{
+	mlx_texture_t	*texture;
+
+	data->level.no_path = delete_nl(data->level.no_path);
+	data->level.no_path = delete_nl(data->level.so_path);
+	data->level.no_path = delete_nl(data->level.ea_path);
+	data->level.no_path = delete_nl(data->level.we_path);
+	texture = mlx_load_png(data->level.no_path);
+	data->img.no_wall = mlx_texture_to_image(data->mlx, texture);
+	free(texture);
+	texture = mlx_load_png(data->level.so_path);
+	data->img.so_wall = mlx_texture_to_image(data->mlx, texture);
+	free(texture);
+	texture = mlx_load_png(data->level.ea_path);
+	data->img.ea_wall = mlx_texture_to_image(data->mlx, texture);
+	free(texture);
+	texture = mlx_load_png(data->level.we_path);
+	data->img.we_wall = mlx_texture_to_image(data->mlx, texture);
+	free(texture);
+}
+
 int	main(int argc, char **argv)
 {
+	atexit(ft_leaks);
 	t_data	data;
 
 	if (argc == 1)	//Añadir exit_error
@@ -55,9 +78,11 @@ int	main(int argc, char **argv)
 	data.cell_size = 64;
 	init_map(&data, &data.level, argv[1]);
 	init_data(&data);
+	init_img(&data);
 	mlx_loop_hook(data.mlx, &hook, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
+	//free_level(&data, &data.level);
 	//free(data.rays);
 
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/03 19:32:38 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/03 19:52:46 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,21 @@ typedef struct s_ray
 	int			texture;
 }	t_ray;
 
+typedef struct s_img
+{
+	mlx_image_t	*no_wall;
+	mlx_image_t	*so_wall;
+	mlx_image_t	*ea_wall;
+	mlx_image_t	*we_wall;
+}	t_img;
+
 typedef struct s_data
 {
 	//ventana
 	mlx_t		*mlx;
 	mlx_image_t	*screen;
 	mlx_image_t	*background;
+	t_img		img;
 	int			width;
 	int			height;
 	//player
@@ -173,12 +182,13 @@ float	ray_v_collision(t_data *data, int ray);
 float	ray_h_collision(t_data *data, int ray);
 void	calculate_hipotenuses(t_data *data);
 float	hypotenuse(float a, float b);
-void    height_calculation(t_data *data, int ray);
+void	height_calculation(t_data *data, int ray);
 
 /********************/
 /*		UTILS		*/
 /********************/
 size_t	split_size(char **split);
+char	*delete_nl(char	*str);
 void	free_split(char **split);
 void	free_level(t_data *data, t_level *level);
 void	exit_error(t_data *data, char *str, int fd);

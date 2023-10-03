@@ -1,7 +1,7 @@
-NO ./ruta_a_la_textura_norte
-SO ./ruta_a_la_textura_sur
-WE ./ruta_a_la_textura_oeste
-EA ./ruta_a_la_textura_este
+NO ./assets/png/box.png
+SO ./assets/png/floor.png
+WE ./assets/png/tile1.png
+EA ./assets/png/wall.png
 
 F 220,100,0
 C 225,30,0

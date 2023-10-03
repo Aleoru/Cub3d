@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 18:30:58 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/28 18:32:22 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/03 19:56:29 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,15 @@ size_t	split_size(char **split)
 	while (split[size])
 		size++;
 	return (size);
+}
+
+char	*delete_nl(char	*str)
+{
+	int	x;
+
+	x = 0;
+	while (str[x] != '\n')
+		x++;
+	str[x] = '\0';
+	return (str);
 }

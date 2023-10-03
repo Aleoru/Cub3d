@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:31:38 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/10 14:12:18 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/03 20:04:13 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	process_inputs(t_data *data)
 {
 	data->ply_x_axis = data->ply_inputs.right - data->ply_inputs.left;
 	data->ply_y_axis = data->ply_inputs.up - data->ply_inputs.down;
-	data->ply_turn_dir = data->ply_inputs.turn_left
-		- data->ply_inputs.turn_right;
+	data->ply_turn_dir = data->ply_inputs.turn_right
+		- data->ply_inputs.turn_left;
 }
 
 static void	angle_move(t_data *data)
@@ -26,25 +26,25 @@ static void	angle_move(t_data *data)
 	if (data->ply_y_axis == 1)
 	{
 		if (data->ply_x_axis == 1)
-			data->ply_angle_mv += -45;
-		else if (data->ply_x_axis == -1)
 			data->ply_angle_mv += 45;
+		else if (data->ply_x_axis == -1)
+			data->ply_angle_mv += -45;
 	}
 	else if (data->ply_y_axis == -1)
 	{
 		if (data->ply_x_axis == 1)
-			data->ply_angle_mv += -135;
-		else if (data->ply_x_axis == -1)
 			data->ply_angle_mv += 135;
+		else if (data->ply_x_axis == -1)
+			data->ply_angle_mv += -135;
 		else
 			data->ply_angle_mv += 180;
 	}
 	else if (data->ply_y_axis == 0)
 	{
 		if (data->ply_x_axis == 1)
-			data->ply_angle_mv += -90;
-		else if (data->ply_x_axis == -1)
 			data->ply_angle_mv += 90;
+		else if (data->ply_x_axis == -1)
+			data->ply_angle_mv += -90;
 	}
 }
 
