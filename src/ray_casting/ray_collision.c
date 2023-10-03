@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_collision.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 03:49:41 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/02 18:28:21 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/03 09:31:18 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ int	w_coll(t_data *data, float x, float y)
 	int		x_cell;
 	int		y_cell;
 
-	if (x > data->width || x < 0 || y > data->height || y < 0)
-		return (1);
+	//if (x > data->width || x < 0 || y > data->height || y < 0)
+	//	return (1);
 	x_cell = (int)(x / data->cell_size);
 	y_cell = (int)(y / data->cell_size);
+	if (x_cell > data->level.size_x || x_cell < 0 || y_cell > data->level.size_y 
+		|| y_cell < 0)
+		return (1);
 	if (data->map[y_cell][x_cell] == '1')
 		return (1);
 	return (0);
