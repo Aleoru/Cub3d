@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/30 19:30:29 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/03 19:32:38 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ int		get_rgb(t_data *data, t_level *level, char *str);
 void	get_map_size(t_data *data, t_level *level);
 void	parsing_map(t_data *data, t_level *level);
 void	check_flood(t_data *data, t_level *level);
+void	check_player_pos(t_data *data, t_level *level, int x, int y);
 
 void	print_map(char	**map);	// DEBUG
 

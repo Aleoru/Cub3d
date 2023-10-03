@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/30 19:29:02 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/03 19:32:55 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,8 @@ static void	parsing_map2(t_data *data, t_level *level)
 				data->ply_pos.x = x * data->cell_size + data->cell_size / 2;
 				data->ply_pos.y = y * data->cell_size + data->cell_size / 2;
 				level->n_player++;
+				check_player_pos(data, level, x, y);
 			}
-			if (level->n_player > 1)
-				exit_error(data, "Error\nMore than one player on map\n", 2);
 			if (level->file_map[y][x] != '\n')
 				data->map[y + 1][x + 1] = level->file_map[y][x];
 			x++;

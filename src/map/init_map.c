@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:57:28 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/09/30 19:01:31 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/03 19:23:01 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,9 @@ void	init_map(t_data *data, t_level *level, char *str)
 	get_map_size(data, level);
 	read_map(data, level);
 	parsing_map(data, level);
+	if (level->n_player < 1)
+		exit_error(data, "Error\nMissing player on map\n", 2);
+	else if (level->n_player > 1)
+		exit_error(data, "Error\nMore than one player on map\n", 2);
 	validate_map(data, level);
 }
