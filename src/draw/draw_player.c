@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:08 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/01 02:59:53 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/03 08:22:36 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,18 @@ void	draw_rays2(t_data *data)
 
 void	draw_player(t_data *data)
 {
-	int		c;
-	int		dis;
-	t_point	dir;
+	//int		c;
+	//int		dis;
+	//t_point	dir;
 
-	c = 0x66FFFFFF;
-	dis = 15;
+	//c = 0x66FFFFFF;
+	//dis = 15;
 	clear_image(data->screen);
-	draw_circle(data->screen, data->ply_pos, dis, c);
-	mlx_put_pixel(data->screen, data->ply_pos.x, data->ply_pos.y, c);
-	dir.x = data->ply_pos.x + cos(data->ply_angle * data->radian_conver) * dis;
-	dir.y = data->ply_pos.y - sin(data->ply_angle * data->radian_conver) * dis;
+	//draw_circle(data->screen, data->ply_pos, dis, c);
+	//mlx_put_pixel(data->screen, data->ply_pos.x, data->ply_pos.y, c);
+	//dir.x = data->ply_pos.x + cos(data->ply_angle * data->radian_conver) * dis;
+	//dir.y = data->ply_pos.y - sin(data->ply_angle * data->radian_conver) * dis;
 	draw_rays2(data);
-	draw_line(data->screen, data->ply_pos, dir, c);
+	//draw_line(data->screen, data->ply_pos, dir, c);
 	//draw_line(data->screen, data->ply_pos, data->rays[319].dest, c);
 }
