@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 03:49:41 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/03 09:31:18 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/03 13:50:44 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,6 @@ void	ray_collision(t_data *data, int ray)
 
 	v_collision = ray_v_collision(data, ray);
 	h_collision = ray_h_collision(data, ray);
-	if (v_collision > h_collision)
-	{
-		if (data->rays[ray].x_dir == -1)
-			data->rays[ray].texture = WEST;
-		else
-			data->rays[ray].texture = EAST;
-	}
-	else
-	{
-		if (data->rays[ray].y_dir == -1)
-			data->rays[ray].texture = SOUTH;
-		else
-			data->rays[ray].texture = NORTH;
-	}
 	if (v_collision > h_collision && h_collision != -1)
 	{
 		data->rays[ray].dest.x = data->rays[ray].aux.x;
@@ -60,5 +46,22 @@ void	ray_collision(t_data *data, int ray)
 	{
 		data->rays[ray].distance = v_collision;
 	}
+	if (v_collision > h_collision)
+	{
+		if (data->rays[ray].x_dir == -1)
+			data->rays[ray].texture = WEST;
+		else
+			data->rays[ray].texture = EAST;
+		data->rays[ray].pixel = (int)data->rays[ray].dest.y % data->cell_size;
+	}
+	else
+	{
+		if (data->rays[ray].y_dir == -1)
+			data->rays[ray].texture = SOUTH;
+		else
+			data->rays[ray].texture = NORTH;
+		data->rays[ray].pixel = (int)data->rays[ray].dest.x % data->cell_size;
+	}
 }
+
 
