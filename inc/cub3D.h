@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/03 19:52:46 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/05 19:01:11 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@
 # define WE "WE"
 # define F "F"
 # define C "C"
+# define N 90
+# define S 270
+# define E 0
+# define W 180
 # define ELEM 6
 # define NORTH 1
 # define SOUTH 2
@@ -58,6 +62,7 @@ typedef struct s_level
 	int		f_size;
 	int		n_player;
 	int		n_elems;
+	char	direction;
 }	t_level;
 
 typedef struct s_inputs

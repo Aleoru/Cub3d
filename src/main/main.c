@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:54:21 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/03 20:22:34 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/05 19:13:51 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init_data(t_data *data)
 	data->width = 1200;		//data->cell_size * (data->level.size_x + 1);
 	data->height = 720;		//data->cell_size * (data->level.size_y + 2);
 	data->radian_conver = 3.1415926536 / 180;
-	data->ply_angle = 270;
+//	data->ply_angle = 270;
 	data->ply_speed = 2;
 	data->ply_turn_speed = 1;
 	data->horizont = data->height / 2;
@@ -50,9 +50,13 @@ void	init_img(t_data *data)
 	mlx_texture_t	*texture;
 
 	data->level.no_path = delete_nl(data->level.no_path);
-	data->level.no_path = delete_nl(data->level.so_path);
-	data->level.no_path = delete_nl(data->level.ea_path);
-	data->level.no_path = delete_nl(data->level.we_path);
+	data->level.so_path = delete_nl(data->level.so_path);
+	data->level.ea_path = delete_nl(data->level.ea_path);
+	data->level.we_path = delete_nl(data->level.we_path);
+	if (open(data->level.no_path, O_RDONLY) == -1 || open(data->level.so_path,
+			O_RDONLY) == -1 || open(data->level.ea_path, O_RDONLY) == -1
+		|| open(data->level.we_path, O_RDONLY) == -1)
+		exit_error(data, "Error\nInvalid image path\n", 2);
 	texture = mlx_load_png(data->level.no_path);
 	data->img.no_wall = mlx_texture_to_image(data->mlx, texture);
 	free(texture);
@@ -69,11 +73,14 @@ void	init_img(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	atexit(ft_leaks);
+	//atexit(ft_leaks);
 	t_data	data;
 
-	if (argc == 1)	//Añadir exit_error
-		return (0);
+	if (argc == 1)
+	{
+		ft_putstr_fd("Error\nMissing parameters\n", 2);
+		return (2);
+	}
 	ft_bzero(&data, sizeof(t_data));
 	data.cell_size = 64;
 	init_map(&data, &data.level, argv[1]);
@@ -82,8 +89,8 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data.mlx, &hook, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
-	//free_level(&data, &data.level);
-	//free(data.rays);
+	free_level(&data, &data.level);
+	free(data.rays);
 
 	return (0);
 }

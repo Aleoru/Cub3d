@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:57:28 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/03 19:23:01 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/05 18:37:47 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	init_map(t_data *data, t_level *level, char *str)
 	level->size_x = 0;
 	level->size_y = 0;
 	level->f_size = 0;
-	level->path = ft_strjoin("assets/maps/", str);
+	level->path = ft_strjoin("./assets/maps/", str);
 	validate_map_path(data, level->path);
 	read_map_elements(data, level);
 	get_map_size(data, level);

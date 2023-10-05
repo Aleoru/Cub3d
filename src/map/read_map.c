@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/03 19:32:55 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/05 18:37:20 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ static void	parsing_map2(t_data *data, t_level *level)
 				data->ply_pos.x = x * data->cell_size + data->cell_size / 2;
 				data->ply_pos.y = y * data->cell_size + data->cell_size / 2;
 				level->n_player++;
+				level->direction = level->file_map[y][x];
 				check_player_pos(data, level, x, y);
 			}
 			if (level->file_map[y][x] != '\n')
@@ -125,5 +126,6 @@ void	parsing_map(t_data *data, t_level *level)
 		data->map[y++] = ft_strdup(line);
 	}
 	data->map[y] = NULL;
+	free(line);
 	parsing_map2(data, level);
 }

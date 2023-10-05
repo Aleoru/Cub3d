@@ -38,6 +38,14 @@ void	check_player_pos(t_data *data, t_level *level, int x, int y)
 		|| level->file_map[y][x - 1] == ' '
 		|| level->file_map[y + 1][x - 1] == ' ')
 		exit_error(data, "Error\nPlayer out from the map\n", 2);
+	if (level->direction == 'N')
+		data->ply_angle = N;
+	else if (level->direction == 'S')
+		data->ply_angle = S;
+	else if (level->direction == 'E')
+		data->ply_angle = E;
+	else if (level->direction == 'W')
+		data->ply_angle = W;
 }
 
 static void	copy_map(t_data *data, t_level *level)
