@@ -1,6 +1,6 @@
 NO ./assets/png/box.png
 SO ./assets/png/floor.png
-WE ./assets/png/tile1.png
+WE ./assets/png/exitclose.png
 EA ./assets/png/wall.png
 
 F 220,100,0

@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   field_of_view.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 04:22:29 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/07 19:36:56 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/07 20:22:19 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/cub3D.h" 
+#include "../../inc/cub3D.h"
 
 static int	get_color(mlx_image_t *img, int p)
 {
 	int	c;
 
 	c = img->pixels[p] << 24 | img->pixels[p + 1] << 16 | img->pixels[p + 2]
-		<< 8 | img->pixels[p];
+		<< 8 | img->pixels[p + 3];
 	return (c);
 }
 
@@ -65,15 +65,17 @@ void    height_calculation(t_data *data, int ray)
 		int x;
 
 		p = ((data->cell_size * data->cell_size) - data->cell_size + data->rays[ray].pixel) * 4;
+		c = get_color(data->img.we_wall, p);
 		x = 0;
 		while (x < 64)
 		{
-			c = get_color(data->img.we_wall, p);
-			mlx_put_pixel(data->screen, init.x, init.y, c);
+			mlx_put_pixel(data->screen, init.x, init.y - x, c);
+			c = get_color(data->img.no_wall, p);
 			p = p - (data->cell_size * 4);
+			//printf("p = %d\n", p);
 			x++;
 		}
-		/* draw_line(data->screen, init, end, c); */
+		//draw_line(data->screen, init, end, c);
 	}
 }
 
