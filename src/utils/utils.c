@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 18:30:58 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/03 19:56:29 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/07 19:07:56 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,27 @@ char	*delete_nl(char	*str)
 		x++;
 	str[x] = '\0';
 	return (str);
+}
+
+int	check_img(t_level *level)
+{
+	int	fd;
+
+	fd = open(level->no_path, O_RDONLY);
+	if (fd == -1)
+		return (close(fd), -1);
+	close(fd);
+	fd = open(level->so_path, O_RDONLY);
+	if (fd == -1)
+		return (close(fd), -1);
+	close(fd);
+	fd = open(level->ea_path, O_RDONLY);
+	if (fd == -1)
+		return (close(fd), -1);
+	close(fd);
+	fd = open(level->we_path, O_RDONLY);
+	if (fd == -1)
+		return (close(fd), -1);
+	close(fd);
+	return (0);
 }

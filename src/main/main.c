@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:54:21 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/05 19:13:51 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/07 19:10:47 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,7 @@ void	init_img(t_data *data)
 	data->level.so_path = delete_nl(data->level.so_path);
 	data->level.ea_path = delete_nl(data->level.ea_path);
 	data->level.we_path = delete_nl(data->level.we_path);
-	if (open(data->level.no_path, O_RDONLY) == -1 || open(data->level.so_path,
-			O_RDONLY) == -1 || open(data->level.ea_path, O_RDONLY) == -1
-		|| open(data->level.we_path, O_RDONLY) == -1)
+	if (check_img(&data->level) == -1)
 		exit_error(data, "Error\nInvalid image path\n", 2);
 	texture = mlx_load_png(data->level.no_path);
 	data->img.no_wall = mlx_texture_to_image(data->mlx, texture);
@@ -73,7 +71,7 @@ void	init_img(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	//atexit(ft_leaks);
+	atexit(ft_leaks);
 	t_data	data;
 
 	if (argc == 1)

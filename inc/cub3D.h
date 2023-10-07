@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/05 19:01:11 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/07 19:08:13 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,7 @@ void	height_calculation(t_data *data, int ray);
 /*		UTILS		*/
 /********************/
 size_t	split_size(char **split);
+int		check_img(t_level *level);
 char	*delete_nl(char	*str);
 void	free_split(char **split);
 void	free_level(t_data *data, t_level *level);

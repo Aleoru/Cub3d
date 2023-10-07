@@ -6,11 +6,20 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 04:22:29 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/02 18:25:28 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/07 19:36:56 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h" 
+
+static int	get_color(mlx_image_t *img, int p)
+{
+	int	c;
+
+	c = img->pixels[p] << 24 | img->pixels[p + 1] << 16 | img->pixels[p + 2]
+		<< 8 | img->pixels[p];
+	return (c);
+}
 
 static int	get_texture(t_data *data, int ray)
 {
@@ -51,7 +60,21 @@ void    height_calculation(t_data *data, int ray)
 	//printf("ray: %d, init: %0.1f, %0.1f | ", ray, init.x, init.y);
 	//printf(" ray: %d, end: %0.1f, %0.1f\n", ray, end.x, end.y);
 	if (data->rays[ray].distance != -1)
-		draw_line(data->screen, init, end, c);
+	{
+		int	p;
+		int x;
+
+		p = ((data->cell_size * data->cell_size) - data->cell_size + data->rays[ray].pixel) * 4;
+		x = 0;
+		while (x < 64)
+		{
+			c = get_color(data->img.we_wall, p);
+			mlx_put_pixel(data->screen, init.x, init.y, c);
+			p = p - (data->cell_size * 4);
+			x++;
+		}
+		/* draw_line(data->screen, init, end, c); */
+	}
 }
 
 float	hypotenuse(float a, float b)
