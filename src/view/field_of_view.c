@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   field_of_view.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 04:22:29 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/07 20:22:19 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/07 20:58:02 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,25 @@ void    height_calculation(t_data *data, int ray)
 	//printf(" ray: %d, end: %0.1f, %0.1f\n", ray, end.x, end.y);
 	if (data->rays[ray].distance != -1)
 	{
-		int	p;
-		int x;
+		int		p;
+		int 	x;
+		int		d;
+		float	f;
 
 		p = ((data->cell_size * data->cell_size) - data->cell_size + data->rays[ray].pixel) * 4;
+		d = init.y - end.y;
 		c = get_color(data->img.we_wall, p);
+		f = d / data->cell_size;
 		x = 0;
-		while (x < 64)
+		while (x < d)
 		{
 			mlx_put_pixel(data->screen, init.x, init.y - x, c);
-			c = get_color(data->img.no_wall, p);
-			p = p - (data->cell_size * 4);
+			if (f <= x)
+			{
+				f += f;
+				c = get_color(data->img.ea_wall, p);
+				p = p - (data->cell_size * 4);
+			}
 			//printf("p = %d\n", p);
 			x++;
 		}
