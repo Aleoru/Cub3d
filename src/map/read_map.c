@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/05 18:37:20 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/08 19:41:08 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ static void	parsing_map2(t_data *data, t_level *level)
 			{
 				data->ply_pos.x = x * data->cell_size + data->cell_size / 2;
 				data->ply_pos.y = y * data->cell_size + data->cell_size / 2;
+			printf("player: %0.01f, %0.01f\n", data->ply_pos.x, data->ply_pos.y);	// borrar	
 				level->n_player++;
 				level->direction = level->file_map[y][x];
 				check_player_pos(data, level, x, y);

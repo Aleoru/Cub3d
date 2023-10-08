@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 04:22:29 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/07 20:58:02 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/08 20:14:54 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,36 +53,56 @@ void    height_calculation(t_data *data, int ray)
 	//printf("heigth_wall: %0.1f\n", init.y);
 	//printf("h_fov: %d\n", data->rays[ray].h_fov);
 	end.y = init.y - data->rays[ray].h_fov;
-	if (init.y >= data->height)
+/* 	if (init.y >= data->height)
 		init.y = data->height - 1;
 	if (end.y < 0)
-		end.y = 0;
+		end.y = 0; */
 	//printf("ray: %d, init: %0.1f, %0.1f | ", ray, init.x, init.y);
 	//printf(" ray: %d, end: %0.1f, %0.1f\n", ray, end.x, end.y);
 	if (data->rays[ray].distance != -1)
 	{
 		int		p;
 		int 	x;
+		int 	y;
 		int		d;
+		float	f_init;
 		float	f;
 
 		p = ((data->cell_size * data->cell_size) - data->cell_size + data->rays[ray].pixel) * 4;
 		d = init.y - end.y;
 		c = get_color(data->img.we_wall, p);
-		f = d / data->cell_size;
+		f_init = (float)d / data->cell_size;
+		f = f_init;
 		x = 0;
-		while (x < d)
+		y = 0;
+		float	r = 1 / f_init;
+		while (x <= d)
 		{
-			mlx_put_pixel(data->screen, init.x, init.y - x, c);
-			if (f <= x)
+			if (init.y - x >= 0 && init.y - x <= data->height)
+				mlx_put_pixel(data->screen, init.x, init.y - x, c);
+			if (f_init >= 1 && (float)x > f)
 			{
-				f += f;
+				f += f_init;
 				c = get_color(data->img.ea_wall, p);
 				p = p - (data->cell_size * 4);
+			}
+			else if (f_init < 1)
+			{
+				f += f_init;
+				c = get_color(data->img.ea_wall, p);
+				if (r < 2)
+					r = 2;
+				p = p - ((data->cell_size * 4) * (int)r);
+				if (ray == data->width / 2)
+					printf("%d => %0.1f : %d > %0.1f - %d cambio\n", y, f_init, x, f, d);
+				y++;
 			}
 			//printf("p = %d\n", p);
 			x++;
 		}
+		if (ray == data->width / 2)
+			printf("---------------------------------\n");
+		//printf("%0.1f < %d\n", f, d);
 		//draw_line(data->screen, init, end, c);
 	}
 }
