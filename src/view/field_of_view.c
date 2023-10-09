@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   field_of_view.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 04:22:29 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/09 19:04:36 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:50:37 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ static int	get_color(mlx_image_t *img, int p)
 	return (c);
 }
 
-static int	get_texture(t_data *data, int ray)
+mlx_image_t	*get_texture(t_data *data, int ray)
 {
 	if (data->rays[ray].texture == NORTH)
-		return (0x33F6FFFF);	// Azul
+		return (data->img.no_wall);	// Azul
 	else if (data->rays[ray].texture == SOUTH)
-		return (0x66FF66FF);	// verde
+		return (data->img.so_wall);	// verde
 	else if (data->rays[ray].texture == EAST)
-		return (0x9C33FFFF);	// Morado
+		return (data->img.ea_wall);	// Morado
 	else if (data->rays[ray].texture == WEST)
-		return (0xDDFF33FF);	// Amarillo
+		return (data->img.we_wall);	// Amarillo
 	return (0);
 }
 
@@ -41,7 +41,6 @@ void    height_calculation(t_data *data, int ray)
 	t_point	end;
 	int		c;
 
-	c = get_texture(data, ray);
 	init.x = ray;
 	end.x = ray;
 	data->rays[ray].h_fov = (int)((data->wall_height /
@@ -59,7 +58,7 @@ void    height_calculation(t_data *data, int ray)
 
 		p = ((data->cell_size * data->cell_size) - data->cell_size + data->rays[ray].pixel) * 4;
 		d = init.y - end.y;
-		c = get_color(data->img.we_wall, p);
+		c = get_color(get_texture(data, ray), p);
 		f_init = (float)d / data->cell_size;
 		f = f_init;
 		r = 0;
@@ -71,7 +70,7 @@ void    height_calculation(t_data *data, int ray)
 			if ((float)x > f)
 			{
 				f += f_init;
-				c = get_color(data->img.ea_wall, p);
+				c = get_color(get_texture(data, ray), p);
 				p = p - (data->cell_size * 4);
 			}
 			x++;
@@ -79,19 +78,14 @@ void    height_calculation(t_data *data, int ray)
 		x = 0;
 		while ((int)r < data->cell_size && f_init < 1)
 		{
-			if (ray == data->width / 2)
-				printf("f_init: %f, r: %f\n", f_init, r);
-			p = p - (data->cell_size * 4);
-			if (p < 0)
-				break ;
-			c = get_color(data->img.ea_wall, p);
 			r += f_init;
 			if (init.y - x >= 0 && init.y - x <= data->height)
 				mlx_put_pixel(data->screen, init.x, init.y - (int)r, c);
-
+			c = get_color(get_texture(data, ray), p);
+			p = p - (data->cell_size * 4);
+			if (p < 0)
+				break ;
 		}
-		if (ray == data->width / 2)
-				printf("---------------------------------\n");
 	}
 }
 

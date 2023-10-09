@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   collision_player.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:59 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/03 09:02:12 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:31:08 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
-static int collision_point(t_data *data, float x, float y)
+static int	collision_point(t_data *data, float x, float y)
 {
 	int		x_cell;
 	int		y_cell;
