@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   field_of_view.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 04:22:29 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/08 20:14:54 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:04:36 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,72 @@ void    height_calculation(t_data *data, int ray)
 	data->rays[ray].h_fov = (int)((data->wall_height /
 		data->rays[ray].distance) * data->rays[ray].dis_fov);
 	init.y = data->horizont + (data->rays[ray].h_fov / 2);
+	end.y = init.y - data->rays[ray].h_fov;
+	if (data->rays[ray].distance != -1)
+	{
+		int		p;
+		int 	x;
+		int		d;
+		float	f_init;
+		float	f;
+		float	r;
+
+		p = ((data->cell_size * data->cell_size) - data->cell_size + data->rays[ray].pixel) * 4;
+		d = init.y - end.y;
+		c = get_color(data->img.we_wall, p);
+		f_init = (float)d / data->cell_size;
+		f = f_init;
+		r = 0;
+		x = 0;
+		while (x <= d && f_init >= 1)
+		{
+			if (init.y - x >= 0 && init.y - x <= data->height)
+				mlx_put_pixel(data->screen, init.x, init.y - x, c);
+			if ((float)x > f)
+			{
+				f += f_init;
+				c = get_color(data->img.ea_wall, p);
+				p = p - (data->cell_size * 4);
+			}
+			x++;
+		}
+		x = 0;
+		while ((int)r < data->cell_size && f_init < 1)
+		{
+			if (ray == data->width / 2)
+				printf("f_init: %f, r: %f\n", f_init, r);
+			p = p - (data->cell_size * 4);
+			if (p < 0)
+				break ;
+			c = get_color(data->img.ea_wall, p);
+			r += f_init;
+			if (init.y - x >= 0 && init.y - x <= data->height)
+				mlx_put_pixel(data->screen, init.x, init.y - (int)r, c);
+
+		}
+		if (ray == data->width / 2)
+				printf("---------------------------------\n");
+	}
+}
+
+/* void    height_calculation(t_data *data, int ray)
+{
+	t_point	init;
+	t_point	end;
+	int		c;
+
+	c = get_texture(data, ray);
+	init.x = ray;
+	end.x = ray;
+	data->rays[ray].h_fov = (int)((data->wall_height /
+		data->rays[ray].distance) * data->rays[ray].dis_fov);
+	init.y = data->horizont + (data->rays[ray].h_fov / 2);
 	//printf("data horizont: %d\n", data->horizont);
 	//printf("ray distance: %0.1f\n", data->rays[ray].distance);
 	//printf("data horizont + h_fov / 2: %0.1f\n", data->wall_height);
 	//printf("heigth_wall: %0.1f\n", init.y);
 	//printf("h_fov: %d\n", data->rays[ray].h_fov);
 	end.y = init.y - data->rays[ray].h_fov;
-/* 	if (init.y >= data->height)
-		init.y = data->height - 1;
-	if (end.y < 0)
-		end.y = 0; */
 	//printf("ray: %d, init: %0.1f, %0.1f | ", ray, init.x, init.y);
 	//printf(" ray: %d, end: %0.1f, %0.1f\n", ray, end.x, end.y);
 	if (data->rays[ray].distance != -1)
@@ -105,7 +161,7 @@ void    height_calculation(t_data *data, int ray)
 		//printf("%0.1f < %d\n", f, d);
 		//draw_line(data->screen, init, end, c);
 	}
-}
+} */
 
 float	hypotenuse(float a, float b)
 {
