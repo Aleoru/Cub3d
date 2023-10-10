@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 04:22:29 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/09 19:50:37 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/10 18:56:54 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ void    height_calculation(t_data *data, int ray)
 		float	f;
 		float	r;
 
-		p = ((data->cell_size * data->cell_size) - data->cell_size + data->rays[ray].pixel) * 4;
+		p = ((data->cl_size * data->cl_size) - data->cl_size + data->rays[ray].pixel) * 4;
 		d = init.y - end.y;
 		c = get_color(get_texture(data, ray), p);
-		f_init = (float)d / data->cell_size;
+		f_init = (float)d / data->cl_size;
 		f = f_init;
 		r = 0;
 		x = 0;
@@ -71,18 +71,18 @@ void    height_calculation(t_data *data, int ray)
 			{
 				f += f_init;
 				c = get_color(get_texture(data, ray), p);
-				p = p - (data->cell_size * 4);
+				p = p - (data->cl_size * 4);
 			}
 			x++;
 		}
 		x = 0;
-		while ((int)r < data->cell_size && f_init < 1)
+		while ((int)r < data->cl_size && f_init < 1)
 		{
 			r += f_init;
 			if (init.y - x >= 0 && init.y - x <= data->height)
 				mlx_put_pixel(data->screen, init.x, init.y - (int)r, c);
 			c = get_color(get_texture(data, ray), p);
-			p = p - (data->cell_size * 4);
+			p = p - (data->cl_size * 4);
 			if (p < 0)
 				break ;
 		}
@@ -118,10 +118,10 @@ void    height_calculation(t_data *data, int ray)
 		float	f_init;
 		float	f;
 
-		p = ((data->cell_size * data->cell_size) - data->cell_size + data->rays[ray].pixel) * 4;
+		p = ((data->cl_size * data->cl_size) - data->cl_size + data->rays[ray].pixel) * 4;
 		d = init.y - end.y;
 		c = get_color(data->img.we_wall, p);
-		f_init = (float)d / data->cell_size;
+		f_init = (float)d / data->cl_size;
 		f = f_init;
 		x = 0;
 		y = 0;
@@ -134,7 +134,7 @@ void    height_calculation(t_data *data, int ray)
 			{
 				f += f_init;
 				c = get_color(data->img.ea_wall, p);
-				p = p - (data->cell_size * 4);
+				p = p - (data->cl_size * 4);
 			}
 			else if (f_init < 1)
 			{
@@ -142,7 +142,7 @@ void    height_calculation(t_data *data, int ray)
 				c = get_color(data->img.ea_wall, p);
 				if (r < 2)
 					r = 2;
-				p = p - ((data->cell_size * 4) * (int)r);
+				p = p - ((data->cl_size * 4) * (int)r);
 				if (ray == data->width / 2)
 					printf("%d => %0.1f : %d > %0.1f - %d cambio\n", y, f_init, x, f, d);
 				y++;

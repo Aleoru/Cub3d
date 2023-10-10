@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/09 19:28:45 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/10 18:56:54 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,8 @@ static void	parsing_map2(t_data *data, t_level *level)
 				exit_error(data, "Error\nInvalid character on map\n", 2);
 			if (ft_strchr("NSEW", level->file_map[y][x]))
 			{
-				data->ply_pos.x = x * data->cell_size + data->cell_size / 2;
-				data->ply_pos.y = y * data->cell_size + data->cell_size / 2;
-			printf("player: %0.01f, %0.01f\n", data->ply_pos.x, data->ply_pos.y);	// borrar	
-			printf("cell map: %d, %d\n", x, y);	// borrar	
+				data->ply_pos.x = (x + 1) * data->cl_size + data->cl_size / 2;
+				data->ply_pos.y = (y + 1) * data->cl_size + data->cl_size / 2;
 				level->n_player++;
 				level->direction = level->file_map[y][x];
 				check_player_pos(data, level, x, y);

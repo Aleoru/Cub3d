@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 23:25:47 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/30 19:29:40 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/10 18:56:54 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static float v_coll_up(t_data *data, int ray)
 	init.y = data->ply_pos.y;
 	while (w_coll(data, init.x, init.y -1) == 0)
 	{
-		next = (init.y / data->cell_size);
-		h = init.y - next * data->cell_size;
+		next = (init.y / data->cl_size);
+		h = init.y - next * data->cl_size;
 		if (h == 0)
-			h = data->cell_size;
+			h = data->cl_size;
 		w = h / tan(data->rays[ray].angle);
 		data->rays[ray].dest.x = init.x + w;
 		data->rays[ray].dest.y = init.y - h;
@@ -49,8 +49,8 @@ static float v_coll_down(t_data *data, int ray)
 	init.y = data->ply_pos.y;
 	while (w_coll(data, init.x, init.y) == 0)
 	{
-		next = (init.y / data->cell_size);
-		h = init.y - (next + 1) * data->cell_size;
+		next = (init.y / data->cl_size);
+		h = init.y - (next + 1) * data->cl_size;
 		w = h / tan(data->rays[ray].angle);
 		data->rays[ray].dest.x = init.x + w;
 		data->rays[ray].dest.y = init.y - h;
@@ -87,10 +87,10 @@ float	ray_v_collision(t_data *data, int ray)
 	{
 		while (no_collision)
 		{
-			next = (init.y / data->cell_size);
-			h = init.y - next * data->cell_size;
+			next = (init.y / data->cl_size);
+			h = init.y - next * data->cl_size;
 			if (h == 0)
-				h = data->cell_size;
+				h = data->cl_size;
 			w = h / tan(data->rays[ray].angle);
 			data->rays[ray].dest.x = init.x + w;
 			data->rays[ray].dest.y = init.y - h;
@@ -110,8 +110,8 @@ float	ray_v_collision(t_data *data, int ray)
 	{
 		while (no_collision)
 		{
-			next = (init.y / data->cell_size);
-			h = init.y - (next + 1) * data->cell_size;
+			next = (init.y / data->cl_size);
+			h = init.y - (next + 1) * data->cl_size;
 			w = h / tan(data->rays[ray].angle);
 			data->rays[ray].dest.x = init.x + w;
 			data->rays[ray].dest.y = init.y - h;

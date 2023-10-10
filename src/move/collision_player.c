@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:59 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/09 19:31:08 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/10 18:56:54 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static int	collision_point(t_data *data, float x, float y)
 	int		x_cell;
 	int		y_cell;
 
-	x_cell = (int)(x / data->cell_size);
-	y_cell = (int)(y / data->cell_size);
+	x_cell = (int)(x / data->cl_size);
+	y_cell = (int)(y / data->cl_size);
 	if (data->map[y_cell][x_cell] == '1')
 		return (1);
 	return (0);
@@ -45,8 +45,8 @@ int	collision_player(t_data *data, float x, float y)
 	int		x_cell;
 	int		y_cell;
 
-	x_cell = (int)(x / data->cell_size);
-	y_cell = (int)(y / data->cell_size);
+	x_cell = (int)(x / data->cl_size);
+	y_cell = (int)(y / data->cl_size);
 	if (data->map[y_cell][x_cell] == '1')
 		return (1);
 	return (0);

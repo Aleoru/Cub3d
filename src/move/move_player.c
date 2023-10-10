@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:31:38 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/09 19:37:13 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/10 18:57:46 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ void	move_player(t_data *data)
 		new.y = sin(data->ply_radians) * data->ply_speed;
 		next.x = data->ply_pos.x + new.x;
 		next.y = data->ply_pos.y - new.y;
-		printf("collision: %d\n", collision_player(data, next.x, next.y));
-		printf("player_now: %0.1f, %0.1f\n", data->ply_pos.x, data->ply_pos.y);
 		if (collision_player(data, next.x, next.y) == 0)
 		{
 			data->ply_pos.x += new.x;

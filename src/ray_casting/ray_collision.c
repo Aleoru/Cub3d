@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_collision.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 03:49:41 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/03 13:50:44 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/10 18:56:54 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	w_coll(t_data *data, float x, float y)
 
 	//if (x > data->width || x < 0 || y > data->height || y < 0)
 	//	return (1);
-	x_cell = (int)(x / data->cell_size);
-	y_cell = (int)(y / data->cell_size);
+	x_cell = (int)(x / data->cl_size);
+	y_cell = (int)(y / data->cl_size);
 	if (x_cell > data->level.size_x || x_cell < 0 || y_cell > data->level.size_y 
 		|| y_cell < 0)
 		return (1);
@@ -52,7 +52,7 @@ void	ray_collision(t_data *data, int ray)
 			data->rays[ray].texture = WEST;
 		else
 			data->rays[ray].texture = EAST;
-		data->rays[ray].pixel = (int)data->rays[ray].dest.y % data->cell_size;
+		data->rays[ray].pixel = (int)data->rays[ray].dest.y % data->cl_size;
 	}
 	else
 	{
@@ -60,7 +60,7 @@ void	ray_collision(t_data *data, int ray)
 			data->rays[ray].texture = SOUTH;
 		else
 			data->rays[ray].texture = NORTH;
-		data->rays[ray].pixel = (int)data->rays[ray].dest.x % data->cell_size;
+		data->rays[ray].pixel = (int)data->rays[ray].dest.x % data->cl_size;
 	}
 }
 
