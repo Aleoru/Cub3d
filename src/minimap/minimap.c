@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 03:18:17 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/11 05:40:14 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/11 18:08:42 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void	create_minimap(t_data *data, int cell_size)
 	int		y;
 	int		c;
 
-	c = 0x66FFFFFF;
-	data->minimap =  mlx_new_image(data->mlx, data->level.size_x * 
-		cell_size + 2, data->level.size_y * cell_size + 3);
+	c = 0x000000FF;
+	data->minimap = mlx_new_image(data->mlx, data->level.size_x
+			* cell_size, data->level.size_y * (cell_size + 1));
 	y = 0;
-	while (y < data->level.size_y + 2)
+	while (y < data->level.size_y + 1)
 	{
 		x = 0;
-		while (x < data->level.size_x + 2)
+		while (x < data->level.size_x)
 		{
 			if (data->map[y][x] == '1')
 			{

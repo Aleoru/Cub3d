@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:54:21 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/11 05:42:27 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/11 18:12:46 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_data(t_data *data)
 	data->ply_speed = 2;
 	data->ply_turn_speed = 1;
 	data->horizont = data->height / 2;
-	data->wall_height = 35;
+	data->wall_height = 60;
 	//open window
 	data->mlx = mlx_init(data->width, data->height, "cub3D", true);
 	draw_background(data, data->width, data->height);
@@ -44,8 +44,8 @@ void	init_data(t_data *data)
 	data->screen = mlx_new_image(data->mlx, data->width, data->height);
 	mlx_image_to_window(data->mlx, data->screen, 0, 0);
 	//minimap
-	create_minimap(data, 15);
-	mlx_image_to_window(data->mlx, data->minimap, 32, 32);
+	create_minimap(data, 8);
+	mlx_image_to_window(data->mlx, data->minimap, 16, 16);
 	//draw_cell(data->minimap, init, 10, color);
 }
 

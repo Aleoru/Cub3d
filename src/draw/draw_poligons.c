@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:28 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/11 04:50:18 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/11 18:01:52 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	draw_circle(mlx_image_t *image, t_point center, int radius, int color)
 		radians = angle * (3.1415 / 180);
 		sine = sin(radians);
 		cosine = cos(radians);
-/* 		printf("%f, %f\n", center.x, center.y); */
 		mlx_put_pixel(image, center.x + cosine * radius,
 			center.y + sine * radius, color);
 		angle += increment;
@@ -80,11 +79,11 @@ void	draw_cell(mlx_image_t *img, t_point init, int size, int color)
 	while (y < size)
 	{
 		x = 0;
-		while (x <size)
+		while (x < size)
 		{
 			mlx_put_pixel(img, init.x + x, init.y + y, color);
 			x++;
 		}
 		y++;
-	} 
+	}
 }
