@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/10 18:56:54 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/11 04:46:54 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct s_data
 	mlx_t		*mlx;
 	mlx_image_t	*screen;
 	mlx_image_t	*background;
+	mlx_image_t	*minimap;
 	t_img		img;
 	int			width;
 	int			height;
@@ -155,6 +156,7 @@ void	draw_poli(mlx_image_t *img, t_point *vertices, int vrt_num, int color);
 void	clear_image(mlx_image_t *image);
 void	draw_player(t_data *data);
 void	draw_background(t_data *data, int width, int heigth);
+void	draw_cell(mlx_image_t *img, t_point init, int size, int color);
 
 /****************/
 /*		MAP		*/
@@ -205,4 +207,9 @@ void	exit_error(t_data *data, char *str, int fd);
 /*		HOOK		*/
 /********************/
 void	hook(void *param);
+
+/********************/
+/*		MINIMAP		*/
+/********************/
+void    create_minimap(t_data *data, int cell_size);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_poligons.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:28 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/25 19:16:08 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/11 04:50:18 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,22 @@ void	draw_poli(mlx_image_t *img, t_point *vertices, int vrt_num, int color)
 		i++;
 	}
 	draw_line(img, vertices[vrt_num - 1], vertices[0], color);
+}
+
+void	draw_cell(mlx_image_t *img, t_point init, int size, int color)
+{
+	int		y;
+	int		x;
+
+	y = 0;
+	while (y < size)
+	{
+		x = 0;
+		while (x <size)
+		{
+			mlx_put_pixel(img, init.x + x, init.y + y, color);
+			x++;
+		}
+		y++;
+	} 
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   field_of_view.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 04:22:29 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/10 19:39:44 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/11 02:43:12 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ void    height_calculation(t_data *data, int ray)
 		{
 			if (init.y - x >= 0 && init.y - x < data->height)
 				mlx_put_pixel(data->screen, init.x, init.y - x, c);
-			if ((float)x > f)
+			if ((float)x >= f)
 			{
 				f += f_init;
-				c = get_color(get_texture(data, ray), p);
 				p = p - (data->cl_size * 4);
+				c = get_color(get_texture(data, ray), p);
 			}
 			x++;
 		}

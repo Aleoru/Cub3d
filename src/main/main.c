@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:54:21 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/10 18:56:54 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/11 05:42:27 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ void	init_data(t_data *data)
 	//create player screen
 	data->screen = mlx_new_image(data->mlx, data->width, data->height);
 	mlx_image_to_window(data->mlx, data->screen, 0, 0);
+	//minimap
+	create_minimap(data, 15);
+	mlx_image_to_window(data->mlx, data->minimap, 32, 32);
+	//draw_cell(data->minimap, init, 10, color);
 }
 
 void	init_img(t_data *data)
@@ -87,6 +91,7 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data.mlx, &hook, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
+	printf("x: %d, y: %d\n", data.level.size_x, data.level.size_y);
 	free_level(&data, &data.level);
 	free(data.rays);
 
