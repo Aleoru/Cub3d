@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/11 04:46:54 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/12 19:46:30 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct s_data
 	mlx_image_t	*screen;
 	mlx_image_t	*background;
 	mlx_image_t	*minimap;
+	mlx_image_t	*ply_minimap;
 	t_img		img;
 	int			width;
 	int			height;
@@ -211,5 +212,6 @@ void	hook(void *param);
 /********************/
 /*		MINIMAP		*/
 /********************/
-void    create_minimap(t_data *data, int cell_size);
+void	create_minimap(t_data *data, int cell_size);
+void	draw_player_minimap(t_data *data, int size);
 #endif

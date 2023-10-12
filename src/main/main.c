@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:54:21 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/11 19:44:30 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/12 19:17:05 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	init_data(t_data *data)
 	mlx_image_to_window(data->mlx, data->screen, 0, 0);
 	//minimap
 	create_minimap(data, 8);
-	mlx_image_to_window(data->mlx, data->minimap, 16, 16);
 }
 
 void	init_img(t_data *data)

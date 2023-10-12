@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:08 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/03 08:39:43 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/12 19:53:36 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	draw_player(t_data *data)
 	//dir.x = data->ply_pos.x + cos(data->ply_angle * data->radian_conver) * dis;
 	//dir.y = data->ply_pos.y - sin(data->ply_angle * data->radian_conver) * dis;
 	draw_rays2(data);
+	draw_player_minimap(data, 10);
 	//draw_line(data->screen, data->ply_pos, dir, c);
 	//draw_line(data->screen, data->ply_pos, data->rays[319].dest, c);
 }
