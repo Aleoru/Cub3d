@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 04:22:29 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/11 02:43:12 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/13 04:12:27 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void    height_calculation(t_data *data, int ray)
 	t_point	end;
 	int		c;
 
-	init.x = ray;
-	end.x = ray;
+	init.x = data->num_rays - (ray + 1);
+	end.x = data->num_rays - (ray + 1);
 	data->rays[ray].h_fov = (int)((data->wall_height /
 		data->rays[ray].distance) * data->rays[ray].dis_fov);
 	init.y = data->horizont + (data->rays[ray].h_fov / 2);
