@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 04:22:29 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/13 04:12:27 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/17 18:27:00 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ static int	get_color(mlx_image_t *img, int p)
 mlx_image_t	*get_texture(t_data *data, int ray)
 {
 	if (data->rays[ray].texture == NORTH)
-		return (data->img.no_wall);	// Azul
+		return (data->img.so_wall);
 	else if (data->rays[ray].texture == SOUTH)
-		return (data->img.so_wall);	// verde
+		return (data->img.no_wall);
 	else if (data->rays[ray].texture == EAST)
-		return (data->img.ea_wall);	// Morado
+		return (data->img.we_wall);
 	else if (data->rays[ray].texture == WEST)
-		return (data->img.we_wall);	// Amarillo
+		return (data->img.ea_wall);
 	return (0);
 }
 
@@ -43,8 +43,7 @@ void    height_calculation(t_data *data, int ray)
 
 	init.x = data->num_rays - (ray + 1);
 	end.x = data->num_rays - (ray + 1);
-	data->rays[ray].h_fov = (int)((data->wall_height /
-		data->rays[ray].distance) * data->rays[ray].dis_fov);
+	data->rays[ray].h_fov = (int)((data->wall_height / data->rays[ray].distance) * data->rays[ray].dis_fov);
 	init.y = data->horizont + (data->rays[ray].h_fov / 2);
 	end.y = init.y - data->rays[ray].h_fov;
 	if (data->rays[ray].distance != -1)
