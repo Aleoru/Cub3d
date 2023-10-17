@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:08 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/13 04:00:30 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:49:05 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,63 @@ static void	draw_rays(t_data *data)
 	}
 }
 
-void	draw_player(t_data *data)
+void	draw_screen(t_data *data)
 {
-	//int		c;
-	//int		dis;
-	//t_point	dir;
-
-	//c = 0x66FFFFFF;
-	//dis = 15;
 	clear_image(data->screen);
-	//draw_circle(data->screen, data->ply_pos, dis, c);
-	//mlx_put_pixel(data->screen, data->ply_pos.x, data->ply_pos.y, c);
-	//dir.x = data->ply_pos.x + cos(data->ply_angle * data->radian_conver) * dis;
-	//dir.y = data->ply_pos.y - sin(data->ply_angle * data->radian_conver) * dis;
 	draw_rays(data);
 	draw_player_minimap(data, 10);
-	//draw_line(data->screen, data->ply_pos, dir, c);
-	//draw_line(data->screen, data->ply_pos, data->rays[319].dest, c);
+}
+
+void	draw_big(t_data *data, int ray, int dist, t_point init)
+{
+	int		x;
+	int		pixel;
+	int		color;
+	float	f_init;
+	float	factor;
+
+	x = 0;
+	pixel = ((data->cl_size * data->cl_size) - data->cl_size
+			+ data->rays[ray].pixel) * 4;
+	color = get_color(get_texture(data, ray), pixel);
+	f_init = (float)dist / data->cl_size;
+	factor = f_init;
+	while (x <= dist && f_init >= 1)
+	{
+		if (init.y - x >= 0 && init.y - x < data->height)
+			mlx_put_pixel(data->screen, init.x, init.y - x, color);
+		if ((float)x >= factor)
+		{
+			factor += f_init;
+			pixel = pixel - (data->cl_size * 4);
+			color = get_color(get_texture(data, ray), pixel);
+		}
+		x++;
+	}
+}
+
+void	draw_small(t_data *data, int ray, int dist, t_point init)
+{
+	int		x;
+	int		pixel;
+	int		color;
+	float	f_init;
+	float	factor;
+
+	x = 0;
+	pixel = ((data->cl_size * data->cl_size) - data->cl_size
+			+ data->rays[ray].pixel) * 4;
+	color = get_color(get_texture(data, ray), pixel);
+	f_init = (float)dist / data->cl_size;
+	factor = 0;
+	while ((int)factor < data->cl_size && f_init < 1)
+	{
+		factor += f_init;
+		if (init.y - x >= 0 && init.y - x <= data->height)
+			mlx_put_pixel(data->screen, init.x, init.y - (int)factor, color);
+		color = get_color(get_texture(data, ray), pixel);
+		pixel = pixel - (data->cl_size * 4);
+		if (pixel < 0)
+			break ;
+	}
 }

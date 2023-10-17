@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:43 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/25 19:28:17 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:13:31 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ void	hook(void *param)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		data->ply_inputs.turn_right = 1;
 	move_player(data);
-	draw_player(data);
+	draw_screen(data);
 }

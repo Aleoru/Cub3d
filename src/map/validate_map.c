@@ -12,22 +12,6 @@
 
 #include "../../inc/cub3D.h"
 
-/* void	print_map(char	**map)
-{
-	int	y;
-
-	y = 0;
-	while (map[y])
-	{
-		if (ft_strchr(map[y], '\n'))
-			printf("%s", map[y]);
-		else
-			printf("%s\n", map[y]);
-		y++;
-	}
-	printf("\n-----------------------\n\n");
-} */
-
 void	check_player_pos(t_data *data, t_level *level, int x, int y)
 {
 	if (level->file_map[y + 1][x] == ' ' || level->file_map[y + 1][x + 1] == ' '

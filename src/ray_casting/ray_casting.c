@@ -6,13 +6,12 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 20:22:01 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/09/30 19:10:17 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:07:19 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
-// increment: separacion en radianes entre cado uno de los rayos
 void	create_rays(t_data *data)
 {
 	data->num_rays = data->width;

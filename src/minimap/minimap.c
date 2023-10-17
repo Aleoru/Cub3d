@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 03:18:17 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/12 19:53:12 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:05:23 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	draw_player_minimap(t_data *data, int size)
 	pos.y = data->ply_pos.y / size;
 	clear_image(data->ply_minimap);
 	draw_cell(data->ply_minimap, pos, size, color);
-
 }
 
 void	create_minimap(t_data *data, int cell_size)

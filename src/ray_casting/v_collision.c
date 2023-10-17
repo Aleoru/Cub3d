@@ -6,13 +6,13 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 23:25:47 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/10 18:56:54 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:10:58 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h" 
 
-static float v_coll_up(t_data *data, int ray)
+static float	v_coll_up(t_data *data, int ray)
 {
 	t_point	init;
 	float	h;
@@ -36,9 +36,9 @@ static float v_coll_up(t_data *data, int ray)
 	h = data->ply_pos.y - data->rays[ray].dest.y;
 	w = data->ply_pos.x - data->rays[ray].dest.x;
 	return (sqrt((w * w) + (h * h)));
-} 
+}
 
-static float v_coll_down(t_data *data, int ray)
+static float	v_coll_down(t_data *data, int ray)
 {
 	t_point	init;
 	float	h;
@@ -70,62 +70,3 @@ float	ray_v_collision(t_data *data, int ray)
 		return (v_coll_down(data, ray));
 	return (-1);
 }
-
-/* float	ray_v_collision(t_data *data, int ray)
-{
-	t_point	init;
-	float	h;
-	float	w;
-	int		next;
-	int		no_collision;
-
-	no_collision = 1;
-	init.x = data->ply_pos.x;
-	init.y = data->ply_pos.y;
-	w = 0;
-	if (data->rays[ray].y_dir == 1)
-	{
-		while (no_collision)
-		{
-			next = (init.y / data->cl_size);
-			h = init.y - next * data->cl_size;
-			if (h == 0)
-				h = data->cl_size;
-			w = h / tan(data->rays[ray].angle);
-			data->rays[ray].dest.x = init.x + w;
-			data->rays[ray].dest.y = init.y - h;
-			if (w_coll(data, data->rays[ray].dest.x, data->rays[ray].dest.y -1))
-				no_collision = 0;
-			else
-			{
-				init.x = data->rays[ray].dest.x;
-				init.y = data->rays[ray].dest.y;
-			}
-		}
-		h = data->ply_pos.y - data->rays[ray].dest.y;
-		w = data->ply_pos.x - data->rays[ray].dest.x;
-		return (sqrt((w * w) + (h * h)));
-	}
-	else if (data->rays[ray].y_dir == -1)
-	{
-		while (no_collision)
-		{
-			next = (init.y / data->cl_size);
-			h = init.y - (next + 1) * data->cl_size;
-			w = h / tan(data->rays[ray].angle);
-			data->rays[ray].dest.x = init.x + w;
-			data->rays[ray].dest.y = init.y - h;
-			if (w_coll(data, data->rays[ray].dest.x, data->rays[ray].dest.y))
-				no_collision = 0;
-			else
-			{
-				init.x = data->rays[ray].dest.x;
-				init.y = data->rays[ray].dest.y;
-			}
-		}
-		h = data->ply_pos.y - data->rays[ray].dest.y;
-		w = data->ply_pos.x - data->rays[ray].dest.x;
-		return (sqrt((w * w) + (h * h)));
-	}
-	return (-1);
-} */

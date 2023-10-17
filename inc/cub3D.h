@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/12 19:46:30 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:46:44 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,10 @@ typedef struct s_ray
 	t_point		dest;
 	t_point		aux;
 	t_point		init;
-	//a/b = c/d; a = c/d *b
-	float		distance;    //  D
-	float		height_wall; //  C
-	float		dis_fov;     //  B
-	int			h_fov;       //  A
+	float		distance;
+	float		height_wall;
+	float		dis_fov;
+	int			h_fov;
 	float		angle;
 	int			x_dir;
 	int			y_dir;
@@ -102,7 +101,6 @@ typedef struct s_img
 
 typedef struct s_data
 {
-	//ventana
 	mlx_t		*mlx;
 	mlx_image_t	*screen;
 	mlx_image_t	*background;
@@ -111,7 +109,6 @@ typedef struct s_data
 	t_img		img;
 	int			width;
 	int			height;
-	//player
 	t_point		ply_pos;
 	t_point		ply_cell;
 	t_inputs	ply_inputs;
@@ -123,15 +120,12 @@ typedef struct s_data
 	int			ply_x_axis;
 	int			ply_y_axis;
 	int			ply_turn_dir;
-	//mapa
 	t_level		level;
 	mlx_image_t	*map_image;
 	char		*map_name;
 	char		**map;
 	int			cl_size;
-	//png
 	mlx_image_t	*wall;
-	//ray casting
 	float		radian_conver;
 	float		increment;
 	float		wall_height;
@@ -145,73 +139,79 @@ typedef struct s_data
 /****************/
 /*	PROVISIONAL	*/
 /****************/
-void	create_test_map(t_data *data, int width, int heigth);
-void	draw_map(t_data *data, int width, int heigth, int size);
+void		create_test_map(t_data *data, int width, int heigth);
+void		draw_map(t_data *data, int width, int heigth, int size);
 
 /********************/
 /*		DRAW		*/
 /********************/
-void	draw_line(mlx_image_t *image, t_point begin, t_point end, int color);
-void	draw_circle(mlx_image_t *image, t_point center, int radius, int color);
-void	draw_poli(mlx_image_t *img, t_point *vertices, int vrt_num, int color);
-void	clear_image(mlx_image_t *image);
-void	draw_player(t_data *data);
-void	draw_background(t_data *data, int width, int heigth);
-void	draw_cell(mlx_image_t *img, t_point init, int size, int color);
+void		draw_line(mlx_image_t *image, t_point begin, t_point end,
+				int color);
+void		draw_circle(mlx_image_t *image, t_point center, int radius,
+				int color);
+void		draw_poli(mlx_image_t *img, t_point *vertices, int vrt_num,
+				int color);
+void		clear_image(mlx_image_t *image);
+void		draw_screen(t_data *data);
+void		draw_background(t_data *data, int width, int heigth);
+void		draw_cell(mlx_image_t *img, t_point init, int size, int color);
+void		draw_big(t_data *data, int ray, int dist, t_point init);
+void		draw_small(t_data *data, int ray, int dist, t_point init);
+int			get_color(mlx_image_t *img, int p);
+mlx_image_t	*get_texture(t_data *data, int ray);
+
 
 /****************/
 /*		MAP		*/
 /****************/
-void	init_map(t_data *data, t_level *level, char *str);
-void	validate_map(t_data *data, t_level *level);
-int		get_rgb(t_data *data, t_level *level, char *str);
-void	get_map_size(t_data *data, t_level *level);
-void	parsing_map(t_data *data, t_level *level);
-void	check_flood(t_data *data, t_level *level);
-void	check_player_pos(t_data *data, t_level *level, int x, int y);
-
-void	print_map(char	**map);	// DEBUG
+void		init_map(t_data *data, t_level *level, char *str);
+void		validate_map(t_data *data, t_level *level);
+int			get_rgb(t_data *data, t_level *level, char *str);
+void		get_map_size(t_data *data, t_level *level);
+void		parsing_map(t_data *data, t_level *level);
+void		check_flood(t_data *data, t_level *level);
+void		check_player_pos(t_data *data, t_level *level, int x, int y);
 
 /********************/
 /*		MOVE		*/
 /********************/
-void	move_player(t_data *data);
-int		collision_player(t_data *data, float x, float y);
+void		move_player(t_data *data);
+int			collision_player(t_data *data, float x, float y);
 
 /********************/
 /*		RAYCAST		*/
 /********************/
-float	normalized_radians(float radians);
-void	create_rays(t_data *data);
-void	angle_rays(t_data *data);
-int		w_coll(t_data *data, float x, float y);
-void	ray_collision(t_data *data, int ray);
-float	ray_v_collision(t_data *data, int ray);
-float	ray_h_collision(t_data *data, int ray);
-void	calculate_hipotenuses(t_data *data);
-float	hypotenuse(float a, float b);
-void	height_calculation(t_data *data, int ray);
+float		normalized_radians(float radians);
+void		create_rays(t_data *data);
+void		angle_rays(t_data *data);
+int			w_coll(t_data *data, float x, float y);
+void		ray_collision(t_data *data, int ray);
+float		ray_v_collision(t_data *data, int ray);
+float		ray_h_collision(t_data *data, int ray);
+void		calculate_hipotenuses(t_data *data);
+float		hypotenuse(float a, float b);
+void		height_calculation(t_data *data, int ray);
 
 /********************/
 /*		UTILS		*/
 /********************/
-size_t	split_size(char **split);
-int		check_img(t_level *level);
-char	*delete_nl(char	*str);
-void	free_split(char **split);
-void	free_level(t_data *data, t_level *level);
-void	exit_error(t_data *data, char *str, int fd);
+size_t		split_size(char **split);
+int			check_img(t_level *level);
+char		*delete_nl(char	*str);
+void		free_split(char **split);
+void		free_level(t_data *data, t_level *level);
+void		exit_error(t_data *data, char *str, int fd);
 
 
 
 /********************/
 /*		HOOK		*/
 /********************/
-void	hook(void *param);
+void		hook(void *param);
 
 /********************/
 /*		MINIMAP		*/
 /********************/
-void	create_minimap(t_data *data, int cell_size);
-void	draw_player_minimap(t_data *data, int size);
+void		create_minimap(t_data *data, int cell_size);
+void		draw_player_minimap(t_data *data, int size);
 #endif

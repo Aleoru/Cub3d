@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:54:21 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/12 19:17:05 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:02:54 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
-void	ft_leaks(void)
+/* void	ft_leaks(void)
 {
 	system("leaks -q 'cub3D'");
-}
+} */
 
 void	init_data(t_data *data)
 {
@@ -26,15 +26,12 @@ void	init_data(t_data *data)
 	data->ply_turn_speed = 1;
 	data->horizont = data->height / 2;
 	data->wall_height = 60;
-	//open window
 	data->mlx = mlx_init(data->width, data->height, "cub3D", true);
 	draw_background(data, data->width, data->height);
 	data->angle_vision = 60;
 	create_rays(data);
-	//create player screen
 	data->screen = mlx_new_image(data->mlx, data->width, data->height);
 	mlx_image_to_window(data->mlx, data->screen, 0, 0);
-	//minimap
 	create_minimap(data, 8);
 }
 
@@ -62,9 +59,9 @@ void	init_img(t_data *data)
 	mlx_delete_texture(texture);
 }
 
+//	atexit(ft_leaks);
 int	main(int argc, char **argv)
 {
-	atexit(ft_leaks);
 	t_data	data;
 
 	if (argc == 1)
@@ -82,6 +79,5 @@ int	main(int argc, char **argv)
 	mlx_terminate(data.mlx);
 	free_level(&data, &data.level);
 	free(data.rays);
-
 	return (0);
 }

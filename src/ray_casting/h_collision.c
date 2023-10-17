@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 23:31:52 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/10 18:56:54 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:06:51 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static float	h_coll_left(t_data *data, int ray)
 	}
 	h = data->ply_pos.y - data->rays[ray].aux.y;
 	w = data->ply_pos.x - data->rays[ray].aux.x;
-	return (sqrt((w * w) + (h * h)));	
+	return (sqrt((w * w) + (h * h)));
 }	
 
 float	ray_h_collision(t_data *data, int ray)
@@ -70,62 +70,3 @@ float	ray_h_collision(t_data *data, int ray)
 		return (h_coll_left(data, ray));
 	return (-1);
 }
-
-/* float	ray_h_collision(t_data *data, int ray)
-{
-	t_point	init;
-	float	h;
-	float	w;
-	int		next;
-	int		no_collision;
-
-	no_collision = 1;
-	init.x = data->ply_pos.x;
-	init.y = data->ply_pos.y;
-	w = 0;
-	if (data->rays[ray].x_dir == 1)
-	{
-		while (no_collision)
-		{
-			next = (init.x / data->cl_size);
-			w = ((next + 1) * data->cl_size) - init.x;
-			h = w * tan(data->rays[ray].angle);
-			data->rays[ray].aux.x = init.x + w;
-			data->rays[ray].aux.y = init.y - h;
-			if (w_coll(data, data->rays[ray].aux.x, data->rays[ray].aux.y))
-				no_collision = 0;
-			else
-			{
-				init.x = data->rays[ray].aux.x;
-				init.y = data->rays[ray].aux.y;
-			}
-		}
-		h = data->ply_pos.y - data->rays[ray].aux.y;
-		w = data->ply_pos.x - data->rays[ray].aux.x;
-		return (sqrt((w * w) + (h * h)));
-	}
-	else if (data->rays[ray].x_dir == -1)
-	{
-		while (no_collision)
-		{
-			next = (init.x / data->cl_size);
-			w = (next * data->cl_size) - init.x;
-			if (w == 0)
-				w = data->cl_size * -1;
-			h = w * tan(data->rays[ray].angle);
-			data->rays[ray].aux.x = init.x + w;
-			data->rays[ray].aux.y = init.y - h;
-			if (w_coll(data, data->rays[ray].aux.x - 1, data->rays[ray].aux.y))
-				no_collision = 0;
-			else
-			{
-				init.x = data->rays[ray].aux.x;
-				init.y = data->rays[ray].aux.y;
-			}
-		}
-		h = data->ply_pos.y - data->rays[ray].aux.y;
-		w = data->ply_pos.x - data->rays[ray].aux.x;
-		return (sqrt((w * w) + (h * h)));
-	}
-	return (-1);
-} */
