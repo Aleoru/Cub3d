@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 03:18:17 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/18 18:23:28 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:34:52 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	draw_player_minimap(t_data *data, int size)
 	t_point	pos;
 	int		color;
 
-	color = 0xFF00FFFF;
+	color = 0xFFFFFFFF;
 	pos.x = (data->ply_pos.x / size) - (int)size / 2;
 	pos.y = (data->ply_pos.y / size) - (int)size / 2;
 	clear_image(data->ply_minimap);

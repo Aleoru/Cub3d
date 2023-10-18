@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:54:21 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/18 17:54:29 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/18 20:14:35 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	init_data(t_data *data)
 	data->width = 1200;
 	data->height = 720;
 	data->radian_conver = 3.1415926536 / 180;
+	data->ply_inputs.m_turn_right = 0;
+	data->ply_inputs.m_turn_left = 0;
 	data->ply_speed = 2;
 	data->ply_turn_speed = 1;
 	data->horizont = data->height / 2;
@@ -75,6 +77,7 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	init_img(&data);
 	mlx_loop_hook(data.mlx, &hook, &data);
+	mlx_cursor_hook(data.mlx, &cursor_hook, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	free_level(&data, &data.level);

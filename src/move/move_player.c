@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:31:38 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/13 04:36:13 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:46:16 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,14 @@ static void	process_inputs(t_data *data)
 {
 	data->ply_x_axis = data->ply_inputs.left - data->ply_inputs.right;
 	data->ply_y_axis = data->ply_inputs.up - data->ply_inputs.down;
-	data->ply_turn_dir = data->ply_inputs.turn_left
-		- data->ply_inputs.turn_right;
+	data->ply_turn_dir = (data->ply_inputs.turn_left
+			+ data->ply_inputs.m_turn_left)
+		- (data->ply_inputs.turn_right
+			+ data->ply_inputs.m_turn_right);
+	if (data->ply_turn_dir > 0)
+		data->ply_turn_dir = 1;
+	else
+		data->ply_turn_dir = -1;
 }
 
 static void	angle_move(t_data *data)
