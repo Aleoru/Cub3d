@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:28 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/13 03:41:35 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:31:36 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,19 @@ void	draw_cell(mlx_image_t *img, t_point init, int size, int color)
 {
 	int		y;
 	int		x;
+	int		color2;
 
+	color2 = 0x666666FF;
 	y = 0;
 	while (y < size)
 	{
 		x = 0;
 		while (x < size)
 		{
-			mlx_put_pixel(img, (int)init.x + x, (int)init.y + y, color);
+			if (y == 0 || x == 0)
+				mlx_put_pixel(img, (int)init.x + x, (int)init.y + y, color2);
+			else
+				mlx_put_pixel(img, (int)init.x + x, (int)init.y + y, color);
 			x++;
 		}
 		y++;

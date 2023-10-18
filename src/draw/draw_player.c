@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:08 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/17 19:49:05 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:20:33 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	draw_screen(t_data *data)
 {
 	clear_image(data->screen);
 	draw_rays(data);
-	draw_player_minimap(data, 10);
+	draw_player_minimap(data, 8);
 }
 
 void	draw_big(t_data *data, int ray, int dist, t_point init)
