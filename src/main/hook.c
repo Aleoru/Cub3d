@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:43 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/17 19:13:31 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:58:39 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,30 @@ void	hook(void *param)
 		data->ply_inputs.turn_right = 1;
 	move_player(data);
 	draw_screen(data);
+}
+
+void	cursor_hook(double xdelta, double ydelta, void *param)
+{
+	t_data	*data;
+
+	data = param;
+	(void)ydelta;
+	data->ply_inputs.m_turn_right = 0;
+	data->ply_inputs.m_turn_left = 0;
+	if (xdelta < (data->width / 2) - 10)
+	{
+		data->ply_inputs.m_turn_left = 1;
+		puts("Sliiiide to the left!");
+	}
+	else if (xdelta > (data->width / 2) + 10)
+	{
+		data->ply_inputs.m_turn_right = 1;
+		puts("Sliiiide to the right!");
+	}
+	else
+	{
+		data->ply_inputs.m_turn_left = 0;
+		data->ply_inputs.m_turn_right = 0;
+	}
+	mlx_set_mouse_pos(data->mlx, data->width / 2, data->height / 2);
 }

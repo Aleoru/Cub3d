@@ -1,7 +1,7 @@
-NO ./assets/png/box.png
-SO ./assets/png/floor.png
-WE ./assets/png/exitclose.png
-EA ./assets/png/wall.png
+NO ./assets/png/BIGBRICKS.png
+SO ./assets/png/CASTLEBRICKS.png
+WE ./assets/png/CLAYBRICKS.png
+EA ./assets/png/DUNGEONBRICKS.png
 
 F 220,100,0
 C 225,30,0

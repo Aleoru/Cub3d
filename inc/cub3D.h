@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/17 19:46:44 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/18 20:13:17 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ typedef struct s_inputs
 	int			down;
 	int			turn_right;
 	int			turn_left;
+	int			m_turn_right;
+	int			m_turn_left;
 }	t_inputs;
 
 typedef struct s_ray
@@ -160,7 +162,6 @@ void		draw_small(t_data *data, int ray, int dist, t_point init);
 int			get_color(mlx_image_t *img, int p);
 mlx_image_t	*get_texture(t_data *data, int ray);
 
-
 /****************/
 /*		MAP		*/
 /****************/
@@ -202,12 +203,11 @@ void		free_split(char **split);
 void		free_level(t_data *data, t_level *level);
 void		exit_error(t_data *data, char *str, int fd);
 
-
-
 /********************/
 /*		HOOK		*/
 /********************/
 void		hook(void *param);
+void		cursor_hook(double xdelta, double ydelta, void *param);
 
 /********************/
 /*		MINIMAP		*/
