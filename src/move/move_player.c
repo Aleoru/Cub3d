@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:31:38 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/18 19:46:16 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:57:11 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	process_inputs(t_data *data)
 			+ data->ply_inputs.m_turn_right);
 	if (data->ply_turn_dir > 0)
 		data->ply_turn_dir = 1;
-	else
+	else if (data->ply_turn_dir < 0)
 		data->ply_turn_dir = -1;
 }
 
