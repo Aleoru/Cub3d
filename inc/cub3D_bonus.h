@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub3D_bonus.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/20 18:54:41 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/18 20:13:17 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ typedef struct s_inputs
 	int			down;
 	int			turn_right;
 	int			turn_left;
+	int			m_turn_right;
+	int			m_turn_left;
 }	t_inputs;
 
 typedef struct s_ray
@@ -205,5 +207,11 @@ void		exit_error(t_data *data, char *str, int fd);
 /*		HOOK		*/
 /********************/
 void		hook(void *param);
+void		cursor_hook(double xdelta, double ydelta, void *param);
 
+/********************/
+/*		MINIMAP		*/
+/********************/
+void		create_minimap(t_data *data, int cell_size);
+void		draw_player_minimap(t_data *data, int size);
 #endif

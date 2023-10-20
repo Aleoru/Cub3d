@@ -6,7 +6,7 @@
 #    By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/08 18:12:15 by aoropeza          #+#    #+#              #
-#    Updated: 2023/09/07 18:33:35 by aoropeza         ###   ########.fr        #
+#    Updated: 2023/10/20 19:29:06 by aoropeza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,10 @@ LIBMLX	= lib/MLX42
 HEADER	= -I ./inc -I $(LIBMLX)/include -I $(LIBFT)/inc
 LFLAGS	= -L$(LIBFT) -lft  -L$(LIBMLX) -lmlx42 
 LIBS	= -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/ -lm
-# SRC_B	:= $(wildcard $(SRCDIR)/bonus/*.c)
-SRC		:= $(wildcard $(SRCDIR)/*/*.c)
+SRC_B	:= $(wildcard $(SRCDIR)/bonus/*/*.c)
+SRC		:= $(wildcard $(SRCDIR)/mandatory/*/*.c)
 OBJS	:= $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
-# OBJS_B	:= $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC_B))
+OBJS_B	:= $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC_B))
 
 CC 		= gcc
 CFLAGS	= -Wall -Werror -Wextra
@@ -58,8 +58,8 @@ $(NAME) : $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) $(LIBS) $(HEADER) -o $(NAME) &&\
 	printf "$(GREEN)$(BOLD)Welcome to doom beginnings\n$(RESET)"
 
-#bonus: libmlx libft $(OBJS_B)
-#	@$(CC) $(CFLAGS) $(OBJS_B) $(LFLAGS) $(LIBS) $(HEADER) -o $(NAME) &&\
+bonus: libmlx libft $(OBJS_B)
+	@$(CC) $(CFLAGS) $(OBJS_B) $(LFLAGS) $(LIBS) $(HEADER_B) -o $(NAME) &&\
 	printf "$(GREEN)$(BOLD)So Long game ready to play!\n$(RESET)"
 
 obj/%.o : src/%.c
