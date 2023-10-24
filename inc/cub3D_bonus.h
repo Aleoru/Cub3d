@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D_bonus.h                                            :+:      :+:    :+:   */
+/*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/18 20:13:17 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/24 12:37:18 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,14 @@ typedef struct s_ray
 	int			pixel;
 	int			texture;
 }	t_ray;
+
+typedef struct s_sprite
+{
+	float		angle;
+	float		dist;
+	t_point		pos;
+	mlx_image_t	*img;
+}	t_sprite;
 
 typedef struct s_img
 {
