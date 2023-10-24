@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/24 12:37:18 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:32:05 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,11 @@ typedef struct s_data
 	int			num_rays;
 	int			angle_vision;
 	int			horizont;
+	//draw sprites
+	t_sprite	*sprites;
+	int			n_sprites;
+	mlx_image_t	*sprite_1;
+	mlx_image_t	*sprite_2;
 
 }	t_data;
 
