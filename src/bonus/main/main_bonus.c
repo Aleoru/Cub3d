@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:54:21 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/20 19:42:55 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/25 20:05:34 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int	main(int argc, char **argv)
 	}
 	ft_bzero(&data, sizeof(t_data));
 	data.cl_size = 32;
+	data.n_sprites = 0;
+	data.sprites = malloc(sizeof(t_sprite) * 10);
 	init_map(&data, &data.level, argv[1]);
 	init_data(&data);
 	init_img(&data);
@@ -84,5 +86,6 @@ int	main(int argc, char **argv)
 	mlx_terminate(data.mlx);
 	free_level(&data, &data.level);
 	free(data.rays);
+	free(data.sprites);
 	return (0);
 }

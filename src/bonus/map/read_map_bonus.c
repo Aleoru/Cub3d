@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/20 19:42:52 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:39:11 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	parsing_map2(t_data *data, t_level *level)
 		x = 0;
 		while (level->file_map[y][x] != '\0')
 		{
-			if (!ft_strchr("10NSEW \n", level->file_map[y][x]))
+			if (!ft_strchr("10NSEWABC \n", level->file_map[y][x])) //Añadidas letras ABC para tipos de sprites
 				exit_error(data, "Error\nInvalid character on map\n", 2);
 			if (ft_strchr("NSEW", level->file_map[y][x]))
 			{
@@ -99,6 +99,8 @@ static void	parsing_map2(t_data *data, t_level *level)
 				level->direction = level->file_map[y][x];
 				check_player_pos(data, level, x, y);
 			}
+			if (ft_strchr("ABC", level->file_map[y][x])) //Añadida funcion add_sprite para crear el sprite al leer la letra
+				add_sprite(data, x, y, level->file_map[y][x]);
 			if (level->file_map[y][x] != '\n')
 				data->map[y + 1][x + 1] = level->file_map[y][x];
 			x++;

@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/24 15:32:05 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:52:38 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,9 @@ typedef struct s_data
 	//draw sprites
 	t_sprite	*sprites;
 	int			n_sprites;
-	mlx_image_t	*sprite_1;
-	mlx_image_t	*sprite_2;
+	mlx_image_t	*sprite_A;
+	mlx_image_t	*sprite_B;
+	mlx_image_t	*sprite_C;
 
 }	t_data;
 
@@ -227,4 +228,9 @@ void		cursor_hook(double xdelta, double ydelta, void *param);
 /********************/
 void		create_minimap(t_data *data, int cell_size);
 void		draw_player_minimap(t_data *data, int size);
+
+/********************/
+/*		SPRITES		*/
+/********************/
+void		add_sprite(t_data *data, int x, int y, char c);
 #endif
