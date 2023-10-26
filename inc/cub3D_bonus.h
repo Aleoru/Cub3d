@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/25 19:52:38 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/26 06:12:06 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,4 +233,6 @@ void		draw_player_minimap(t_data *data, int size);
 /*		SPRITES		*/
 /********************/
 void		add_sprite(t_data *data, int x, int y, char c);
+int			sprite_is_visible(t_data *data, int sprite);
+void		draw_sprites(t_data *data);
 #endif
