@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:10:43 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/26 07:54:40 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/27 20:58:45 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,18 @@ int		sprite_is_visible(t_data *data, int sprite)
 	float	ca;
 	int		i;
 
-	ca = data->ply_pos.x - data->sprites[sprite].pos.x;
-	co = data->ply_pos.y - data->sprites[sprite].pos.y;
-	angle = atan(co/ca); // * data->radian_conver;
-	printf("ray: %d,angle:%f\n", sprite, angle);
+	ca = data->sprites[sprite].pos.x - data->ply_pos.x;
+	co = data->ply_pos.y - data->sprites[sprite].pos.y; //invertir en la Y
+	//angle = atan(co/ca); // * data->radian_conver;
+	angle = normalized_radians(atan2(co, ca)); // * data->radian_conver;
+	//printf("ray: %d,angle:%f\n", sprite, angle);
 	i = 0;
 	while (i < data->num_rays)
 	{
-		if (data->rays[i].angle == angle)
+		//printf("angle[%d]:%f\n",i , data->rays[i].angle);
+		if ((int)data->rays[i].angle * 1000 == (int)angle * 1000)
 		{
-			printf("sprite:%d is on field of vision\n", sprite);
+			printf("----->  sprite:%d view on ray: %d\n", sprite, i);
 			return (1);
 		}
 		i++;
