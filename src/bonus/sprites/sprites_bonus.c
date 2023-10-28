@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprites.c                                          :+:      :+:    :+:   */
+/*   sprites_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:10:43 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/27 20:58:45 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/28 03:22:20 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,17 @@
 //crea las imagenes utilizadas por los sprites en memoria
 void	upload_sprite_images(t_data *data)
 {
-	(void)data;
+	mlx_texture_t	*t;
+	
+	t = mlx_load_png("./assets/png/sprite_a.png");
+	data->sprite_a = mlx_texture_to_image(data->mlx, t);
+	mlx_delete_texture(t);
+	t = mlx_load_png("./assets/png/sprite_b.png");
+	data->sprite_b = mlx_texture_to_image(data->mlx, t);
+	mlx_delete_texture(t);
+	t = mlx_load_png("./assets/png/sprite_c.png");
+	data->sprite_c = mlx_texture_to_image(data->mlx, t);
+	mlx_delete_texture(t);
 }
 
 //en la lectura del mapa, segun el caracter, inicializa los paremetros del t_sprite
@@ -25,6 +35,12 @@ void	add_sprite(t_data *data, int x, int y, char c)
 	data->sprites[data->n_sprites].pos.y = ((y + 1) * data->cl_size) + data->cl_size / 2;
 	printf("read sprite:%c, sprites:%d, x:%f, y:%f\n", c, data->n_sprites, 
 		data->sprites[data->n_sprites].pos.x,  data->sprites[data->n_sprites].pos.y);
+	if (c == 'A')
+		data->sprites[data->n_sprites].img = data->sprite_a;
+	else if (c == 'B')
+		data->sprites[data->n_sprites].img = data->sprite_b;
+	else if (c == 'C')
+		data->sprites[data->n_sprites].img = data->sprite_c;
 	data->n_sprites++;
 }
 
