@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:10:43 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/28 03:22:20 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/29 02:43:41 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,16 @@ int		pixel_origin(t_data	*data)
 	return (1);
 }
 
-//calculo del angulo entre el jugador y el sprite, si es un angulo entre los de su campo de visión es visible
+static int		size_sprite(t_data *data, int sprite, int ray)
+{
+	int		size;
+
+	size = (int)(data->wall_height 
+		/ data->sprites[sprite].dist * data->rays[ray].dis_fov); 
+	return (size);
+}
+
+//calculo del angulo entre el jugador y el s prite, si es un angulo entre los de su campo de visión es visible
 //arcotangente = co / ca
 int		sprite_is_visible(t_data *data, int sprite)
 {
@@ -72,9 +81,16 @@ int		sprite_is_visible(t_data *data, int sprite)
 		if ((int)data->rays[i].angle * 1000 == (int)angle * 1000)
 		{
 			printf("----->  sprite:%d view on ray: %d\n", sprite, i);
+			data->sprites[sprite].dist = hypotenuse(ca, co);
+			data->sprites[sprite].size = size_sprite(data, sprite, i);
+			data->sprites[sprite].init.x = i - (data->sprites[sprite].size / 2);
+			data->sprites[sprite].init.y = data->horizont
+				 + (data->sprites[sprite].size / 2);
+			draw_sprite(data, sprite);
+			printf("sprite size: %d\n", data->sprites[sprite].size);
 			return (1);
 		}
-		i++;
+		i++; 
 	}
 	return (0);
 }
