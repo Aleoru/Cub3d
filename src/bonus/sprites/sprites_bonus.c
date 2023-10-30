@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:10:43 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/30 05:53:28 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/30 19:49:19 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	upload_sprite_images(t_data *data)
 {
 	mlx_texture_t	*t;
-	
+
 	t = mlx_load_png("./assets/png/sprite_a.png");
 	data->sprite_a = mlx_texture_to_image(data->mlx, t);
 	mlx_delete_texture(t);
@@ -33,7 +33,7 @@ void	add_sprite(t_data *data, int x, int y, char c)
 {
 	data->sprites[data->n_sprites].pos.x = ((x + 1) * data->cl_size) + data->cl_size / 2;
 	data->sprites[data->n_sprites].pos.y = ((y + 1) * data->cl_size) + data->cl_size / 2;
-	printf("read sprite:%c, sprites:%d, x:%f, y:%f\n", c, data->n_sprites, 
+	printf("read sprite:%c, sprites:%d, x:%f, y:%f\n", c, data->n_sprites,
 		data->sprites[data->n_sprites].pos.x,  data->sprites[data->n_sprites].pos.y);
 	if (c == 'A')
 		data->sprites[data->n_sprites].img = data->sprite_a;
@@ -48,8 +48,8 @@ static int		size_sprite(t_data *data, int sprite, int ray)
 {
 	int		size;
 
-	size = (int)(data->wall_height 
-		/ data->sprites[sprite].dist * data->rays[ray].dis_fov); 
+	size = (int)(data->wall_height
+		/ data->sprites[sprite].dist * data->rays[ray].dis_fov);
 	return (size);
 }
 
@@ -84,7 +84,7 @@ int		sprite_is_visible(t_data *data, int sprite)
 			return (1);
 		}
 		data->sprites[sprite].dist = -1;
-		i++; 
+		i++;
 	}
 	return (0);
 }
@@ -142,6 +142,23 @@ void	draw_sprites(t_data *data)
 	}
 }
 
+int		column_is_visible(t_data *data, int sprite, int column)
+{
+	int		ray;
+
+	ray = data->sprites[sprite].init.x + column;
+	if (data->sprites[sprite].dist > data->rays[ray].distance)
+		return (0);
+	return (1);
+}
+
+int		on_limits(t_data *data, int x, int y)
+{
+	if (x >= 0 && x < data->width && y >= 0 && y < data->height)
+		return (1);
+	return (0);
+}
+
 void	draw_sprite(t_data *data, int sprite)
 {
 	(void)data;
@@ -164,7 +181,7 @@ void	draw_sprite(t_data *data, int sprite)
 	factor = f_init;
 	while (x < data->sprites[sprite].size)
 	{
-		
+
 		x++;
 	} */
 }
