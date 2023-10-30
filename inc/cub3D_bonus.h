@@ -6,12 +6,12 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/29 19:14:59 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/30 19:24:25 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "../lib/libft/inc/libft.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
@@ -239,4 +239,5 @@ int			sprite_is_visible(t_data *data, int sprite);
 void		draw_sprites(t_data *data);
 void		draw_sprite(t_data *data, int sprite);
 void		upload_sprite_images(t_data *data);
+
 #endif
