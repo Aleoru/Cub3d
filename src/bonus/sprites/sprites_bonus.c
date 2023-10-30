@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:10:43 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/29 02:43:41 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/10/30 05:53:28 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,6 @@ void	add_sprite(t_data *data, int x, int y, char c)
 	data->n_sprites++;
 }
 
-//en caso de ser visible, donde se dibujara el centro del sprite
-int		pixel_origin(t_data	*data)
-{
-	(void)data;
-	return (1);
-}
-
 static int		size_sprite(t_data *data, int sprite, int ray)
 {
 	int		size;
@@ -86,13 +79,47 @@ int		sprite_is_visible(t_data *data, int sprite)
 			data->sprites[sprite].init.x = i - (data->sprites[sprite].size / 2);
 			data->sprites[sprite].init.y = data->horizont
 				 + (data->sprites[sprite].size / 2);
-			draw_sprite(data, sprite);
+			//draw_sprite(data, sprite); //provisional, dibujar despues de ordenar por distancia
 			printf("sprite size: %d\n", data->sprites[sprite].size);
 			return (1);
 		}
+		data->sprites[sprite].dist = -1;
 		i++; 
 	}
 	return (0);
+}
+
+static void	sort_by_distance(t_data *data)
+{
+	t_sprite	temp;
+	float		dist;
+	int			i;
+	int			j;
+	int			pos;
+
+	j = 0;
+	while (j < data->n_sprites)
+	{
+		i = j;
+		dist = -1;
+		pos = -1;
+		while (i < data->n_sprites)
+		{
+			if (data->sprites[i].dist > dist)
+			{
+				dist = data->sprites[i].dist;
+				pos = i;
+			}
+			i++;
+		}
+		if (pos != -1)
+		{
+			temp = data->sprites[j];
+			data->sprites[j] = data->sprites[pos];
+			data->sprites[pos] = temp;
+		}
+		j++;
+	}
 }
 
 void	draw_sprites(t_data *data)
@@ -105,4 +132,67 @@ void	draw_sprites(t_data *data)
 		sprite_is_visible(data, i);
 		i++;
 	}
+	sort_by_distance(data);
+	i = 0;
+	while (i < data->n_sprites)
+	{
+		if (data->sprites[i].dist > -1)
+			draw_sprite(data, i);
+		i++;
+	}
 }
+
+void	draw_sprite(t_data *data, int sprite)
+{
+	(void)data;
+	(void)sprite;
+	/*int		x;
+	int		pixel;
+	int		color;
+	int		column;
+	float	factor;
+	float	f_init;
+
+	x = 0;
+	column = 0;
+	while (column < data->cl_size)
+	{
+
+	}
+	f_init = (float)data->sprites[sprite].size / data->cl_size;
+	pixel = ((data->cl_size * data->cl_size) - data->cl_size) * 4;
+	factor = f_init;
+	while (x < data->sprites[sprite].size)
+	{
+		
+		x++;
+	} */
+}
+
+/* void	draw_big(t_data *data, int ray, int dist, t_point init)
+{
+	int		x;
+	int		pixel;
+	int		color;
+	float	f_init;
+	float	factor;
+
+	x = 0;
+	pixel = ((data->cl_size * data->cl_size) - data->cl_size
+			+ data->rays[ray].pixel) * 4;
+	color = get_color(get_texture(data, ray), pixel);
+	f_init = (float)dist / data->cl_size;
+	factor = f_init;
+	while (x <= dist && f_init >= 1)
+	{
+		if (init.y - x >= 0 && init.y - x < data->height)
+			mlx_put_pixel(data->screen, init.x, init.y - x, color);
+		if ((float)x >= factor)
+		{
+			factor += f_init;
+			pixel = pixel - (data->cl_size * 4);
+			color = get_color(get_texture(data, ray), pixel);
+		}
+		x++;
+	}
+} */
