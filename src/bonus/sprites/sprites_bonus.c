@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:10:43 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/11/02 12:44:21 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/02 14:08:33 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,9 +165,12 @@ void	draw_column(t_data *data, int sprite, int column)
 	float	factor;
 
 	i = 0;
+	printf("here 1\n");
 	pixel = ((data->cl_size * data->cl_size) - data->cl_size
 		+ data->sprites[sprite].pixel * 4);
+	printf("pixel: %d\n", pixel);
 	color = get_color(data->sprites[sprite].img, pixel);
+	printf("here 2\n");
 	factor = 0;
 	while (i <= data->sprites[sprite].size)
 	{
