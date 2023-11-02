@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:10:43 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/11/02 14:08:33 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/02 20:38:33 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,15 @@ void	add_sprite(t_data *data, int x, int y, char c)
 {
 	data->sprites[data->n_sprites].pos.x = ((x + 1) * data->cl_size) + data->cl_size / 2;
 	data->sprites[data->n_sprites].pos.y = ((y + 1) * data->cl_size) + data->cl_size / 2;
-	printf("read sprite:%c, sprites:%d, x:%f, y:%f\n", c, data->n_sprites,
+	data->sprites[data->n_sprites].type = c;
+	printf("read sprite:%c, sprites:%d, x:%f, y:%f\n", data->sprites[data->n_sprites].type, data->n_sprites,
 		data->sprites[data->n_sprites].pos.x,  data->sprites[data->n_sprites].pos.y);
-	if (c == 'A')
+	/* if (c == 'A')
 		data->sprites[data->n_sprites].img = data->sprite_a;
 	else if (c == 'B')
 		data->sprites[data->n_sprites].img = data->sprite_b;
 	else if (c == 'C')
-		data->sprites[data->n_sprites].img = data->sprite_c;
+		data->sprites[data->n_sprites].img = data->sprite_c; */
 	data->n_sprites++;
 }
 
@@ -157,6 +158,17 @@ int		on_limits(t_data *data, int x, int y)
 	return (0);
 }
 
+mlx_image_t	*get_sprite_texture(t_data *data, int sprite)
+{
+	if (data->sprites[sprite].type == 'A')
+		return (data->sprite_a);
+	else if (data->sprites[sprite].type == 'B')
+		return (data->sprite_b);
+	else if (data->sprites[sprite].type == 'C')
+		return (data->sprite_c);
+	return (0);
+}
+
 void	draw_column(t_data *data, int sprite, int column)
 {
 	int		i;
@@ -167,9 +179,9 @@ void	draw_column(t_data *data, int sprite, int column)
 	i = 0;
 	printf("here 1\n");
 	pixel = ((data->cl_size * data->cl_size) - data->cl_size
-		+ data->sprites[sprite].pixel * 4);
+			+ data->sprites[sprite].pixel) * 4;
 	printf("pixel: %d\n", pixel);
-	color = get_color(data->sprites[sprite].img, pixel);
+	color = get_color(get_sprite_texture(data, sprite), pixel);
 	printf("here 2\n");
 	factor = 0;
 	while (i <= data->sprites[sprite].size)
@@ -179,8 +191,8 @@ void	draw_column(t_data *data, int sprite, int column)
 		if ((float)i >= factor)
 		{
 			factor += data->sprites[sprite].scale;
+			color = get_color(get_sprite_texture(data, sprite), pixel);
 			pixel = pixel - (data->cl_size * 4);
-			color = get_color(data->sprites[sprite].img, pixel);
 		}
 		i++;
 	}

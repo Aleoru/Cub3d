@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/11/02 14:12:02 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/02 20:16:57 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ typedef struct s_sprite
 	int			pixel;
 	t_point		pos;
 	t_point		init;
-	mlx_image_t	*img;
+	//mlx_image_t	*img;
+	char		type;
 }	t_sprite;
 
 typedef struct s_img
