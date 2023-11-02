@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:10:43 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/30 19:49:19 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/02 12:44:21 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ static int		size_sprite(t_data *data, int sprite, int ray)
 	return (size);
 }
 
-//calculo del angulo entre el jugador y el s prite, si es un angulo entre los de su campo de visión es visible
-//arcotangente = co / ca
 int		sprite_is_visible(t_data *data, int sprite)
 {
 	float	angle;
@@ -64,22 +62,22 @@ int		sprite_is_visible(t_data *data, int sprite)
 
 	ca = data->sprites[sprite].pos.x - data->ply_pos.x;
 	co = data->ply_pos.y - data->sprites[sprite].pos.y; //invertir en la Y
-	//angle = atan(co/ca); // * data->radian_conver;
 	angle = normalized_radians(atan2(co, ca)); // * data->radian_conver;
 	//printf("ray: %d,angle:%f\n", sprite, angle);
 	i = 0;
 	while (i < data->num_rays)
 	{
-		//printf("angle[%d]:%f\n",i , data->rays[i].angle);
+		data->sprites[sprite].pixel = 0;
 		if ((int)data->rays[i].angle * 1000 == (int)angle * 1000)
 		{
+			//init_visible_sprite
 			printf("----->  sprite:%d view on ray: %d\n", sprite, i);
 			data->sprites[sprite].dist = hypotenuse(ca, co);
 			data->sprites[sprite].size = size_sprite(data, sprite, i);
 			data->sprites[sprite].init.x = i - (data->sprites[sprite].size / 2);
 			data->sprites[sprite].init.y = data->horizont
 				 + (data->sprites[sprite].size / 2);
-			//draw_sprite(data, sprite); //provisional, dibujar despues de ordenar por distancia
+			data->sprites[sprite].scale = (float)data->sprites[sprite].size / data->cl_size;
 			printf("sprite size: %d\n", data->sprites[sprite].size);
 			return (1);
 		}
@@ -159,31 +157,54 @@ int		on_limits(t_data *data, int x, int y)
 	return (0);
 }
 
-void	draw_sprite(t_data *data, int sprite)
+void	draw_column(t_data *data, int sprite, int column)
 {
-	(void)data;
-	(void)sprite;
-	/*int		x;
+	int		i;
 	int		pixel;
 	int		color;
+	float	factor;
+
+	i = 0;
+	pixel = ((data->cl_size * data->cl_size) - data->cl_size
+		+ data->sprites[sprite].pixel * 4);
+	color = get_color(data->sprites[sprite].img, pixel);
+	factor = 0;
+	while (i <= data->sprites[sprite].size)
+	{
+		if (on_limits(data, column, i))
+			mlx_put_pixel(data->screen, column, i, color);
+		if ((float)i >= factor)
+		{
+			factor += data->sprites[sprite].scale;
+			pixel = pixel - (data->cl_size * 4);
+			color = get_color(data->sprites[sprite].img, pixel);
+		}
+		i++;
+	}
+}
+
+void	draw_sprite(t_data *data, int sprite)
+{
+	int		i;
 	int		column;
 	float	factor;
-	float	f_init;
 
-	x = 0;
-	column = 0;
-	while (column < data->cl_size)
+	i = 0;
+	factor = 0;
+	while (i < data->sprites[sprite].size)
 	{
-
+		column = data->sprites[sprite].init.x + i;
+		if (column_is_visible(data, sprite, column)) //columna: posicion x en pantalla
+		{
+			draw_column(data, sprite, column); //columna posicion x en pantalla
+		}
+		if ((float)i >= factor)
+		{
+			factor += data->sprites[sprite].scale;
+			data->sprites[sprite].pixel++;
+		}
+		i++;
 	}
-	f_init = (float)data->sprites[sprite].size / data->cl_size;
-	pixel = ((data->cl_size * data->cl_size) - data->cl_size) * 4;
-	factor = f_init;
-	while (x < data->sprites[sprite].size)
-	{
-
-		x++;
-	} */
 }
 
 /* void	draw_big(t_data *data, int ray, int dist, t_point init)
@@ -200,7 +221,7 @@ void	draw_sprite(t_data *data, int sprite)
 	color = get_color(get_texture(data, ray), pixel);
 	f_init = (float)dist / data->cl_size;
 	factor = f_init;
-	while (x <= dist && f_init >= 1)
+	while (x <= dist)
 	{
 		if (init.y - x >= 0 && init.y - x < data->height)
 			mlx_put_pixel(data->screen, init.x, init.y - x, color);
