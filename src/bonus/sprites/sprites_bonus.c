@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:10:43 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/11/04 12:35:01 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/04 18:58:36 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,8 @@ void	draw_column(t_data *data, int sprite, int column)
 	factor = 0;
 	while (i <= data->sprites[sprite].size)
 	{
-		y =  data->sprites[sprite].size - i;
+		y =  (data->sprites[sprite].size - i) + data->sprites[sprite].init.y;
+		//y = data->sprites[sprite].init.y + i;
 		if (on_limits(data, column, y) && color != 0)
 			mlx_put_pixel(data->screen, column, y, color);
 		if ((float)i >= factor)
