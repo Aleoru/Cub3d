@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:10:43 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/11/02 20:38:33 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/04 12:35:01 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,7 @@ mlx_image_t	*get_sprite_texture(t_data *data, int sprite)
 void	draw_column(t_data *data, int sprite, int column)
 {
 	int		i;
+	int		y;
 	int		pixel;
 	int		color;
 	float	factor;
@@ -186,8 +187,9 @@ void	draw_column(t_data *data, int sprite, int column)
 	factor = 0;
 	while (i <= data->sprites[sprite].size)
 	{
-		if (on_limits(data, column, i))
-			mlx_put_pixel(data->screen, column, i, color);
+		y =  data->sprites[sprite].size - i;
+		if (on_limits(data, column, y) && color != 0)
+			mlx_put_pixel(data->screen, column, y, color);
 		if ((float)i >= factor)
 		{
 			factor += data->sprites[sprite].scale;
