@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:31:38 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/20 20:25:44 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/11/05 19:42:39 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ void	move_player(t_data *data)
 		{
 			data->ply_pos.x += new.x;
 			data->ply_pos.y -= new.y;
+			if (data->open_door == 1)
+				if (outside_door(data, data->ply_pos.x, data->ply_pos.y))
+					data->map[data->door_y][data->door_x] = 'D';
 		}
 	}
 }

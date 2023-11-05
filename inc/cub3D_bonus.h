@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/11/05 01:07:18 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/05 19:55:02 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ typedef struct s_sprite
 	int			pixel;
 	t_point		pos;
 	t_point		init;
-	//mlx_image_t	*img;
 	char		type;
 }	t_sprite;
 
@@ -153,12 +152,14 @@ typedef struct s_data
 	int			num_rays;
 	int			angle_vision;
 	int			horizont;
-	//draw sprites
 	t_sprite	*sprites;
 	int			n_sprites;
 	mlx_image_t	*sprite_a;
 	mlx_image_t	*sprite_b;
 	mlx_image_t	*sprite_c;
+	int			open_door;
+	int			door_x;
+	int			door_y;
 
 }	t_data;
 
@@ -250,5 +251,10 @@ void		draw_column(t_data *data, int sprite, int column);
 void		upload_sprite_images(t_data *data);
 int			on_limits(t_data *data, int x, int y);
 int			column_is_visible(t_data *data, int sprite, int column);
+
+/********************/
+/*		DOORS		*/
+/********************/
+int			outside_door(t_data *data, float x, float y);
 
 #endif

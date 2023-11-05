@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:10:43 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/11/04 19:33:27 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/05 19:16:27 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,20 @@ void	add_sprite(t_data *data, int x, int y, char c)
 	data->sprites[data->n_sprites].pos.y = ((y + 1) * data->cl_size) + data->cl_size / 2;
 	data->sprites[data->n_sprites].type = c;
 	printf("read sprite:%c, sprites:%d, x:%f, y:%f\n", data->sprites[data->n_sprites].type, data->n_sprites,
-		data->sprites[data->n_sprites].pos.x,  data->sprites[data->n_sprites].pos.y);
-	/* if (c == 'A')
-		data->sprites[data->n_sprites].img = data->sprite_a;
-	else if (c == 'B')
-		data->sprites[data->n_sprites].img = data->sprite_b;
-	else if (c == 'C')
-		data->sprites[data->n_sprites].img = data->sprite_c; */
+		data->sprites[data->n_sprites].pos.x, data->sprites[data->n_sprites].pos.y);
 	data->n_sprites++;
 }
 
-static int		size_sprite(t_data *data, int sprite, int ray)
+static int	size_sprite(t_data *data, int sprite, int ray)
 {
 	int		size;
 
 	size = (int)(data->wall_height
-		/ data->sprites[sprite].dist * data->rays[ray].dis_fov);
+			/ data->sprites[sprite].dist * data->rays[ray].dis_fov);
 	return (size);
 }
 
-int		sprite_is_visible(t_data *data, int sprite)
+int	sprite_is_visible(t_data *data, int sprite)
 {
 	float	angle;
 	float	co;
