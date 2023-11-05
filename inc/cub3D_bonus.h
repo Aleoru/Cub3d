@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/11/02 20:16:57 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/05 01:07:18 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define SOUTH 2
 # define EAST 3
 # define WEST 4
+# define DOOR 5
 
 typedef struct s_point
 {
@@ -91,6 +92,9 @@ typedef struct s_ray
 	int			y_dir;
 	int			pixel;
 	int			texture;
+	int			v_door;
+	int			h_door;
+	int			is_door;
 }	t_ray;
 
 typedef struct s_sprite
@@ -112,6 +116,7 @@ typedef struct s_img
 	mlx_image_t	*so_wall;
 	mlx_image_t	*ea_wall;
 	mlx_image_t	*we_wall;
+	mlx_image_t	*door;
 }	t_img;
 
 typedef struct s_data

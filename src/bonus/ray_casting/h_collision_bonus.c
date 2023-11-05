@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   h_collision_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 23:31:52 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/20 20:26:29 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/11/05 01:11:51 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static float	h_coll_right(t_data *data, int ray)
 		init.x = data->rays[ray].aux.x;
 		init.y = data->rays[ray].aux.y;
 	}
+	if (w_coll(data, init.x, init.y) == 2)
+		data->rays[ray].h_door = 1;
 	h = data->ply_pos.y - data->rays[ray].aux.y;
 	w = data->ply_pos.x - data->rays[ray].aux.x;
 	return (sqrt((w * w) + (h * h)));
@@ -57,6 +59,8 @@ static float	h_coll_left(t_data *data, int ray)
 		init.x = data->rays[ray].aux.x;
 		init.y = data->rays[ray].aux.y;
 	}
+	if (w_coll(data, init.x - 1, init.y) == 2)
+		data->rays[ray].h_door = 1;
 	h = data->ply_pos.y - data->rays[ray].aux.y;
 	w = data->ply_pos.x - data->rays[ray].aux.x;
 	return (sqrt((w * w) + (h * h)));

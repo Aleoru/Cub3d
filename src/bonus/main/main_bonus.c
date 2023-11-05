@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:54:21 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/28 03:00:16 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/05 01:04:47 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ void	init_img(t_data *data)
 	mlx_delete_texture(texture);
 	texture = mlx_load_png(data->level.we_path);
 	data->img.we_wall = mlx_texture_to_image(data->mlx, texture);
+	mlx_delete_texture(texture);
+	texture = mlx_load_png("./assets/png/door.png");
+	data->img.door = mlx_texture_to_image(data->mlx, texture);
 	mlx_delete_texture(texture);
 	upload_sprite_images(data);
 }

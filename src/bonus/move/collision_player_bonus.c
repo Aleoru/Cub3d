@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collision_player_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:59 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/20 20:25:33 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/11/04 23:57:57 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int	collision_point(t_data *data, float x, float y)
 
 	x_cell = (int)(x / data->cl_size);
 	y_cell = (int)(y / data->cl_size);
+	if (data->map[y_cell][x_cell] == 'D')
+		data->map[y_cell][x_cell] = '0';
 	if (data->map[y_cell][x_cell] == '1')
 		return (1);
 	return (0);

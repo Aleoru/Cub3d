@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:10:43 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/11/04 18:58:36 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/04 19:33:27 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int		sprite_is_visible(t_data *data, int sprite)
 			data->sprites[sprite].dist = hypotenuse(ca, co);
 			data->sprites[sprite].size = size_sprite(data, sprite, i);
 			data->sprites[sprite].init.x = i - (data->sprites[sprite].size / 2);
+			//data->sprites[sprite].init.x = (data->width - i) - (data->sprites[sprite].size / 2);
 			data->sprites[sprite].init.y = data->horizont
 				 + (data->sprites[sprite].size / 2);
 			data->sprites[sprite].scale = (float)data->sprites[sprite].size / data->cl_size;
@@ -146,6 +147,7 @@ int		column_is_visible(t_data *data, int sprite, int column)
 	int		ray;
 
 	ray = data->sprites[sprite].init.x + column;
+	//ray = data->width - (data->sprites[sprite].init.x + column);
 	if (data->sprites[sprite].dist > data->rays[ray].distance)
 		return (0);
 	return (1);

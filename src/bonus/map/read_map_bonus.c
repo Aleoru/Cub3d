@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/25 19:39:11 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/04 23:38:32 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	parsing_map2(t_data *data, t_level *level)
 		x = 0;
 		while (level->file_map[y][x] != '\0')
 		{
-			if (!ft_strchr("10NSEWABC \n", level->file_map[y][x])) //Añadidas letras ABC para tipos de sprites
+			if (!ft_strchr("10NSEWABCD \n", level->file_map[y][x])) //Añadidas letras ABC para tipos de sprites
 				exit_error(data, "Error\nInvalid character on map\n", 2);
 			if (ft_strchr("NSEW", level->file_map[y][x]))
 			{
