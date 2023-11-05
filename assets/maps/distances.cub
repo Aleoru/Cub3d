@@ -1,7 +1,7 @@
-NO ./assets/png/BIGBRICKS.png
-SO ./assets/png/CASTLEBRICKS.png
-WE ./assets/png/CLAYBRICKS.png
-EA ./assets/png/DUNGEONBRICKS.png
+NO ./assets/png/wall.png
+SO ./assets/png/wall-torch.png
+WE ./assets/png/wall-vines.png
+EA ./assets/png/wall-broken.png
 
 F 72,231,84
 C 112,226,238

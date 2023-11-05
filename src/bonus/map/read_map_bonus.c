@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/11/04 23:38:32 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/05 21:04:35 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,13 @@ static void	parsing_map2(t_data *data, t_level *level)
 	int	x;
 	int	y;
 
-	y = 0;
-	while (level->file_map[y])
+	y = -1;
+	while (level->file_map[++y])
 	{
-		x = 0;
-		while (level->file_map[y][x] != '\0')
+		x = -1;
+		while (level->file_map[y][++x] != '\0')
 		{
-			if (!ft_strchr("10NSEWABCD \n", level->file_map[y][x])) //Añadidas letras ABC para tipos de sprites
+			if (!ft_strchr("10NSEWABCD \n", level->file_map[y][x]))
 				exit_error(data, "Error\nInvalid character on map\n", 2);
 			if (ft_strchr("NSEW", level->file_map[y][x]))
 			{
@@ -99,13 +99,11 @@ static void	parsing_map2(t_data *data, t_level *level)
 				level->direction = level->file_map[y][x];
 				check_player_pos(data, level, x, y);
 			}
-			if (ft_strchr("ABC", level->file_map[y][x])) //Añadida funcion add_sprite para crear el sprite al leer la letra
+			if (ft_strchr("ABC", level->file_map[y][x]))
 				add_sprite(data, x, y, level->file_map[y][x]);
 			if (level->file_map[y][x] != '\n')
 				data->map[y + 1][x + 1] = level->file_map[y][x];
-			x++;
 		}
-		y++;
 	}
 }
 

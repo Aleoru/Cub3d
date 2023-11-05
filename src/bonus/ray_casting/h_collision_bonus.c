@@ -6,11 +6,11 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 23:31:52 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/11/05 01:11:51 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/05 21:02:50 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../inc/cub3D_bonus.h" 
+#include "../../../inc/cub3D_bonus.h"
 
 static float	h_coll_right(t_data *data, int ray)
 {
@@ -64,7 +64,7 @@ static float	h_coll_left(t_data *data, int ray)
 	h = data->ply_pos.y - data->rays[ray].aux.y;
 	w = data->ply_pos.x - data->rays[ray].aux.x;
 	return (sqrt((w * w) + (h * h)));
-}	
+}
 
 float	ray_h_collision(t_data *data, int ray)
 {

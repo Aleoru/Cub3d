@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/11/05 19:55:02 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/05 21:06:41 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,6 +251,7 @@ void		draw_column(t_data *data, int sprite, int column);
 void		upload_sprite_images(t_data *data);
 int			on_limits(t_data *data, int x, int y);
 int			column_is_visible(t_data *data, int sprite, int column);
+mlx_image_t	*get_sprite_texture(t_data *data, int sprite);
 
 /********************/
 /*		DOORS		*/

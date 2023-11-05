@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 03:49:41 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/11/05 01:15:24 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/05 21:02:57 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	w_coll(t_data *data, float x, float y)
 	if (x_cell > data->level.size_x || x_cell < 0
 		|| y_cell > data->level.size_y || y_cell < 0)
 		return (1);
-	if (data->map[y_cell][x_cell] == '1') 
+	if (data->map[y_cell][x_cell] == '1')
 		return (1);
 	else if (data->map[y_cell][x_cell] == 'D')
 		return (2);
