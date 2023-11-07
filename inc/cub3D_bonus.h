@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/11/05 21:06:41 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/06 02:34:29 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ typedef struct s_data
 	int			open_door;
 	int			door_x;
 	int			door_y;
+	t_point		check_point;
 
 }	t_data;
 
@@ -257,5 +258,5 @@ mlx_image_t	*get_sprite_texture(t_data *data, int sprite);
 /*		DOORS		*/
 /********************/
 int			outside_door(t_data *data, float x, float y);
-
+void		checker_point_pos(t_data *data, float range);
 #endif

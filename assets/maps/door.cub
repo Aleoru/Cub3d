@@ -3,8 +3,8 @@ SO ./assets/png/wall-torch.png
 WE ./assets/png/wall-vines.png
 EA ./assets/png/wall-broken.png
 
-F 220,100,0
-C 225,30,0
+F 160,127,51
+C 243,185,42
 
 1111111111111111111111
 1000000100000000000001

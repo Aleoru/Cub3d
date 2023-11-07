@@ -6,7 +6,7 @@
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 10:31:38 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/11/05 19:42:39 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/07 19:09:45 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,16 @@ static void	angle_move(t_data *data)
 	}
 }
 
+void	checker_point_pos(t_data *data, float range)
+{
+	t_point	new;
+
+	new.x = cos(data->ply_radians) * range;
+	new.y = sin(data->ply_radians) * range;
+	data->check_point.x = data->ply_pos.x + new.x;
+	data->check_point.y = data->ply_pos.y - new.y;
+}
+
 static void	convert_radians(t_data *data)
 {
 	data->ply_angle += data->ply_turn_dir * data->ply_turn_speed;
@@ -79,13 +89,17 @@ void	move_player(t_data *data)
 		new.y = sin(data->ply_radians) * data->ply_speed;
 		next.x = data->ply_pos.x + new.x;
 		next.y = data->ply_pos.y - new.y;
+		checker_point_pos(data, 31);
 		if (collision_player(data, next.x, next.y) == 0)
 		{
 			data->ply_pos.x += new.x;
 			data->ply_pos.y -= new.y;
-			if (data->open_door == 1)
-				if (outside_door(data, data->ply_pos.x, data->ply_pos.y))
-					data->map[data->door_y][data->door_x] = 'D';
+			if (data->open_door == 1
+				&& outside_door(data, data->ply_pos.x, data->ply_pos.y))
+			{
+				data->map[data->door_y][data->door_x] = 'D';
+				data->open_door = 0;
+			}
 		}
 	}
 }
