@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:54:21 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/20 19:42:55 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/11/07 19:37:44 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	init_data(t_data *data)
 	data->screen = mlx_new_image(data->mlx, data->width, data->height);
 	mlx_image_to_window(data->mlx, data->screen, 0, 0);
 	create_minimap(data, 8);
+	data->open_door = 0;
 }
 
 void	init_img(t_data *data)
@@ -59,6 +60,10 @@ void	init_img(t_data *data)
 	texture = mlx_load_png(data->level.we_path);
 	data->img.we_wall = mlx_texture_to_image(data->mlx, texture);
 	mlx_delete_texture(texture);
+	texture = mlx_load_png("./assets/png/door.png");
+	data->img.door = mlx_texture_to_image(data->mlx, texture);
+	mlx_delete_texture(texture);
+	upload_sprite_images(data);
 }
 
 //	atexit(ft_leaks);
@@ -73,6 +78,8 @@ int	main(int argc, char **argv)
 	}
 	ft_bzero(&data, sizeof(t_data));
 	data.cl_size = 32;
+	data.n_sprites = 0;
+	data.sprites = malloc(sizeof(t_sprite) * 10);
 	init_map(&data, &data.level, argv[1]);
 	init_data(&data);
 	init_img(&data);
@@ -84,5 +91,6 @@ int	main(int argc, char **argv)
 	mlx_terminate(data.mlx);
 	free_level(&data, &data.level);
 	free(data.rays);
+	free(data.sprites);
 	return (0);
 }

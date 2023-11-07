@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:42:08 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/20 19:43:00 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/10/26 06:09:01 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	draw_screen(t_data *data)
 {
 	clear_image(data->screen);
 	draw_rays(data);
+	draw_sprites(data);
 	draw_player_minimap(data, 4);
 }
 

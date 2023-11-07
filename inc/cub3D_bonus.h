@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D_bonus.h                                            :+:      :+:    :+:   */
+/*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/18 20:13:17 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/06 02:34:29 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "../lib/libft/inc/libft.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
@@ -38,6 +38,7 @@
 # define SOUTH 2
 # define EAST 3
 # define WEST 4
+# define DOOR 5
 
 typedef struct s_point
 {
@@ -91,7 +92,22 @@ typedef struct s_ray
 	int			y_dir;
 	int			pixel;
 	int			texture;
+	int			v_door;
+	int			h_door;
+	int			is_door;
 }	t_ray;
+
+typedef struct s_sprite
+{
+	float		angle;
+	float		dist;
+	float		scale;
+	int			size;
+	int			pixel;
+	t_point		pos;
+	t_point		init;
+	char		type;
+}	t_sprite;
 
 typedef struct s_img
 {
@@ -99,6 +115,7 @@ typedef struct s_img
 	mlx_image_t	*so_wall;
 	mlx_image_t	*ea_wall;
 	mlx_image_t	*we_wall;
+	mlx_image_t	*door;
 }	t_img;
 
 typedef struct s_data
@@ -135,6 +152,15 @@ typedef struct s_data
 	int			num_rays;
 	int			angle_vision;
 	int			horizont;
+	t_sprite	*sprites;
+	int			n_sprites;
+	mlx_image_t	*sprite_a;
+	mlx_image_t	*sprite_b;
+	mlx_image_t	*sprite_c;
+	int			open_door;
+	int			door_x;
+	int			door_y;
+	t_point		check_point;
 
 }	t_data;
 
@@ -214,4 +240,23 @@ void		cursor_hook(double xdelta, double ydelta, void *param);
 /********************/
 void		create_minimap(t_data *data, int cell_size);
 void		draw_player_minimap(t_data *data, int size);
+
+/********************/
+/*		SPRITES		*/
+/********************/
+void		add_sprite(t_data *data, int x, int y, char c);
+int			sprite_is_visible(t_data *data, int sprite);
+void		draw_sprites(t_data *data);
+void		draw_sprite(t_data *data, int sprite);
+void		draw_column(t_data *data, int sprite, int column);
+void		upload_sprite_images(t_data *data);
+int			on_limits(t_data *data, int x, int y);
+int			column_is_visible(t_data *data, int sprite, int column);
+mlx_image_t	*get_sprite_texture(t_data *data, int sprite);
+
+/********************/
+/*		DOORS		*/
+/********************/
+int			outside_door(t_data *data, float x, float y);
+void		checker_point_pos(t_data *data, float range);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   field_of_view_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 04:22:29 by fgalan-r          #+#    #+#             */
-/*   Updated: 2023/10/20 20:27:21 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/11/05 01:13:14 by fgalan-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ mlx_image_t	*get_texture(t_data *data, int ray)
 		return (data->img.we_wall);
 	else if (data->rays[ray].texture == WEST)
 		return (data->img.ea_wall);
+	else if (data->rays[ray].texture == DOOR)
+		return (data->img.door);
 	return (0);
 }
 
