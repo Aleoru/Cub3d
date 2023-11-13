@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/20 18:54:41 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/11/13 20:02:18 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ typedef struct s_level
 	char	*so_path;
 	char	*ea_path;
 	char	*we_path;
+	int		no_check;
+	int		so_check;
+	int		ea_check;
+	int		we_check;
 	int		f_color;
 	int		c_color;
 	char	**file_map;
@@ -199,6 +203,7 @@ int			check_img(t_level *level);
 char		*delete_nl(char	*str);
 void		free_split(char **split);
 void		free_level(t_data *data, t_level *level);
+int			check_tags(t_level *level, char *tag);
 void		exit_error(t_data *data, char *str, int fd);
 
 /********************/

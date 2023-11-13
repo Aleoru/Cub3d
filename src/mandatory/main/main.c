@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:54:21 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/11/07 19:36:35 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/13 19:20:43 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	if (argc == 1)
+	if (argc != 2)
 	{
-		ft_putstr_fd("Error\nMissing parameters\n", 2);
+		ft_putstr_fd("Error\nBad arguments\n", 2);
 		return (2);
 	}
 	ft_bzero(&data, sizeof(t_data));

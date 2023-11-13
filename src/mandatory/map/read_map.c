@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/20 18:51:26 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/11/13 19:37:38 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,12 @@ int	get_rgb(t_data *data, t_level *level, char *str)
 	i = 0;
 	rgb = ft_split(str, ',');
 	rgb[2][ft_strlen(rgb[2]) - 1] = '\0';
-	while (rgb[i] && i < 3)
+	while (rgb[i])
+	{
+		if (i > 3)
+			exit_error(data, "Error\nInvalid color\n", 2);
 		validate_color(data, rgb[i++]);
+	}
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
@@ -54,15 +58,16 @@ void	get_map_size(t_data *data, t_level *level)
 {
 	char	*line;
 
-	(void)data;
 	line = get_next_line(level->fd);
-	while (!ft_strchr(line, '1'))
+	while (!ft_strchr(line, '1') && line[0] == '\n')
 	{
 		free(line);
 		line = get_next_line(level->fd);
 		level->f_size++;
 	}
-	while (line != NULL && ft_strchr(line, '1'))
+	if (!ft_strchr(line, '1') && line[0] != '\n')
+		exit_error(data, "Error\nBad map\n", 2);
+	while (line != NULL)
 	{
 		free(line);
 		line = get_next_line(level->fd);
