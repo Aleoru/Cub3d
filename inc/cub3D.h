@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/11/13 20:02:18 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:43:23 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ mlx_image_t	*get_texture(t_data *data, int ray);
 /****************/
 void		init_map(t_data *data, t_level *level, char *str);
 void		validate_map(t_data *data, t_level *level);
-int			get_rgb(t_data *data, t_level *level, char *str);
+int			get_rgb(t_data *data, char *str);
 void		get_map_size(t_data *data, t_level *level);
 void		parsing_map(t_data *data, t_level *level);
 void		check_flood(t_data *data, t_level *level);

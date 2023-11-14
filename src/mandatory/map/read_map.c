@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/11/13 19:37:38 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:43:08 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void	validate_color(t_data *data, char	*c)
 	size_t	i;
 
 	i = 0;
+	if (ft_strlen(c) == 0)
+		exit_error(data, "Error\nInvalid color\n", 2);
 	while (c[i])
 	{
 		if (!ft_isdigit(c[i]))
@@ -27,7 +29,7 @@ static void	validate_color(t_data *data, char	*c)
 		exit_error(data, "ERROR\nInvalid Color\n", 2);
 }
 
-int	get_rgb(t_data *data, t_level *level, char *str)
+int	get_rgb(t_data *data, char *str)
 {
 	int		r;
 	int		g;
@@ -35,16 +37,13 @@ int	get_rgb(t_data *data, t_level *level, char *str)
 	int		i;
 	char	**rgb;
 
-	(void)level;
 	i = 0;
 	rgb = ft_split(str, ',');
+	if (split_size(rgb) != 3)
+		exit_error(data, "Error\nInvalid color\n", 2);
 	rgb[2][ft_strlen(rgb[2]) - 1] = '\0';
 	while (rgb[i])
-	{
-		if (i > 3)
-			exit_error(data, "Error\nInvalid color\n", 2);
 		validate_color(data, rgb[i++]);
-	}
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);

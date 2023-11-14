@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:42:48 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/11/06 02:34:29 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:43:54 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,7 @@ mlx_image_t	*get_texture(t_data *data, int ray);
 /****************/
 void		init_map(t_data *data, t_level *level, char *str);
 void		validate_map(t_data *data, t_level *level);
-int			get_rgb(t_data *data, t_level *level, char *str);
+int			get_rgb(t_data *data, char *str);
 void		get_map_size(t_data *data, t_level *level);
 void		parsing_map(t_data *data, t_level *level);
 void		check_flood(t_data *data, t_level *level);

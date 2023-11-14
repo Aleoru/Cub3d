@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:57:28 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/10/20 19:42:54 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:44:22 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ static void	extract_elements(t_data *data, t_level *level, char **split)
 		level->we_path = ft_strdup(split[1]);
 	else if (!ft_strncmp(split[0], F, ft_strlen(split[0])
 			|| ft_strlen(split[0]) != 2))
-		level->f_color = get_rgb(data, level, split[1]);
+		level->f_color = get_rgb(data, split[1]);
 	else if (!ft_strncmp(split[0], C, ft_strlen(split[0])
 			|| ft_strlen(split[0]) != 2))
-		level->c_color = get_rgb(data, level, split[1]);
+		level->c_color = get_rgb(data, split[1]);
 	else
 		exit_error(data, "Error\nMissing elements\n", STDERR_FILENO);
 }

@@ -6,7 +6,7 @@
 /*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:57:28 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/11/13 20:19:50 by aoropeza         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:43:35 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void	validate_map_path(t_data *data, char *path)
 
 static void	extract_elements(t_data *data, t_level *level, char **split)
 {
+	if (split_size(split) != 2)
+		exit_error(data, "Error\nWrong elements\n", STDERR_FILENO);
 	if (check_tags(level, split[0]))
 		exit_error(data, "Error\nOverwritting elements\n", STDERR_FILENO);
 	if (!ft_strncmp(split[0], NO, ft_strlen(split[0])
@@ -44,10 +46,10 @@ static void	extract_elements(t_data *data, t_level *level, char **split)
 		level->we_path = ft_strdup(split[1]);
 	else if (!ft_strncmp(split[0], F, ft_strlen(split[0])
 			|| ft_strlen(split[0]) != 1))
-		level->f_color = get_rgb(data, level, split[1]);
+		level->f_color = get_rgb(data, split[1]);
 	else if (!ft_strncmp(split[0], C, ft_strlen(split[0])
 			|| ft_strlen(split[0]) != 1))
-		level->c_color = get_rgb(data, level, split[1]);
+		level->c_color = get_rgb(data, split[1]);
 	else
 		exit_error(data, "Error\nMissing elements\n", STDERR_FILENO);
 }

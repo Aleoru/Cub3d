@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgalan-r <fgalan-r@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aoropeza <aoropeza@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:39:03 by aoropeza          #+#    #+#             */
-/*   Updated: 2023/11/05 21:04:35 by fgalan-r         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:44:35 by aoropeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	validate_color(t_data *data, char	*c)
 		exit_error(data, "ERROR\nInvalid Color\n", 2);
 }
 
-int	get_rgb(t_data *data, t_level *level, char *str)
+int	get_rgb(t_data *data, char *str)
 {
 	int		r;
 	int		g;
@@ -35,7 +35,6 @@ int	get_rgb(t_data *data, t_level *level, char *str)
 	int		i;
 	char	**rgb;
 
-	(void)level;
 	i = 0;
 	rgb = ft_split(str, ',');
 	rgb[2][ft_strlen(rgb[2]) - 1] = '\0';
